@@ -1,6 +1,5 @@
 package day09;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class StudentEx01 {
@@ -34,7 +33,6 @@ public class StudentEx01 {
 		int menu;
 		//학생 배열
 		Student [] list = new Student[10];
-		
 		int studentCount = 0;//저장된 학생 수
 		do {
 			printMenu();
@@ -42,45 +40,13 @@ public class StudentEx01 {
 			//runMenu(menu);
 			switch(menu) {
 			case 1:
-				if(studentCount == list.length) {
-					System.out.println("다 찼습니다.");
-					break;
-				}
-				//학년, 반, 번호, 이름을 입력 받고
-				System.out.print("학년 : ");
-				int grade = scan.nextInt();
-				System.out.print("반 : ");
-				int classNum = scan.nextInt();
-				System.out.print("번호 : ");
-				int num = scan.nextInt();
-				System.out.print("이름 : ");
-				String name = scan.next();
-				
-				//입력받은 정보를 이용하여 학생 객체를 생성
-				//배열이 꽉 차지 않으면 생성한 학생 객체를 배열에 저장하고
-				list[studentCount] = new Student(grade, classNum, num, name);
-				//저장된 학생수를 1증가
-				studentCount++;
-				
+				studentCount = insertStudent(list, scan, studentCount);
 				break;
 			case 2:
-				//학년, 반, 번호를 입력
-				
-				//입력받은 학년, 반, 번호를 이용하여 일치하는 학생이 있는지 확인
-				
-				//없다면 일치하는 학생이 없다고 출력하고 종료
-				
-				//있다면 국어, 영어, 수학 성적을 입력받아 학생 성적을 수정
+				updateStudent(list, studentCount, scan);
 				break;
 			case 3:
-				//학년, 반, 번호를 입력
-				
-				//입력받은 학년, 반, 번호를 이용하여 일치하는 학생이 있는지 확인
-				
-				//없다면 일치하는 학생이 없다고 출력하고 종료
-				
-				//있다면 해당 학생의 성적을 출력
-				
+				printStudent(list, studentCount, scan);
 				break;
 			case 4:
 				System.out.println("프로그램 종료입니다.");
@@ -122,7 +88,125 @@ public class StudentEx01 {
 			System.out.println("잘못된 메뉴입니다.");
 		}
 	}
+
+	/**기능 : 학생 배열과 검색할 학생 정보가 주어지면 몇 번지에 있는지 알려주는 메서드
+	 * @param list 학생 배열
+	 * @param count 비교할 학생 수 
+	 * @param std 검색할 학생 정보
+	 * @return 검색한 학생 정보의 위치(번지)로 없으면 -1을 반환 
+	 * */
+	public static int indexOf(Student[] list, int count,  Student std) {
+		if(list == null || std == null) {
+			return -1;
+		}
+		for(int i = 0; i < count; i++) {
+			
+			//학년이 다르면
+			if(std.getGrade() != list[i].getGrade()) {
+				continue;
+			}
+			//반이 다르면
+			if(std.getClassNum() != list[i].getClassNum()) {
+				continue;
+			}
+			//번호가 다르면
+			if(std.getNum() != list[i].getNum()) {
+				continue;
+			}
+			//학년이 같고 반이 같고 번호가 같은 경우
+			return i;
+		}
+		return -1;
+	}
+	/**기능 : 학생 정보를 입력받아 학생 객체로 알려주는 메소드
+	 * @param scan 콘솔에서 입력받기 위한 Scanner
+	 * @return 입력받은 학생 정보를 이용하여 생성한 학생 객체 
+	 * */
+	public static Student inputStudent(Scanner scan) {
+		System.out.print("학년 : ");
+		int grade = scan.nextInt();
+		System.out.print("반 : ");
+		int classNum = scan.nextInt();
+		System.out.print("번호 : ");
+		int num = scan.nextInt();
+		return new Student(grade, classNum, num, "");
+	}
+	
+	/**기능 : 학생 정보를 입력받아 학생리스트에 추가하고 등록된 학생 숫자를 알려주는 메소드
+	 * @param list 학생 리스트
+	 * @param scan 학생 정보를 입력받가 위한 Scanner
+	 * @param studentCount 현재 학생 숫자
+	 * @return 등록된 학생 숫자
+	 * */
+	public static int insertStudent(Student [] list, Scanner scan, int studentCount) {
+		if(studentCount == list.length) {
+			System.out.println("다 찼습니다.");
+			return studentCount;
+		}
+		//학년, 반, 번호, 이름을 입력 받고
+		Student tmp = inputStudent(scan);
+		System.out.print("이름 : ");
+		String name = scan.next();
+		tmp.setName(name);
+		//학년, 반, 번호가 같은 학생이 이미 있다면 추가하지 않도록 처리
+		int index = indexOf(list, studentCount, tmp);
+		if(index != -1) {
+			System.out.println("이미 등록된 학생입니다.");
+			return studentCount;
+		}
+		//입력받은 정보를 이용하여 학생 객체를 생성
+		//배열이 꽉 차지 않으면 생성한 학생 객체를 배열에 저장하고
+		list[studentCount] = tmp;
+		//저장된 학생수를 1증가
+		return studentCount + 1;
+	}
+	/**기능 : 학생 리스트에 있는 학생 정보에서 성적을 수정하는 메소드
+	 * @param list 학생 리스트
+	 * @param studentCount 등록된 학생 숫자
+	 * @param scan 콘솔에서 입력받기 위한 Scanner
+	 */
+	public static void updateStudent(Student[] list, int studentCount, Scanner scan) {
+		//학년, 반, 번호를 입력
+		Student tmp = inputStudent(scan);
+		//입력받은 학년, 반, 번호를 이용하여 일치하는 학생이 있는지 확인
+		int index = indexOf(list, studentCount, tmp);
+		//없다면 일치하는 학생이 없다고 출력하고 종료
+		if(index == -1) {
+			System.out.println("일치하는 학생이 없습니다.");
+			return;
+		}
+		//있다면 국어, 영어, 수학 성적을 입력받아 학생 성적을 수정
+		System.out.print("국어 : ");
+		int kor = scan.nextInt();
+		System.out.print("영어 : ");
+		int eng = scan.nextInt();
+		System.out.print("수학 : ");
+		int math = scan.nextInt();
+		
+		list[index].updateScore(kor, eng, math);
+	}
+	/**기능 : 학생 리스트에서 학생 정보를 검색해서 출력하는 메소드
+	 * @param list 학생 리스트
+	 * @param studentCount 등록된 학생 수
+	 * @param scan 콘솔에서 입력받기 위한 scanner
+	 */
+	public static void printStudent(Student[] list, int studentCount, Scanner scan) {
+		//학년, 반, 번호를 입력
+		Student tmp = inputStudent(scan);
+		//입력받은 학년, 반, 번호를 이용하여 일치하는 학생이 있는지 확인
+		int index = indexOf(list, studentCount, tmp);
+		//없다면 일치하는 학생이 없다고 출력하고 종료
+		if(index == -1) {
+			System.out.println("일치하는 학생이 없습니다.");
+			return;
+		}
+		
+		//있다면 해당 학생의 성적을 출력
+		list[index].print();
+	}
 }
+
+
 
 class Student{
 	private int grade, classNum, num;
@@ -192,5 +276,12 @@ class Student{
 		this.eng = eng;
 		this.math = math;
 	}
+	/**기능 : 학생 정보를 콘솔에 출력하는 메소드
+	 * */
+	public void print() {
+		System.out.println(grade + "학년 " + classNum + "반 " + num + "번 " + name);
+		System.out.println("국어 : " + kor + "점, 영어 : " + eng + "점, 수학 : " + math + "점");
+	}
+	
 }
 

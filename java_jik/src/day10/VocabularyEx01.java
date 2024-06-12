@@ -42,28 +42,58 @@ public class VocabularyEx01 {
 				if(wordCount == list.length) {
 					list = expandWordList(list, list.length + 10);
 				}
-				for(int i = 0; i<wordCount; i++) {
-					list[i].print();
-				}
-				
 				break;
 			case 2:	
-				//단어 수정을 구현하기 위한 과정을 주석으로 작성. 같은 단어가 있는 경우
-				//누구를 수정할지를 선택하는 부분을 고민해야 함.
 				updateWord(list, wordCount);
 				break;
-			case 3:	System.out.println("단어 검색 기능 구현 중입니다.");
+			case 3:	
+				searchWord(list, wordCount);
 				break;
-			case 4:	System.out.println("단어 삭제 기능 구현 중입니다.");
+			case 4:	
+				wordCount = deleteWord(list, wordCount);
 				break;
-			case 5:	System.out.println("프로그램을 종료합니다.");
+			case 5:	
+				System.out.println("프로그램을 종료합니다.");
 				break;
 			default:
 				System.out.println("잘못된 메뉴입니다.");
 			}
 		}while(menu != 5);
 	}
-	
+	public static int deleteWord(Word[] list, int wordCount) {
+		//삭제할 단어를 입력
+		System.out.print("단어 : ");
+		String word = scan.next();
+		//삭제할 단어를 출력
+		printSearchWord(list, wordCount, word);
+		//삭제할 단어를 선택
+		System.out.print("번호 입력 : ");
+		int num = scan.nextInt();
+
+		//잘못된 선택이면 안내 문구 출력
+		if(!checkWord(list, word, num - 1)) {
+			System.out.println("잘못던 번호를 선택했습니다.");
+			return wordCount;
+		}
+		//삭제할 위치부터 하나씩 당겨오게 하기 위해 복사
+		//삭제한 단어가 마지막 단어가 아닐 대 
+		wordCount = deleteWordList(list, wordCount, num - 1);
+		System.out.println("삭제가 완료됐습니다.");
+		return wordCount;
+	}
+	/**기능 : 단어를 입력받아 단어 리스트에 해당 단어가 있는지 출력하는 메소드
+	 * @param list 단어 리스트
+	 * @param wordCount 저장된 단어 개수
+	 */
+	public static void searchWord(Word[] list, int wordCount) {
+		//검색할 단어를 입력
+		System.out.print("단어 : ");
+		String word = scan.next();
+		//저장된 단어들 중에서 검색할 단어가 있는지 찾아서 있으면 출력
+		//일치하는 단어가 없으면 없다고 출력
+		printSearchWord(list, wordCount, word);
+	}
+
 	/**기능 : list에 index 번지에 있는 단어가 word인지 아닌지 알려주는 메소드
 	 * @param list 단어 리스트
 	 * @param word 검색할 단어
@@ -152,20 +182,8 @@ public class VocabularyEx01 {
 		//수정할 단어를 입력
 		System.out.print("단어 : ");
 		String word = scan.next();
-		int count = 0;//일치하는 단어가 몇개 있는지 확인하는 변수
-		//단어 리스트에 수정할 단어와 일치하는 단어들을 번호와 함께 출력
-		for(int i = 0; i < wordCount; i++) {
-			if(list[i].getWord().equals(word)) {
-				System.out.print(i+1+".");
-				list[i].print();
-				count++;
-			}
-		}
-		//수정할 단어가 없으면 안내문구 출력 후 종료
-		if(count == 0) {
-			System.out.println("수정할 단어가 없습니다.");
-			return;
-		}
+		
+		printSearchWord(list, wordCount, word);
 		//수정할 단어를 선택
 		System.out.print("수정할 단어 번호 선택 : ");
 		int num = scan.nextInt();
@@ -184,6 +202,48 @@ public class VocabularyEx01 {
 		System.out.println("------------------");
 		System.out.println("단어 수정을 완료했습니다.");
 		System.out.println("------------------");
+	}
+	
+	/**기능 : 단어 리스트에 단어가 있으면 해당 단어를 출력하고 없으면 없다고 출력하는 메소드
+	 * @param list 단어 리스트
+	 * @param word 단어
+	 * @param wordCount 저장된 단어 수
+	 */
+	public static void printSearchWord(Word[] list, int wordCount, String word) {
+		int count = 0;//일치하는 단어가 몇개 있는지 확인하는 변수
+		//단어 리스트에 수정할 단어와 일치하는 단어들을 번호와 함께 출력
+		for(int i = 0; i < wordCount; i++) {
+			if(list[i].getWord().equals(word)) {
+				System.out.print(i+1+".");
+				list[i].print();
+				count++;
+			}
+		}
+		//수정할 단어가 없으면 안내문구 출력 후 종료
+		if(count == 0) {
+			System.out.println("수정할 단어가 없습니다.");
+			return;
+		}
+	}
+	/**기능 : 배열의 index번지에 요소를 삭제하는 메소드
+	 * @param list 단어 리스트
+	 * @param wordCount 단어 수
+	 * @param index 삭제할 위치
+	 * @return 삭제된 후 단어 수
+	 */
+	public static int deleteWordList(Word[]list, int wordCount, int index) {
+		Word[] tmp = new Word[list.length]; 
+		//단어 리스트의 복사본
+		System.arraycopy(list, 0, tmp, 0, wordCount);
+		//올바른 선택이면 삭제
+		//삭제하려는 번지 다음에 있는 단어들부터 앞으로 한칸 씩 당기고 마지막 단어를 null로 만듬
+		//저장된 단어수를 1감소
+		if(wordCount - index - 1  != 0) {
+			System.arraycopy(tmp, index + 1, list, index, wordCount - index - 1);
+		}
+		wordCount--;
+		list[wordCount] = null;
+		return wordCount;
 	}
 }
 

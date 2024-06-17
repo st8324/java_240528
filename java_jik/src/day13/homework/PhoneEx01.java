@@ -172,6 +172,7 @@ public class PhoneEx01 {
 			search(list, count);
 			break;
 		case 5:
+			System.out.println("프로그램을 종료합니다.");
 			break;
 		default:
 			System.out.println("잘못된 메뉴입니다.");
@@ -272,7 +273,7 @@ public class PhoneEx01 {
 		if(index < 0 || index >= count) {
 			return false;
 		}
-		return list[index].getName().equals(name);
+		return list[index].getName().contains(name);
 	}
 	/**
 	 * 기능 : 연락처 리스트에서 연락처 입력받아를 수정하는 메소드

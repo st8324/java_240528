@@ -1,4 +1,4 @@
-package day18.homework.v1;
+package day18.homework.v2;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -50,16 +50,18 @@ public class ScheduleManager implements Program {
 		String fileName = "src/day18/homework/v1/data.txt";
 		load(fileName);
 		do {
-			//메뉴 출력
+			
 			printMenu();
-			//메뉴 선택
-			menu = scan.nextInt();
-			printBar();
-			//runMenu는 예외가 발생하는 메소드로 program 인터페이스에서 정의 했기 때문에 반드시 처리해줘야 함.
 			try {
+				menu = scan.nextInt();
+				printBar();
 				runMenu(menu);
+			} catch(InputMismatchException e) {
+				System.out.println("올바른 타입을 입력하세요.");
 			} catch (Exception e) {
-				System.out.println("예외 발생");
+				//e.printStackTrace();
+				scan.nextLine();
+				System.out.println(e.getMessage());
 			}
 			printBar();
 			
@@ -121,14 +123,22 @@ public class ScheduleManager implements Program {
 
 
 	private void insert() {
-		//입날짜, 일정, 상세를 입력받아 일정 객체를 생성
-		Schedule schedule = inputSchedule();
-		
-		//생성된 객체를 리스트에 추가
-		list.add(schedule);
-		
-		printBar();
-		System.out.println("일정이 추가 되었습니다.");
+		try {
+			//입날짜, 일정, 상세를 입력받아 일정 객체를 생성
+			Schedule schedule = inputSchedule();
+			
+			//생성된 객체를 리스트에 추가
+			list.add(schedule);
+			
+			//정렬
+			sort();
+			
+			printBar();
+			System.out.println("일정이 추가 되었습니다.");
+		} catch (ParseException e) {
+			printBar();
+			System.out.println("올바른 형식의 날짜를 입력하세요.");
+		}
 	}
 
 
@@ -140,15 +150,21 @@ public class ScheduleManager implements Program {
 		if(schedule == null) {
 			return;
 		}
-		//올바른 일정이면 일정 정보를 입력받아 객체를 생성
-		Schedule newSchedule = inputSchedule();
-		//선택한 객체를 삭제
-		list.remove(schedule);
-		//생성된 객체를 추가
-		list.add(newSchedule);
-		//정렬
-		printBar();
-		System.out.println("수정이 완료 되었습니다.");
+		try {
+			//올바른 일정이면 일정 정보를 입력받아 객체를 생성
+			Schedule newSchedule = inputSchedule();
+			//선택한 객체를 삭제
+			list.remove(schedule);
+			//생성된 객체를 추가
+			list.add(newSchedule);
+			//정렬
+			sort();
+			printBar();
+			System.out.println("수정이 완료 되었습니다.");
+		} catch (ParseException e) {
+			printBar();
+			System.out.println("올바른 형식의 날짜를 입력하세요.");
+		}
 	}
 
 	private void delete() {
@@ -173,9 +189,7 @@ public class ScheduleManager implements Program {
 			System.out.println("등록된 일정이 없습니다.");
 			return;
 		}
-		for(Schedule tmp : list) {
-			System.out.println(tmp);
-		}
+		list.stream().forEach(s->System.out.println(s));
 	}
 
 
@@ -185,7 +199,7 @@ public class ScheduleManager implements Program {
 	}
 
 	/**일정정보(날짜, 일정, 상세)를 입력받아 일정 객체를 반환하는 메소드 */
-	private Schedule inputSchedule(){
+	private Schedule inputSchedule() throws ParseException {
 		//날짜, 일정, 상세를 입력
 		System.out.print("날짜(yyyy-MM-dd hh:mm) : ");
 		scan.nextLine();//엔터 처리
@@ -197,19 +211,12 @@ public class ScheduleManager implements Program {
 		return new Schedule(date, toDo, detail);
 	}
 	/**
-	 * 날짜가 주어지면 주어진 조건에 맞는 리스트 복사본을 가져오는 메소드
-	 * @param date 년-월-일
+	 * 필터 p가 주어지면 주어진 조건에 맞는 리스트 복사본을 가져오는 메소드
+	 * @param p 필터할 조건
 	 * @return 필터된 복사본
 	 */
-	private List<Schedule> scheduleFilterDate(String date){
-		List<Schedule> tmp = new ArrayList<Schedule>();
-		for(Schedule schedule : list) {
-			//yyyy-MM-dd HH:mm에서 yyyy-MM-dd만 추출하여 비교
-			if(schedule.getDate().substring(0,10).equals(date)) {
-				tmp.add(schedule);
-			}
-		}
-		return tmp;
+	private List<Schedule> scheduleFilter(Predicate<Schedule> p){
+		return list.stream().filter(p).collect(Collectors.toList());
 	}
 	/**
 	 * 주어진 리스트를 번호. 날짜 일정 : 상세 순으로 출력하고 출력된 결과가 있는지
@@ -228,7 +235,12 @@ public class ScheduleManager implements Program {
 		}
 		return true;
 	}
-
+	/**
+	 * 스케쥴 리스트를 정렬하는 메소드
+	 */
+	private void sort() {
+		Collections.sort(list);
+	}
 	/**
 	 * 날짜를 입력하여 입력한 날짜에 맞는 일정들을 출력하고,
 	 * 출력된 일정을 선택하여 객체로 반환하는 메소드(재사용을 위해 만듬)
@@ -239,9 +251,14 @@ public class ScheduleManager implements Program {
 		//날짜 입력
 		System.out.print("날짜(yyyy-MM-dd) : ");
 		String date = scan.next();
+		if(!checkDate(date)) {
+			printBar();
+			System.out.println("올바른 형식의 날짜를 입력하세요.");
+			return null;
+		}
 		//해당 날짜에 있는 모든 일정을 리스트로 가져옴
 		List<Schedule> searchList = 
-				scheduleFilterDate(date);
+			scheduleFilter(s->s.getDateStr().substring(0, 10).equals(date));
 		//맞는 일정들을 출력하고 출력할 내용이 없으면 종료
 		if(!printList(searchList)) {
 			return null;
@@ -256,5 +273,19 @@ public class ScheduleManager implements Program {
 			return null;
 		}
 		return searchList.get(index);
+	}
+	/**
+	 * 문자열이 날짜 형식인지 알려주는 메소드
+	 * @param str 날짜 형식 문자열
+	 * @return 문자열이 날짜 형식인지 아닌지
+	 */
+	private boolean checkDate(String str) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			format.parse(str);
+		} catch (ParseException e) {
+			return false;
+		}
+		return true;
 	}
 }

@@ -197,7 +197,7 @@ public class Main {
 	private static void runMenu(int menu) {
 		switch (menu) {
 		case 1: 
-			day18.homework.v1.Main.main(null); 
+			day18.homework.v2.Main.main(null); 
 			break;
 		case 2:
 			break;

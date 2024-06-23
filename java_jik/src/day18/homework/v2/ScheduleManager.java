@@ -58,9 +58,9 @@ public class ScheduleManager implements Program {
 				runMenu(menu);
 			} catch(InputMismatchException e) {
 				System.out.println("올바른 타입을 입력하세요.");
+				scan.nextLine();
 			} catch (Exception e) {
 				//e.printStackTrace();
-				scan.nextLine();
 				System.out.println(e.getMessage());
 			}
 			printBar();

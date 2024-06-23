@@ -28,6 +28,8 @@ public class ScheduleManager implements Program {
 	private final int SEARCH = 4;
 	private final int EXIT = 5;
 	
+	private String fileName = "src/day18/homework/v1/data.txt";
+	
 	
 	@Override
 	public void printMenu() {
@@ -47,7 +49,6 @@ public class ScheduleManager implements Program {
 	@Override
 	public void run() {
 		int menu = INSERT;
-		String fileName = "src/day18/homework/v1/data.txt";
 		load(fileName);
 		do {
 			//메뉴 출력

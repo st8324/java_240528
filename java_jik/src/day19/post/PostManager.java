@@ -21,7 +21,15 @@ public class PostManager implements Program {
 	
 	@Override
 	public void printMenu() {
-		
+		System.out.print("---------------------\r\n"
+				+ "메뉴\r\n"
+				+ "1. 게시글 등록\r\n"
+				+ "2. 게시글 수정\r\n"
+				+ "3. 게시글 삭제\r\n"
+				+ "4. 게시글 검색\r\n"
+				+ "5. 프로그램 종료\r\n"
+				+ "---------------------\r\n"
+				+ "메뉴 선택 : ");
 	}
 
 	@Override
@@ -33,6 +41,7 @@ public class PostManager implements Program {
 			printMenu();
 			//메뉴 선택
 			menu = scan.nextInt();
+			printBar();
 			//선택한 메뉴 실행
 			try {
 				runMenu(menu);
@@ -58,8 +67,11 @@ public class PostManager implements Program {
 	public void runMenu(int menu) throws Exception {
 		switch(menu) {
 		case INSERT:
+			insert();
+			System.out.println(list);
 			break;
 		case UPDATE:
+			update();
 			break;
 		case DELETE:
 			break;
@@ -70,4 +82,42 @@ public class PostManager implements Program {
 		default:
 		}
 	}
+
+	private void update() {
+		
+		
+	}
+
+	private void insert() {
+		//게시글 정보를 입력
+		scan.nextLine();//공백 처리
+		System.out.print("제목 : ");
+		String title = scan.nextLine();
+		System.out.print("내용 : ");
+		String contents = scan.nextLine();
+		System.out.print("작성자 : ");
+		String id = scan.next();
+		System.out.print("비번 : ");
+		String pw = scan.next();
+		//입력한 정보를 이용해서 게시글 객체를 생성
+		Post post = new Post(title, contents, id, pw);
+		//생성한 게시글 객체를 리스트에 추가
+		list.add(post);
+		//알림문구를 출력
+		printBar();
+		System.out.println(post.getNum() + "번 게시글이 추가되었습니다.");
+	}
+	
+	
+	
+	public void printBar() {
+		System.out.println("---------------------");
+	}
 }
+
+
+
+
+
+
+

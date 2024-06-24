@@ -1,4 +1,4 @@
-package day19.board;
+package day19.post;
 
 import java.util.Objects;
 

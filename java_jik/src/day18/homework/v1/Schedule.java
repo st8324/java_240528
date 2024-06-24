@@ -1,13 +1,12 @@
 package day18.homework.v1;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 //Collections.sort()를 사용하기 위해 Comparable 인터페이스를 구현
 //객체로 저장하기 위해 Serializable 인터페이스 구현
 public class Schedule implements Comparable<Schedule>, Serializable{
@@ -20,19 +19,10 @@ public class Schedule implements Comparable<Schedule>, Serializable{
 	public String toString() {
 		return "" + date + " " + toDo + " : " + detail + "";
 	}
-	/* @AllArgsContructor를 안 쓰고 추가한 이유는 날짜 문자열을 Date 객체 문자열로 바꾸는
-	 * 작업을 setDate()를 이용하기 위해서
-	 * */
-	public Schedule(String date, String toDo, String detail) {
-		this.date = date;
-		this.toDo = toDo;
-		this.detail = detail;
-	}
+	
 	@Override
 	public int compareTo(Schedule o) {
 		return date.compareTo(o.date);
 	}
-	
-	
 	
 }

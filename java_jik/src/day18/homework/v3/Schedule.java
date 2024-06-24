@@ -21,6 +21,7 @@ public class Schedule implements Comparable<Schedule>, Serializable{
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		return format.format(date);
 	}
+	//메소드 오버로딩. setDate(Date date)가 이미 @Date을 통해 생성되어 있기 때문에
 	//문자열로 된 날짜를 날짜 객체로 변환하여 저장
 	public void setDate(String str) throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");

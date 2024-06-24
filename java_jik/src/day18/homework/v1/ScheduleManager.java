@@ -122,7 +122,7 @@ public class ScheduleManager implements Program {
 
 
 	private void insert() {
-		//입날짜, 일정, 상세를 입력받아 일정 객체를 생성
+		//날짜, 일정, 상세를 입력받아 일정 객체를 생성
 		Schedule schedule = inputSchedule();
 		
 		//생성된 객체를 리스트에 추가
@@ -147,7 +147,6 @@ public class ScheduleManager implements Program {
 		list.remove(schedule);
 		//생성된 객체를 추가
 		list.add(newSchedule);
-		//정렬
 		printBar();
 		System.out.println("수정이 완료 되었습니다.");
 	}

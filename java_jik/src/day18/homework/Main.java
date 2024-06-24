@@ -191,15 +191,19 @@ public class Main {
 			}catch(InputMismatchException e) {
 				System.err.println("올바른 타입의 입력을 하세요.");
 			}
-		}while(menu != 3);
+		}while(menu != 4);
 	}
 
 	private static void runMenu(int menu) {
 		switch (menu) {
 		case 1: 
-			day18.homework.v2.Main.main(null); 
+			day18.homework.v1.Main.main(null); 
 			break;
 		case 2:
+			day18.homework.v2.Main.main(null); 
+			break;
+		case 3:
+			day18.homework.v3.Main.main(null); 
 			break;
 		default:
 			System.out.println("올바른 메뉴를 선택하세요.");
@@ -209,9 +213,10 @@ public class Main {
 
 	public static void printMenu() {
 		System.out.println("---------프로그램 메뉴---------");
-		System.out.println("1. 일정 관리 프로그램 실행(개인)");
-		System.out.println("2. 일정 관리 프로그램 실행(다수)");
-		System.out.println("3. 종료");
+		System.out.println("1. 일정 관리 프로그램 실행(개인)-쉬움");
+		System.out.println("2. 일정 관리 프로그램 실행(개인)-어려움");
+		System.out.println("3. 일정 관리 프로그램 실행(다수)");
+		System.out.println("4. 종료");
 		System.out.println("----------------------------");
 		System.out.print("메뉴 선택 : ");
 	}

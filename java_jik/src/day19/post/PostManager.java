@@ -84,7 +84,31 @@ public class PostManager implements Program {
 	}
 
 	private void update() {
+		//수정할 게시글 번호를 입력
+		printBar();
+		System.out.print("수정할 게시글 번호");
+		int num = scan.nextInt();
+		printBar();
 		
+		Post post = selectPost(num);
+		if(post == null) {
+			return;
+		}
+		
+		printBar();
+		//같으면 새 제목과 내용을 입력
+		scan.nextLine();//공백처리
+		System.out.print("제목 : ");
+		String title = scan.nextLine();
+		System.out.print("내용 : ");
+		String content = scan.nextLine();
+		
+		//가져온 객체의 제목과 내용을 입력받은 제목과 내용으로 수정
+		post.update(title, content);
+		
+		//안내문구 출력
+		printBar();
+		System.out.println(post.getNum() + "번 게시글이 수정되었습니다.");
 		
 	}
 
@@ -112,6 +136,36 @@ public class PostManager implements Program {
 	
 	public void printBar() {
 		System.out.println("---------------------");
+	}
+	//게시글 번호가 주어지면 게시글을 가져오는 메소드(아이디, 비번 확인 해서)
+	public Post selectPost(int num) {
+		//입력한 게시글 번호를 이용하여 게시글 객체를 생성
+		Post post = new Post(num);
+		
+		//리스트에서 생성한 객체가 몇번지에 있는지 번지를 가져옴
+		int index = list.indexOf(post);
+		
+		//일치하는 객체가 없으면(가져온 번지가 0보다 작으면) 알림문구 출력 후 종료
+		if(index < 0) {
+			printBar();
+			System.out.println("등록되지 않거나 삭제된 게시글입니다.");
+			return null;
+		}
+		//아이디, 비번을 입력 받음
+		System.out.print("아이디 : ");
+		String id = scan.next();
+		System.out.print("비번 : ");
+		String pw = scan.next();
+		
+		//가져온 객체의 아이디와 비번이 입력받은 아이디와 비번과 같은지 확인해서
+		//같지 않으면 안내문구 출력 후 종료
+		post = list.get(index);
+		if(!post.checkWriter(id, pw)) {
+			printBar();
+			System.out.println("아이디 또는 비번일 잘못 됐습니다.");
+			return null;
+		}
+		return post;
 	}
 }
 

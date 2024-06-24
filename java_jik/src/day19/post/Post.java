@@ -71,6 +71,11 @@ public class Post {
 		System.out.println("조회수 : " + ++view);
 	}
 	
+	//아이디, 비번이 주어지면 게시글의 아이디 비번과 같은지 확인하는 메소드
+	public boolean checkWriter(String id, String pw) {
+		return this.id.equals(id) && this.pw.equals(pw);
+	}
+	
 }
 
 

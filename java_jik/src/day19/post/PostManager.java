@@ -74,13 +74,64 @@ public class PostManager implements Program {
 			update();
 			break;
 		case DELETE:
+			delete();
 			break;
 		case SEARCH:
+			search();
 			break;
 		case EXIT:
+			exit();
 			break;
 		default:
 		}
+	}
+
+	private void exit() {
+		printBar();
+		System.out.println("프로그램을 종료합니다.");
+		printBar();
+	}
+
+	private void search() {
+		//검색어 입력
+		
+		//게시글에서 검색어가 제목 또는 내용에 들어간 게시글리스트를 가져옴
+		
+		//게시글 리스트가 비어 있으면 안내문구 출력 후 종료
+		
+		//가져온 게시글 리스트를 출력
+		
+		//게시글을 확인할건지 선택
+		
+		//확인하지 않겠다고 하면 종료
+		
+		//확인하면 게시글 번호를 입력
+		
+		//입력받은 게시글 번호로 객체를 생성
+		
+		//검색 리스트에서 생성된 객체왈 일치하는 번지를 확인
+		
+		//번지가 유효하지 않으면 안내문구 출력후 종료
+		
+		//번지에 있는 게시글을 가져옴
+		
+		//가져온 게시글을 출력
+		
+		//메뉴로 돌아가려면... 문구 출력 
+		
+		//엔터를 입력받도록 처리
+		
+		
+	}
+
+	private void delete() {
+		//삭제할 게시글 번호를 입력
+		
+		//게시글 번호에 맞는 게시글을 가져옴
+		
+		//게시글이 없으면 종료
+		
+		//리스트에서 게시글을 삭제
 	}
 
 	private void update() {
@@ -89,8 +140,9 @@ public class PostManager implements Program {
 		System.out.print("수정할 게시글 번호");
 		int num = scan.nextInt();
 		printBar();
-		
+		//게시글 번호에 맞는 게시글을 가져옴
 		Post post = selectPost(num);
+		//게시글이 없으면 종료
 		if(post == null) {
 			return;
 		}

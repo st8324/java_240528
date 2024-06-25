@@ -1,12 +1,15 @@
 package day19.post;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import lombok.Data;
 
 @Data
-public class Post {
+public class Post implements Serializable {
 
+	private static final long serialVersionUID = 12345L;
+	
 	//제목, 내용, 작성자, 비번, 조회수
 	private String title;
 	private String contents;
@@ -19,6 +22,13 @@ public class Post {
 	
 	//게시글 번호를 생성할 때 활용
 	private static int count = 0;
+	
+	public static int getCount() {
+		return count;
+	}
+	public static void setCount(int count1) {
+		count = count1;
+	}
 
 	//이 생성자를 이용할 때만 게시글 번호를 1 증가하도록 함
 	public Post(String title, String contents, String id, String pw) {

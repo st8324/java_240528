@@ -18,7 +18,7 @@ public class ServerEx01 {
 		//1. 포트 번호를 설정
 		int port = 5001;
 		//전송할 데이터
-		List<String> list = Arrays.asList("홍길동", "임꺽정", "둘리", "고길동", "-1");
+		List<String> list = Arrays.asList("홍길동", "임꺽정", "둘리", "고길동");
 
 		try {
 			//2. 서버용 소켓 객체 생성

@@ -1,5 +1,6 @@
 package day20.socket1;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -16,7 +17,7 @@ public class ClientEx01 {
 		String ip = "192.168.30.199"; //서버 IP
 		int port = 5001;//서버 포트
 		
-		List<String> list = Arrays.asList("21", "100", "23", "-1");
+		List<String> list = Arrays.asList("21", "100", "23","-1");
 		//1. 소켓을 생성하고 대기
 		System.out.println("[서버 연결 요청]");
 		try(Socket socket = new Socket(ip, port)) {
@@ -33,11 +34,15 @@ public class ClientEx01 {
 			InputStream is = socket.getInputStream();
 			ObjectInputStream ois = new ObjectInputStream(is);
 			while(true) {
-				String tmp = ois.readUTF();
-				if(tmp.equals("-1")) {
-					break;
+				try {
+					String tmp = ois.readUTF();
+					if(tmp.equals("-1")) {
+						break;
+					}
+					System.out.println("서버에서 보낸 문자열 : " + tmp);
+				}catch(EOFException e) {
+					System.out.println("읽기가 완료되었습니다.");
 				}
-				System.out.println("서버에서 보낸 문자열 : " + tmp);
 			}
 			System.out.println("[수신 완료]");
 			oos.close();

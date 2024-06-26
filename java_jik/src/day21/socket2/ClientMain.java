@@ -14,7 +14,7 @@ public class ClientMain {
 		 * 메뉴 선택 : 
 		 * */
 		ContactManager cm = new ContactManager();
-		//cm.run();
-		Integer.parseInt("abc");
+		cm.run();
+
 	}
 }

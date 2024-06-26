@@ -1,5 +1,9 @@
 package day21.socket2;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +15,9 @@ public class ContactManager implements Program {
 	private Scanner scan = new Scanner(System.in);
 	
 	private List<Contact> list = new ArrayList<Contact>();
+	
+	private String ip = "192.168.30.199";
+	private int port = 5001;
 	
 	@Override
 	public void printMenu() {
@@ -40,6 +47,7 @@ public class ContactManager implements Program {
 				e.printStackTrace();
 			}
 		}while(menu != 5);
+		save();
 		System.out.println("프로그램을 종료합니다.");
 	}
 	
@@ -200,16 +208,29 @@ public class ContactManager implements Program {
 
 
 	public void load() {
+		//소켓 생성
 		
+		//ObjectInput/OutputStream 생성(Socket 이용)
+		
+		//oos를 이용해서 load 문자열 전송
+		
+		//ois를 이용해서 연락처 리스트를 저장
 	}
 	public void save() {
-		//1. 소켓 생성
-		
-		//2.소켓을 이용하여 ObjectOutputStream 객체 생성
-		
-		//3. save 문자열 전송
-		
-		//4. 연락처 리스트를 전송
+		try {
+			//1. 소켓 생성
+			Socket socket = new Socket(ip, port);
+			//2.소켓을 이용하여 ObjectOutputStream 객체 생성
+			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			//3. save 문자열 전송
+			oos.writeUTF("save");
+			//4. 연락처 리스트를 전송
+			oos.writeObject(list);
+			oos.flush();
+		} catch (Exception e) {
+			System.out.println("예외 발생[저장]");
+			e.printStackTrace();
+		} 
 	}
 	
 	

@@ -33,7 +33,8 @@ public class ClientManager implements Program{
 				  "메뉴\n"
 				+ "1. 속담 추가\n"
 				+ "2. 속담 삭제\n"
-				+ "3. 종료\n"
+				+ "3. 속담 확인\n"
+				+ "4. 종료\n"
 				+ "메뉴선택 : ");
 		
 	}
@@ -54,9 +55,7 @@ public class ClientManager implements Program{
 				e.printStackTrace();
 			}
 		}while(menu != 4);
-		list.add("가는 말이 고와야 오는 말이 곱다");
-		list.add("누워서 떡 먹기");
-		list.add("윗 물이 맑아야 아랫물이 맑다");
+		System.out.println("프로그램을 종료합니다.");
 		save();
 		
 	}
@@ -114,8 +113,60 @@ public class ClientManager implements Program{
 	
 	@Override
 	public void runMenu(int menu) throws Exception {
-		// TODO Auto-generated method stub
+
+		switch(menu) {
+		case 1:
+			insert();
+			break;
+		case 2:
+			delete();
+			break;
+		case 3:
+			print();
+			break;
+		}
 		
+	}
+
+	private void insert() {
+		//속담 입력
+		System.out.print("속담 : ");
+		scan.nextLine();//공백 처리
+		String contents = scan.nextLine();
+		//입력된 속담인지 확인해서 없으면 추가 후 알림
+		if(!list.contains(contents.trim())) {
+			list.add(contents.trim());
+			System.out.println("속담을 추가했습니다.");
+		}
+		
+	}
+
+	private void delete() {
+		//속담 출력
+		print();
+		
+		//속담 선택
+		System.out.print("삭제할 속담 선택 : ");
+		int index = scan.nextInt() - 1;
+		//속담을 삭제
+		try {
+			list.remove(index);
+			System.out.println("속담을 삭제했습니다.");
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("잘못된 속담을 선택했습니다.");
+		}
+		
+	}
+
+	private void print() {
+		if(list.size() == 0) {
+			System.out.println("등록된 속담이 없습니다.");
+			return;
+		}
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(i+1 + "." + list.get(i));
+		}
 	}
 
 	

@@ -1,5 +1,6 @@
 package day21.socket2;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServerMain {
@@ -46,11 +48,22 @@ public class ServerMain {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void load(String fileName, ObjectOutputStream oos) {
 		//파일을 열어서 연락처 리스트를 가져옴
-		
+		List<Contact> list = new ArrayList<Contact>();
+		try(ObjectInputStream fois = new ObjectInputStream(new FileInputStream(fileName))){
+			list = (List<Contact>) fois.readObject();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		//oos를 이용해서 연락처 리스트를 전송
-		
+		try {
+			oos.writeObject(list);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("unchecked")

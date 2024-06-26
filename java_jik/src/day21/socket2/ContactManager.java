@@ -1,6 +1,7 @@
 package day21.socket2;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -34,7 +35,7 @@ public class ContactManager implements Program {
 	@Override
 	public void run() {
 		int menu = 1;
-		
+		load();
 		do {
 			//메뉴 출력
 			printMenu();
@@ -207,14 +208,25 @@ public class ContactManager implements Program {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public void load() {
-		//소켓 생성
-		
-		//ObjectInput/OutputStream 생성(Socket 이용)
-		
-		//oos를 이용해서 load 문자열 전송
-		
-		//ois를 이용해서 연락처 리스트를 저장
+		try {
+			//소켓 생성
+			Socket socket = new Socket(ip, port);
+			//ObjectInput/OutputStream 생성(Socket 이용)
+			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			
+			//oos를 이용해서 load 문자열 전송
+			oos.writeUTF("load");
+			oos.flush();
+			
+			//ois를 이용해서 연락처 리스트를 저장
+			list = (List<Contact>) ois.readObject();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public void save() {
 		try {

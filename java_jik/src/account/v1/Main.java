@@ -1,4 +1,4 @@
-package account;
+package account.v1;
 
 public class Main {
 
@@ -60,7 +60,8 @@ public class Main {
 	 * 2024-06-10 | 수입 | 월급 | 2800000 | 6월 월급
 	 * */
 	public static void main(String[] args) {
-		
+		AccountManager am = new AccountManager();
+		am.run();
 	}
 
 }

@@ -63,6 +63,13 @@ public class Item implements Serializable, Comparable<Item> {
 		this.amount = amount;
 		this.contents = contents;
 	}
+	public void update(Item item) {
+		this.date = item.date;
+		this.type = item.type;
+		this.category = item.category;
+		this.amount = item.amount;
+		this.contents = item.contents;
+	}
 }
 
 

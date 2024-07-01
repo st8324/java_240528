@@ -1,5 +1,9 @@
 package account.v2;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -122,36 +126,121 @@ public class AccountManager implements Program {
 
 
 	private void update() {
-		// TODO Auto-generated method stub
+		//1. 검색
+		//날짜 입력
+		System.out.print("날짜 : ");
+		String date = scan.next();
 		
+		//날짜에 맞는 내역을 가져옴
+		List<Item> selectList = null;
+		try {
+			selectList = ab.selectList(date);
+		} catch (ParseException e) {
+			System.out.println("날짜를 올바르게 입력하세요.");
+			return;
+		}
+		
+		ab.search(selectList, p->true);
+		
+		//2. 수정할 내역 선택
+		printBar();
+		System.out.print("내역 선택 : ");
+		int index = scan.nextInt() - 1;
+		
+		//선택한 번호가 유효한 번호인지 체크
+		Item oldItem = selectItemByIndex(selectList, index);
+		if(oldItem == null) {
+			System.out.println("잘못된 번호를 입력했습니다.");
+			return;
+		}
+		//3. 수정할 내역 입력
+		Item item = inputItem();
+		//4. 내역 수정
+		if(ab.update(oldItem, item)) {
+			printBar();
+			System.out.println("내역을 수정했습니다.");
+		}else {
+			System.out.println("잘못된 값을 입력해서 내역을 수정하지 못했습니다.");
+		}
+		
+	}
+
+
+
+	private Item selectItemByIndex(List<Item> selectList, int index) {
+		try {
+			return selectList.get(index);
+		}catch(ArrayIndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 
 
 	private void delete() {
-		// TODO Auto-generated method stub
+		//1. 검색
+		//날짜 입력
+		System.out.print("날짜 : ");
+		String date = scan.next();
+		
+		//날짜에 맞는 내역을 가져옴
+		List<Item> selectList = null;
+		try {
+			selectList = ab.selectList(date);
+		} catch (ParseException e) {
+			System.out.println("날짜를 올바르게 입력하세요.");
+			return;
+		}
+		
+		ab.search(selectList, p->true);
+		
+		//2. 삭제할 내역 선택
+		printBar();
+		System.out.print("내역 선택 : ");
+		int index = scan.nextInt() - 1;
+		Item oldItem = selectItemByIndex(selectList, index);
+		if(oldItem == null) {
+			System.out.println("잘못된 번호를 입력했습니다.");
+			return;
+		}
+		if(ab.delete(oldItem)) {
+			System.out.println("내역을 삭제했습니다.");
+		}else {
+			System.out.println("내역을 삭제하지 못했습니다.");
+		}
 		
 	}
-
-
 
 	private void search() {
-		// TODO Auto-generated method stub
-		
+		ab.search(i->true);
 	}
-
-
 
 	private void exit() {
-		// TODO Auto-generated method stub
+		printBar();
+		System.out.println("프로그램을 종료합니다.");
+		printBar();
 		
 	}
-
-
 
 	private void wrongMenu() {
-		// TODO Auto-generated method stub
-		
+		printBar();
+		System.out.println("잘못된 메뉴입니다.");
 	}
-
+	@Override
+	public void save(String fileName) {
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			oos.writeObject(ab);
+		} catch (Exception e) {
+		}
+	}
+	
+	@Override
+	public void load(String fileName) {
+		try(FileInputStream fis = new FileInputStream(fileName);
+			ObjectInputStream ois = new ObjectInputStream(fis)){
+			ab = (AccountBook)ois.readObject();
+		} catch (Exception e) {
+		} 
+	}
 }

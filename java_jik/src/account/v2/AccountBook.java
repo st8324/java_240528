@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import lombok.Data;
 
@@ -56,10 +57,8 @@ public class AccountBook implements Serializable{
 	}
 	
 	//내역 수정 메소드
-	public boolean update(int index, Item newItem) {
-		Item oldItem = null;
+	public boolean update(Item oldItem, Item newItem) {
 		try {
-			oldItem = list.get(index);
 			if(!checkItem(newItem)) {
 				return false;
 			}
@@ -72,18 +71,25 @@ public class AccountBook implements Serializable{
 	}
 	
 	//내역 삭제 메소드
-	public boolean delete(int index) {
-		try {
-			list.remove(index);
-			return true;
-		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
+	public boolean delete(Item oldItem) {
+		
+		return list.remove(oldItem);
+		
 	}
 	
 	//내역 출력 메소드
 	public void search(Predicate<Item> p) {
+		search(list, p);
+	}
+
+	public List<Item> selectList(String date) throws ParseException {
+		Item item = new Item(date, "", "", 0, "");
+		return list.stream()
+					.filter(i->i.equals(item))
+					.collect(Collectors.toList());
+	}
+
+	public void search(List<Item> list, Predicate<Item> p) {
 		for(int i = 0; i<list.size(); i++) {
 			if(p.test(list.get(i))) {
 				System.out.println(i+1+". " + list.get(i));

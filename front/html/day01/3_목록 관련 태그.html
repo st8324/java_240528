@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>목록 관련 태그</title>
+</head>
+<body>
+	<!-- 
+	ul 태그
+	- 순서가 없는 태그
+	- 마커가 동일
+	- li태그와 함께 사용
+	- 같은 항목들을 나열하는 경우 사용
+	- 목록 태그 중 가장 많이 사용
+	type 속성
+	- 마커의 모향을 변경
+	- HTML5에서 지원하지 않음
+	- disc, square, circle
+	- type 속성보다 css를 활용하는 것을 추천
+	-->
+	<ul type="square">
+		<li>사과</li>
+		<li>포도</li>
+		<li>바나나</li>
+	</ul>
+	<!-- 
+	ol 태그
+	- 순서가 있는 목록 태그
+	- li태그와 함께 사용
+	- type속성 
+		- 마커의 종류를 선택
+	- start 속성
+		- 마커의 시작 숫자를 설정
+	 -->
+	<ol type="I" start="4">
+		<li>사과</li>
+		<li>포도</li>
+		<li>바나나</li>
+	</ol>
+	<!-- 
+	dl 태그
+	- 용어를 정의할 때 사용하는 태그
+	- dd, dt 태그와 함께 사용
+	- dd : 용어 정의, dt : 용어 설명
+	 -->
+	<dl>
+		<dt>apple</dt>
+		<dd>사과</dd>
+		<dd>애플 회사</dd>
+	</dl>
+</body>
+</html>

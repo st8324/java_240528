@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>하이퍼 링크 태그</title>
+</head>
+<body>
+	<!-- 
+	a태그
+	- 다음 기능을 활용할 때 사용
+		- 다른 페이지로 이동
+		- 같은 페이지에서 특정 위치로 이동
+		- 전화 걸기
+		- 메일보내기
+		- 다운로드 하기
+	- 기본적으로 상태마다 글자 색이 달라짐
+		- 방문하기전, 방문한 후, 클릭 했을 때
+	속성
+	- href
+		- 이동할 페이지나 위치, 파일, 전화번호(tel:), 이메일(mailto:)이 올 수 있다
+		- 다른 페이지로 이동할 때 http를 붙이지 않으면 현재 url에 이어서 붙여짐
+	- target
+		- 어떤 창에서 이동할 건지를 선택하는 속성
+		- _self : 기본값, 현재창
+		- _blank : 새창
+		- _parent : 부모창
+		- _top : 최상위 조상 창
+	- download
+		- src에 있는 파일을 다운로드 할 때 사용
+		- download="저장할이름" 을 통해 저장할 때 기본 파일명을 변경할 수 있다
+	 -->
+	<a href="http://www.naver.com" target="_blank">네이버</a>
+	<br>
+	<a href="4_테이블 관련 태그.html" download="테이블 태그 예제.html">4_테이블 관련 태그 예제 다운로드</a>
+	<br>
+	<!-- 
+	011-1234-5678로 전화 걸 때 사용하는 예제
+	-->
+	<a href="tel:+821112345678">전화 걸기</a>
+	<br>
+	<!-- 
+	abcdef@testkh.co.kr로 메일을 보내는 예제
+	-->
+	<a href="mailto:abcdef@testkh.co.kr" id="top">문의하기</a>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<a href="#top" id="middle">위로</a>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<a href="#middle">중간으로</a>
+</body>
+</html>

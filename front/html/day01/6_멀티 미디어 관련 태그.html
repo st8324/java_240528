@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>멀티 미디어 관련 태그</title>
+</head>
+<body>
+	<!-- 
+	img 태그
+	- 이미지를 가져오는 태그
+	- 크기를 지정하지 않으면 원본 이미지 크기를 가져옴
+	- 속성
+		- src : 이미지가 있는 주소
+		- alt : 이미지를 불러오지 못했을 때 보여줄 문자열. 없으면 웹표준 검사에서 걸림
+		- width/height : 너비와 높이. 단위를 안 쓰면 px, auto로 지정하면 비율이 유지
+			- width="500" hegith="auto" : 너비 500px로 고정하고 높이는 이미지 비율에 맞춤	
+	-->
+	<img src="https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG" alt="고양이">
+	<img width="500px" height="500px" src="https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG" alt="고양이">
+	<img width="500px" height="auto" src="https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG" alt="고양이">
+
+	<!-- 
+	map 태그
+	- 요소의 영역을 분할해서 링크를 걸 때 사용
+	- 영역을 분할할 요소에 usemap속성을 이용해서 지정, 값으로 #+map의 name속성명
+	area 태그
+	- 영역을 지정
+	- 속성
+		- shape
+			- 도형의 종류를 선택
+			- rect, circle, poly
+		- coords
+			- 좌표
+			- 도형에 맞게 좌료를 입력. x좌표, y좌표 순으로
+			- rect : 좌측상단 좌표, 우측 하단 좌표 순으로. x1,y1,x2,y2
+			- circle : 중심점, 반지름순으로. x,y,r
+			- poly : 좌표 여러개. 처음 좌표와 마지막 좌표가 동일해야 함. 동일하지 않으면 처음 좌표를 자동으로 추가
+		- href
+			- 연결할 링크 주소
+		- alt
+			- 대체 문자
+	-->
+	<img usemap="#imgmap" width="500px" height="500px" src="https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG" alt="고양이">
+	<map name="imgmap">
+		<area shape="rect" coords="0,0,250,250" href="http://naver.com" alt="네이버">
+		<area shape="circle" coords="375,125,125" href="http://google.com" alt="구글">
+		<area shape="poly" coords="0,250,250,500,500,250,500,500,250,500,0,500,0,250" href="http://daum.net" alt="다음">
+	</map>
+
+	<!-- 
+	audio 태그
+	- 음악을 재생하는 태그
+	- 속성
+		- controls : 컨트롤러를 보여줌
+		- autoplay : 자동 재생, 브라우저 설정에 따라서 자동 재생이 안될 수 있다
+		- loop : 반복
+		- preload : 음원을 재생전에 다운로드 할지 말지를 결정
+			- none : 받지 않음
+			- metadata : 메타데이터만 받음
+			- auto : 받음
+	-->
+	<!-- 
+	video태그
+	- 비디오 재생을 위한 태그
+	- audio 태그 속성을 그대로 사용할 수 있음
+	- 속성
+		- poster : 재생 시작전 보여줄 이미지
+		- width/heigt : 요소의 너비/높이
+	-->
+	<video 
+		src="../video.mp4"
+		controls
+		autoplay
+		loop
+		preload="auto"
+		></video>
+</body>
+</html>

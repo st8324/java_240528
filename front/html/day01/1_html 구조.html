@@ -1,0 +1,40 @@
+<!-- !DOCTYPE thml : html5 표준 문서임을 의미  -->
+<!DOCTYPE html>
+<!-- 
+	html 태그 : html 문서  
+	- lang 속성 : 언어 지정
+		- 검색 엔진에서 언어를 제외하거나 포함할 때 사용
+ -->
+<html lang="ko">
+<!-- 
+head 태그 : 화면에는 보이지 않지만 문서와 관련된 정보를 모아 놓은 태그
+	- meta 태그 : 문서 설정을 지원
+	- link와 script 태그 : css와 js를 연결
+	- title 태그 : 웹 타이틀을 지정
+-->
+<head>
+	<!--
+		meta 태그 
+			- 문서 설정을 지원
+			- 화면 비율, 검색 키워드, 작성자, 요약, 썸네일 이미지 등을 설정
+			- charset 속성
+				- 문서의 인코딩 설정
+			- name="viewport" content="width=device-width, initial-scale=1.0"
+				- 화면 비율을 설정하는데 너비를 기기의 너비를 기준으로 1배로 해서 설정
+				- 모바일에서 웹에서 보이는 화면이 작게 보이는 걸 방지
+	-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HTML 기본 구조</title>
+</head>
+<!-- 
+	body 태그
+		- 화면에 보여지는 부분
+		- 다양한 태그를 이용해서 화면을 구성
+-->
+<body>
+	<!-- html에서는 엔터와 연속된 공백이 하나의 공백으로 처리 됨 -->
+	안녕하세요. 
+	html을 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;처음으로 학습합니다.              만나서 			반가워요.
+</body>
+</html>

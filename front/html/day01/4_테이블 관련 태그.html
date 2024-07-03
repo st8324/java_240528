@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>테이블 관련 태그</title>
+</head>
+<body>
+	<!-- 
+	table 태그
+	- 테이블을 만들기 위해 필요한 태그
+	tr 태그
+	- 한 행을 나타내는 태그
+	- 여러 td/th 태그를 포함한다
+	td 태그
+	- 한 열을 나타내는 태그
+	th 태그
+	- 한 열을 나타내는 태그
+	- 가운데 정렬, 굵은 글씨
+	border 속성
+	- 테두리 두께 설정
+	- 사용하지 말고 css를 활용하는 것이 좋다
+	-->
+	<table border="1">
+		<tr>
+			<th>제목1</th>
+			<th>제목2</th>
+			<th>제목3</th>
+		</tr>
+		<tr>
+			<td>내용1</td>
+			<td>내용2</td>
+			<td>내용3</td>
+		</tr>
+	</table>
+	<!-- 
+	table 구조를 위한 태그
+	- thead, tbody, tfoot
+	- 필수 태그는 아니지만 테이블 구조를 나타낼 때 사용
+	- thead, tbody, tfoot 순으로 배치가 됨(tbody와 tfoot 위치와 상관 없이)
+	thead 태그
+	- 테이블의 제목 행에 해당
+	- 위치가 처음이어야 함
+	tbody 태그
+	- 테이블 내용에 해당
+	- 대부분의 행들이 여기에 속함
+	tfoot 태그
+	- 테이블 끝에 해당
+	- 평균이나 내용을 종합할 때 사용
+	-->
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>없음</td>
+				<td>없음</td>
+				<td>없음</td>
+				<td>없음</td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<tr>
+				<td>2</td>
+				<td>게시글입니다.</td>
+				<td>abc123</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>공지사항</td>
+				<td>admin</td>
+				<td>20</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- 
+	figure 태그
+	- 요소를 설명하기 위한 태그
+	- figcaption 태그와 함께 사용
+	figcaption 태그
+	- 요소 앞에 있으면 요소 위에 설명을 작성
+	- 요소 뒤에 있으면 요소 뒤에 설명을 작성
+	caption 태그
+	- 표를 설명하는 태그
+	- 상단 가운데 정렬
+	colgroup 태그
+	- col 태그들을 모아놓은 태그
+	- 열에 스타일을 적용하지 않아도 열 개수만큼 col 태그를 추가해야 함
+	col 태그
+	- 열의 스타일을 적용하는 태그
+	-->
+	<figure>
+		<table border="1">
+			<colgroup>
+				<col style="background-color:yellow;">
+				<col >
+				<col >
+				<col >
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td>없음</td>
+					<td>없음</td>
+					<td>없음</td>
+					<td>없음</td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr>
+					<td>2</td>
+					<td>게시글입니다.</td>
+					<td>abc123</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>공지사항</td>
+					<td>admin</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+			<caption>게시글1</caption>
+		</table>
+		<figcaption>게시글2</figcaption>
+	</figure>
+
+	<!-- 
+	colspan 속성
+	- 열병합
+	- 좌우로 합침
+	rowspan 속성
+	- 행병합
+	- 위아래 합침
+	-->
+	<table border="1">
+		<caption>HTML 과목 성적표</caption>
+		<thead>
+			<tr>
+				<th>과목명</th>
+				<th>이름</th>
+				<th>성적</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2">HTML</td>
+				<td>홍길동</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>둘리</td>
+				<td>50</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">평균</td>
+				<th>75</th>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>

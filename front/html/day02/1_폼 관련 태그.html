@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>폼 관련 태그</title>
+</head>
+<body>
+	<!-- 
+	form태그
+	- 서버로 데이터를 전송하는 태그
+	- 속성
+		- action
+			- 서버로 보낼 주소 또는
+			- 빈 문자열로 하면 현재 URL에 데이터를 전송
+		- method
+			- 데이터 전송 방식
+			- get
+				- 기본값
+				- url에 데이터를 추가해서 전송 => 데이터가 url에 노출 => 보안이 취약
+				- 대부분이 get 방식
+				- url 뒤에 ?와 함께 사용. name명=값&name명=값 형태로 데이터를 전송
+			- post
+				- http request에 데이터를 추가해서 전송 => 데이터가 url에 노출 X => 보안
+				- 데이터가 노출되면 안되는 경우 => 회원가입, 로그인
+				- 전송할 파일이 있는 경우 => 파일 전송
+		- enctype
+			- method 속성이 post인 경우에만 사용
+			- 서버로 데이터를 보낼 때 이코딩 방식을 설정
+			- application/x-www-form-urlencoded
+				- 기본값, 서버로 보내기 전에 모두 인코딩
+			- multipart/form-data
+				- 모든 문자를 인코딩하지 않음
+				- 서버에 파일을 전송할 때 사용
+			- text/plain
+				- 공백 문자는 +로 변환, 나머지는 인코딩하지 않음
+	-->
+	<!-- 
+	fieldset 태그
+		- form 태그 안에 요소들을 묶어서 테두리 표시
+	legend 태그
+		- fieldset 태그 안에서 묶인 요소들의 대표 이름을 지정
+	-->
+	<!-- 
+	input 태그
+		- form태그 안에서 정보를 입력받는 태그
+		- 속성
+			- value : input태그의 초기값을 설정
+			- name
+				- 입력된 값을 서버로 보내기 위해 반드시 지정해야하는 속성
+				- 서버에서 name을 변수명으로 받음
+			- readonly
+				- 읽기 전용으로 값을 변경할 수 없음
+				- 서버로 데이터가 전송 됨
+			- disabled
+				- 값을 변경할 수 없음
+				- 서버로 데이터가 전송되지 않음
+			- required
+				- 필수 항목에 사용
+				- 지정된 알림이 보임
+				- 지정된 알림말고 다른 방법으로 보여주고 싶으면 reqired는 추가하지 않고 정규표현식을
+				  이용해서 활용
+			- placeholder
+				- 입력하기전 안내 문구를 표시
+				- 값이 입력되어 있으면 안내 문구가 안 보임
+			- autofocus
+				- 페이지에 왔을 때 커서를 자동으로 활성화 시킬지 결정하는 속성
+			- accept
+				- 파일을 선택할 때 보여지는 파일들의 확장자를 선택하게 하는 속성
+				- audio/* : 음원 파일만 검색
+				- vedio/* : 비디오 파일만 검색
+				- image/* : 이미지 파일만 검색
+				- *.pdf : 확장자가 pdf인 파일들만 검색
+				- image/*, *.pdf : 이미지 또는 확장자가 pdf인 파일들만 검색
+			- checked
+				- 라디오 박스나 체크 박스에서 초기 체크를 하고 싶을 때 사용
+			- type
+				- text : 한줄짜리 텍스트 창
+				- password : 비밀번호 입력 창
+				- hidden : 서버에 보내야 하지만 사용자에게 보여질 필요가 없는 데이터를 넣을 때 사용
+				- button : 일반 버튼, button 태그로 대체 가능
+				- submit : form태그에 입력된 정보를 서버에 전송할 때 사용하는 버튼, button 태그로 대체 가능
+				- reset : 같은 form태그 안에 있는 입력된 정보를 지우는 기능을하는 버튼, button 태그로 대체 가능
+				- checkbox : 체크 박스, 다중 선택 가능, name을 같게 해서 활용. value를 반드시 지정
+				- radio : 라디오 버튼, 여러개 중 하나만 선택할 때 사용, name을 같게 해서 활용. value를 반드시 지정
+				- file : 파일을 선택, 
+					form태그에 enctype을 multipart/formdata, method를 post로 변경해야 전송 가능
+				- image : 이미지를 가져옴. img태그로 대체 가능
+
+	label 태그
+	- 요소에 레이블을 붙이는 태그
+	- 레이블을 클릭했을 때 해당 레이블과 연결된 입력창을 선택할 때 사용
+	- 사용 방법
+		- label태그 안에 input 태그를 배치
+		- input태그에 id를 추가하고, label 태그 for 속성에 id명을 추가
+	-->
+	<form action="" method="get">
+		<fieldset>
+			<legend>개인 정보</legend>
+			<div>
+				<label>
+					<span>아이디 : </span>
+					<input type="text" name="id" autofocus placeholder="아이디">
+				</label>
+			</div>
+			<div>
+				<label for="pw">비밀번호 : </label>
+				<input type="password" name="pw" id="pw" placeholder="비번" required>
+			</div>
+			<div>
+				<input type="hidden" name="name" value="홍길동">
+			</div>
+			<div>
+				<div>좋아하는 중국집 요리를 선택하세요.(여러개 선택 가능)</div>
+				<label>
+					<input type="checkbox" name="food" value="짜장면" checked> 짜장면
+				</label>
+				<label>
+					<input type="checkbox" name="food" value="짬뽕"> 짬뽕
+				</label>
+				<label>
+					<input type="checkbox" name="food" value="탕수육"> 탕수육
+				</label>
+				<br>
+				<label>
+					<input type="checkbox" name="food" value="깐풍기"> 깐풍기
+				</label>
+				<label>
+					<input type="checkbox" name="food" value="볶음밥"> 볶음밥
+				</label>
+			</div>
+			<div>
+				<div>성별을 선택하세요.</div>
+				<label>
+					<input type="radio" name="gender" value="남성" checked> 남성
+				</label>
+				<label>
+					<input type="radio" name="gender" value="여성"> 여성
+				</label>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>기타</legend>
+			<div>
+				<label>
+					<input type="file" name="file" multiple accept="image/*, video/*, .zip">
+				</label>
+			</div>
+			<div>
+				<input width="100px" height="auto" type="image" src="https://flexible.img.hani.co.kr/flexible/normal/960/960/imgdb/resize/2019/0121/00501111_20190121.JPG" alt="강아지">
+				<br>
+				<img width="100px" height="auto" src="https://flexible.img.hani.co.kr/flexible/normal/960/960/imgdb/resize/2019/0121/00501111_20190121.JPG" alt="강아지">
+			</div>
+		</fieldset>
+		<div>
+			<input type="reset" value="초기화">
+			<input type="button" value="일반 버튼">
+			<input type="submit" value="전송">
+		</div>
+	</form>
+
+	<hr>
+
+	<!-- 
+	input 태그
+		- 속성
+			- type
+				- color : 색상정보를 16진수로 표현
+				- date/datetime/datetime-local/time/month/week : 날짜 관련 속성
+				- number : 숫자만 입력하는 창. 위/아래 화살표가 있어서 화살표를 통해 증가/감소 시킬 수 있음
+					잘 사용되지 않음
+				- range : 슬라이드 막대를 통해 숫자를 조절
+				- search : 검색창. 입력값이 있으면 우측에 x버튼이 생김. 클릭하면 검색어 초기화
+				- tel : 전화번호로 인식
+				- email/url : 이메일/url을 입력함. 값이 있는데 이메일/url 형식에 맞지 않으면 전송하지 않음
+	-->
+	<form action="">
+		<div>
+			<div>좋아하는 색상 선택</div>
+			<input type="color" name="color"> 
+		</div>
+		<div>
+			<input type="number" name="num" placeholder="0" min="0" max="100">
+			<br>
+			0<input type="range" name="range" min="0" max="10" step="2">10
+		</div>
+		<div>
+			<input type="search" name="search">
+			<br>
+			<input type="tel" name="tel">
+			<br>
+			<input type="email" name="email">
+			<br>
+			<input type="url" name="url">
+		</div>
+		<div>
+			<input type="date" name="date">
+			<br>
+			<input type="datetime-local" name="datetime">
+			<br>
+			<input type="time" name="time">
+		</div>
+		<div>
+			<input type="submit" value="전송">
+		</div>
+	</form>
+	
+</body>
+</html>

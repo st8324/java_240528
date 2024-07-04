@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>동위 선택자</title>
+	<style>
+		/* 
+		동위 선택자
+			- 형제 요소들 사이에서 요소를 선택하는 선택자
+			- 형제 요소는 같은 부모를 가진 요소들
+		선택자A + 선택자B
+			- 선택자A의 바로 뒤에 있는 형제 요소가 선택자B일 때 선택자B를 요소로 선택
+		선택자A ~ 선택자B
+			- 선택자A의 뒤에 있는 모든 형제 요소들 중에서 선택자B와 일치하는 요소
+		*/
+		.item + .item{
+			/* color: red; */
+		}
+		.item ~ .item{
+			/* color: red; */
+		}
+		/* 
+		한 요소를 구체적으로 선택하는 선택자
+			- 예 : li태그이면서 class 이름이 item이고 class 이름이 first 요소를 선택
+				li.item.first
+			- 선택자들을 공백없이 나열
+			- 이 때, 선택자 순서가 중요
+			- 태그 선택자는 제일 먼저 나와야 함
+		*/
+		li.first,
+		.item2{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="item first">1</li>
+		<li class="item2">2</li>
+		<li class="item">3</li>
+		<li class="item">4</li>
+	</ul>
+	<div>
+		<div class="item first">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+	</div>
+</body>
+</html>

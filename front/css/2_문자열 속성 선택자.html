@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>선택자</title>
+	<style>
+		/*
+		문자열 속성 선택자
+			- 특정 문자열을 확인해서 스타일을 적용
+		[속성~=값A]
+			- 속성값이 값A을 단어로 포함하는 선택자
+			- 띄어쓰기로 구분
+		[속성|=값A]
+			- 속성값에 -앞에 있는 단어가 값A인 요소를 선택하는 선택자
+		[속성^=값A]
+			- 속성값이 값A로 시작하는 선택자
+		[속성$=값A]
+			- 속성값이 값A로 끝나는 선택자
+		[속성*=값]
+			- 속성값이 특정값을 포함하는 선택자
+		*/
+		[class~=item]{
+			/* color: red; */
+		}
+		[class|=first]{
+			/* color: red; */
+		}
+		[class^=first]{
+			/* color: red; */
+		}
+		[class$=first]{
+			/* color: red; */
+		}
+		[class*=first]{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="first-item item ">1</li>
+		<li class="second-item first">2</li>
+		<li class="item items">3</li>
+		<li class="first-box box item ">4</li>
+		<li class="box-first box ">5</li>
+	</ul>
+</body>
+</html>

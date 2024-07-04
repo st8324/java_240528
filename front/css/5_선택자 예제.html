@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>선택자 예제</title>
+	<style>
+		/* 모든 메뉴에 글자색이 빨간색이 되도록 선택자를 선택해서 적용 */
+		.menu-link{
+			/* color: red; */
+		}
+		/* nav태그에 있는 메뉴들만 글자색이 빨간색이 되도록 선택자를 선택해서 적용 */
+		nav .menu-link{
+			/* color: red; */
+		}
+		/* 메뉴1들만 글자색이 빨간색이 되도록 코드를 수정하고 선택자를 선택해서 적용 */
+		.first{
+			/* color:red */
+		}
+		/* div 태그에 있는 메뉴2와 메뉴3에 글자색이 빨간색이 되도록 선택자를 선택해서 적용 */
+		div .menu-item+.menu-item>.menu-link{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul class="menu-list">
+			<li class="menu-item">
+				<span class="menu-link first">메뉴1</span>
+			</li>
+			<li class="menu-item">
+				<span class="menu-link">메뉴2</span>
+			</li>
+			<li class="menu-item">
+				<span class="menu-link">메뉴3</span>
+			</li>
+		</ul>
+	</nav>
+	<div>
+		<ul class="menu-list">
+			<li class="menu-item">
+				<span class="menu-link first">메뉴1</span>
+			</li>
+			<li class="menu-item">
+				<span class="menu-link">메뉴2</span>
+			</li>
+			<li class="menu-item">
+				<span class="menu-link">메뉴3</span>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

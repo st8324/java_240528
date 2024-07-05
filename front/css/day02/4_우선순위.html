@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>우선순위</title>
+	<style>
+		/* 
+		스타일 우선 순위 적용
+			- 조상에게 상속받은 스타일 
+			  < 기본 태그 스타일 
+				< 태그 선택자 스타일
+			  < class 선택자 스타일 
+				< id 선택자 스타일 
+				< style 속성 스타일
+				< !important
+		*/
+		.box1{
+			color: red;
+		}
+		a{
+			color: black;
+		}
+		li{
+			color: black;
+		}
+		.item{
+			color: green;
+		}
+		#num3, #num4, #num5{
+			color: purple;
+		}
+		#num5{
+			color: tomato !important;
+		}
+		/* 
+		우선순위가 같을 때는 아래 있는 코드가 적용
+		*/
+		.box2>.item1{
+			color: red;
+		}
+		.box2>.first{
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<ul>
+			<li>1</li>
+			<li class="item">2</li>
+			<li class="item" id="num3">3</li>
+			<li class="item" id="num4" style="color: yellow;">4</li>
+			<li class="item" id="num5" style="color: yellow;">5</li>
+		</ul>
+		<a href="#">클릭</a>
+	</div>
+	<div class="box2">
+		<div class="item1 first">1</div>
+		<div class="item1">2</div>
+	</div>
+</body>
+</html>

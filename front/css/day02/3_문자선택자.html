@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문자 선택자</title>
+	<style>
+		/* 
+		선택자::first-letter
+			- 첫번째 글자를 선택
+		선택자::first-line
+			- 첫번째 줄을 선택
+		선택자::selection
+			- 드래그한 글자들을 선택
+		선택자::before
+			- 태그 앞에 공간을 선택
+			- content 속성을 반드시 추가
+		선택자::after
+			- 태그 뒤 공간을 선택
+			- content 속성을 반드시 추가
+		*/
+		div::first-letter{
+			/* color: red; */
+		}
+		div::first-line{
+			/* color : red; */
+		}
+		div::selection{
+			/* color: red; */
+		}
+		div::before{
+			content: 'before입니다.';
+			color: blue;
+		}
+		div::after{
+			content: 'after입니다.';
+			color: blue;
+		}
+		span{
+			padding-right: 20px;
+			position: relative;
+		}
+		/* 목록1 옆에 가운데 .을 배치 */
+		span::after{
+			content: '';
+			width: 4px; height: 4px;
+			border-radius: 50%;
+			background-color: gray;
+			position: absolute;
+			top: 10px; right: 10px;
+		}
+		/* 
+		부정 선택자 
+		선택자1:not(선택자2)
+			- 선택자1 중에서 선택자2가 아닌 요소들을 선택
+		*/
+		.item:not(.first){
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		선택자::first-letter
+			- 첫번째 글자를 선택
+		선택자::first-line
+			- 첫번째 줄을 선택
+		선택자::selection
+			- 드래그한 글자들을 선택
+		선택자::before
+			- 태그 앞에 공간을 선택
+			- content 속성을 반드시 추가
+		선택자::after
+			- 태그 뒤 공간을 선택
+			- content 속성을 반드시 추가
+	</div>
+	<p>
+		<span>목록1</span>
+	</p>
+	<ul>
+		<li class="item first">1</li>
+		<li class="item">2</li>
+		<li class="item">3</li>
+		<li class="item">4</li>
+	</ul>
+</body>
+</html>

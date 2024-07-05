@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>반응 상태 선택자</title>
+	<style>
+		/* 
+		반응 선택자
+		선택자:hover 
+		- 요소에 마우스를 올렸을 때 적용할 속성을 작성
+		선택자:active
+		- 요소를 클릭했을 때 적용할 속성을 작성
+		 */
+		.box:hover{
+			/* background-color: yellow; */
+		}
+		.box:active{
+			/* background-color: yellow; */
+		}
+		/* 
+		상태 선택자
+		선택자:checked
+			- 요소가 check된 상태
+		선택자:focus
+			- 요소거 활성화된 상태로 주로 커서가 깜빡이는 경우
+		선택자:enabled 
+			- 사용 가능한 상태
+		선택자:disabled
+			- 사용 불가능한 상태
+		*/
+		[name=sports]:checked+span{
+			/* background-color: yellow; */
+		}
+		#focus:focus{
+			/* background-color: yellow; */
+		}
+		.input:disabled{
+			/* background-color: yellow; */
+		}
+		.input:enabled{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		1 <br><br><br>
+	</div>
+	<div>
+		<div>좋아하는 스포츠는?</div>
+		<label>
+			<input type="checkbox" name="sports"> 
+			<span>축구</span>
+		</label>
+		<label>
+			<input type="checkbox" name="sports"> 
+			<span>야구</span>
+		</label>
+		<label>
+			<input type="checkbox" name="sports"> 
+			<span>농구</span>
+		</label>
+	</div>
+	<div>
+		<input type="text" id="focus" placeholder="클릭하세요.">
+	</div>
+	<div>
+		<input type="text" class="input" value="읽기전용" readonly>
+	</div>
+	<div>
+		<input type="text" class="input" value="입력 불가능" disabled>
+	</div>
+</body>
+</html>

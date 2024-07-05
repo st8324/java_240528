@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>테두리 스타일</title>
+	<style>
+		/* 
+		border-style
+		- 테두리 스타일을 지정
+		- border-top-style,border-right-style,
+		  border-bottom-style,border-left-style을 합친 단축 속성
+		- 위 오른쪽 아래 왼쪽 순으로 지정
+			- 기본 : 상 우 하 좌 => 4개
+			- 좌우가 같은 값 : 상 좌/우 하 => 3개
+			- 좌우가 같고, 상하가 같은 값 : 상/하 좌/우 => 2개
+			- 상하좌우가 같은 값 : 상/하/좌/우 => 1개
+		border-width
+		- 테두리 두께를 지정
+		- border-top-width,border-right-width,
+		  border-bottom-width,border-left-width를 합친 단축 속성
+		border-color
+		- 테두리 색상을 지정
+		- border-top-color,border-right-color,
+		  border-bottom-color,border-left-color 합친 단축 속성
+		border
+		- 테두리 스타일, 색상, 두께를 지정
+		- border-top,border-right,
+		  border-bottom,border-left 합친 단축 속성
+		border-radius
+		- 둥근 테두리를 설정
+		- border-top-left,border-top-right,
+		  border-bottom-right,border-botton-left 합친 단축 속성
+		*/
+		.style1{
+			height: 50px; border-width: 5px;
+			border-color: red;
+			border-top-style: solid;
+			border-right-style: dashed;
+			border-bottom-style: dotted;
+			border-left-style: double;
+			border-style: solid dashed dotted double;
+		}
+		.style2{
+			height: 50px; border-width: 5px;
+			border-color: red;
+			border-style: solid;
+		}
+		.width1{
+			height: 50px; border-color: blue;
+			border-style: solid;
+			border-top-width: 5px;
+			border-right-width: 10px;
+			border-bottom-width: 15px;
+			border-left-width: 20px;
+		}
+		.width2{
+			height: 50px; border-color: gray;
+			border-style: solid;
+			border-width: 5px;
+		}
+		.color{
+			border-width: 5px; border-style: solid;
+			height: 50px; 
+			border-color: red blue green black;
+		}
+		.border{
+			border: 5px solid tomato;
+			height: 50px;
+		}
+		.radius1{
+			height: 50px; border: 5px solid black;
+			border-radius: 10px;
+		}
+		.radius2{
+			height: 50px; border: 5px solid black;
+			width: 50px;
+			border-radius: 50%;
+		}
+		.box{
+			height: 50px;
+			border: 5px solid red;
+			/* border-bottom-style: none; */
+			/* border-bottom-width: 0; */
+			/* border-bottom: none; */
+			border-bottom: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="style1"></div>
+	<div class="style2"></div>
+	<div class="width1"></div>
+	<div class="width2"></div>
+	<div class="color"></div>
+	<div class="border"></div>
+	<div class="radius1"></div>
+	<div class="radius2"></div>
+	<!-- 
+	위, 좌, 우 테두리는 5px, 빨간색, 실선으로 하고
+	아래 테두리는 없도록 박스를 생성하세요.
+	-->
+	<div class="box"></div>
+</body>
+</html>

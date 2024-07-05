@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>폰트 스타일</title>
+	<style>
+		/* 
+		단위
+			- px : 고정 픽셀
+			- % : 기본 값의 %. 100% 기본 값
+			- em : 부모 요소의 배수. 1em은 부모의 1배
+			- rem : 최상위 요소의 배수.
+			- vh : view height. 브라우저의 높이. 100vh가 현재 브라우저 높이
+			- vw : view widht. 브라우저의 너비. 100vw가 현재 브라우저 너비
+			- vmin : vh와 vw 중 작은 값
+			- vmax : vh와 vw 중 큰 값
+			- deg : 각도
+		font-family
+			- 글자 폰트를 지정
+			- 여러 글자 폰트를 ,를 이용해서 추가
+			- 왼쪽부터 적용. 
+			  있으면 있는 폰트가 적용되고 없으면 오른쪽 폰트로 이동해서
+				있을 때까지 하나씩 적용.
+				일반적으로 제일 오른쪽에 있는 폰트는 기본형 폰트를 넣어 줌
+			- 폰트명에 공백이 없는 경우 ''나 ""를 생략할 수 있다
+			- 폰트명이 한글인 경우 한글명, 영문명 모두 작성
+		font-size
+			- 글자 크기 조절
+			- 숫자와 단위를 함께 입력
+		font-weight
+			- 글자 굵기 조절
+			- 100~900의 값을 입력(100단위로 입력)
+			- normal : 400, bold : 700
+			- border : 기본보다 더 굵게
+			- lighter : 기본보다 더 가늘게 
+		font-variant
+			- 영어를 작은 대문자로 표시
+			- normal/small-caps
+		*/
+		.box1{
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 1rem; font-weight: normal;
+		}
+		.box2{
+			font-family: 'Times New Roman', Times, serif;
+			font-size: 20px; font-weight: bold;
+		}
+		.box3{
+			font-variant: small-caps;
+		}
+		/* 
+		font-style
+			- 글자 기울임
+			- normal, italic, oblique
+		line-height
+			- 한 줄의 높이
+		font
+			- 위 속성을 한번에 쓰는 단축 속성
+			- font-style font-variant font-weight font-size/line-height font-family
+		*/
+		.font-style1{
+			font-style: normal;
+		}
+		.font-style2{
+			font-style: italic;
+		}
+		.font-style3{
+			font-style: oblique;
+		}
+		.line-height1{
+			line-height: 20px; color: red;
+		}
+		.line-height2{
+			line-height: 40px; color: blue;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box1">
+		안녕하세요. 제이름은 홍길동입니다.
+	</div>
+	<div class="box2">
+		안녕하세요. 제이름은 홍길동입니다.
+	</div>
+	<div class="box3">abcdefg</div>
+	<div class="font-style1">안녕하세요. 제이름은 홍길동입니다.</div>
+	<div class="font-style2">안녕하세요. 제이름은 홍길동입니다.</div>
+	<div class="font-style3">안녕하세요. 제이름은 홍길동입니다.</div>
+	<div class="line-height1">안녕하세요. 제이름은 홍길동입니다.안녕하세요. 제이름은 홍길동입니다.안녕하세요. 제이름은 홍길동입니다.</div>
+	<div class="line-height2">안녕하세요. 제이름은 홍길동입니다.안녕하세요. 제이름은 홍길동입니다.안녕하세요. 제이름은 홍길동입니다.</div>
+</body>
+</html>

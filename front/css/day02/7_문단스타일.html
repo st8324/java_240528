@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문단 스타일</title>
+	<style>
+		/* 
+		direction
+			- 글자 쓰기 방향을 설정
+			- ltr, rtl 
+		*/
+		.direction1{ direction: ltr;}
+		.direction2{ direction: rtl;}
+		/* 
+		text-align
+			- 자식 요소(inline, inline-block)들의 위치를 조절 
+		
+		*/
+		.align1{ text-align: center;}
+		.align2{ text-align: justify;}
+		/* 
+		text-indent
+			- 문장 들여쓰기
+			- 음수도 가능
+		text-overflow
+			- 영역을 벗어난 텍스트 속성 표시
+			- clip : 자름, ellipsis : 말줄임(...) */
+		.indent1 { text-indent: 10px;}
+		.indent2 { text-indent: -10px;}
+	</style>
+</head>
+<body>
+	<div class="direction">
+		<div class="direction1">왼쪽에서 오른쪽으로</div>
+		<div class="direction2">오른쪽에서 왼쪽으로</div>
+	</div>
+	<div class="align">
+		<div class="align1">
+			<!-- 
+			div 태그는 block태그 이어서 가운데 정렬이 안됨
+			단, 상속 받아서 div태그 안에 있는 글자는 가운데 정렬이 됨
+			  -->
+			<div style="background-color: yellow;width: 100px;">1</div>
+			<!-- 
+			span 태그는 inline 태그이어서 가운데 정렬이 됨
+			 -->
+			<span style="background-color: red;">2</span>
+			<!-- 
+			img 태그는 inline-block 태그이어서 가운데 정렬이 됨
+			-->
+			<img src="https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg?wp=1&w=136&h=136" alt="강아지">
+		</div>
+		<hr>
+		<div class="align2">
+			abcd abcdefds abcd abcdefdsabcd abcdefdsabcdabcd abcdefds abcd abcdefdsabcd abcdefdsabcd abcdefdsabcd abcdefdsabcd abcdefds abcdefdsabcd abcdefdsabcd abcdefds
+		</div>
+	</div>
+	<div>
+		<hr>
+		<div class="indent1">div 태그는 block태그 이어서 가운데 정렬이 안됨
+			단, 상속 받아서 div태그 안에 있는 글자는 가운데 정렬이 됨</div>
+		<hr>
+			<div class="indent2">div 태그는 block태그 이어서 가운데 정렬이 안됨
+			단, 상속 받아서 div태그 안에 있는 글자는 가운데 정렬이 됨</div>
+	</div>
+</body>
+</html>

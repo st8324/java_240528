@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>display 예제</title>
+	<style>
+		/* 
+		display
+			- 요소의 display를 변경하는 속성
+			- inline, block, inline-block, none 등이 있다
+		inline
+			- 현재 위치에서 시작
+			- width/hieght, margin 변경이 불가능
+			- 높이를 변경하려면 line-height를 이용
+		block
+			- 새 라인에서 시작
+			- 한 라인 전체에 공간을 할당
+			- width를 지정하면 width를 제외한 부분은 margin으로 할당
+			- width/height, margin을 변경 가능
+		inline-block
+			- 현재 위치에서 시작
+			- width/height, margin을 변경 가능
+		*/
+		.div span{
+			display: block;
+		}
+		.span div{
+			display: inline;
+		}
+		.box1{
+			display: block; background-color: yellow;
+			width: 300px;
+		}
+		.box2{
+			display: inline; background-color: yellow;
+			width: 300px;
+		}
+		.box3{
+			display: inline-block; background-color: yellow;
+			width: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div">
+		<span>스팬태그입니다.</span>
+		<span>스팬태그입니다.</span>
+		<span>스팬태그입니다.</span>
+	</div>
+	<div class="span">
+		<div>div태그입니다.</div>
+		<div>div태그입니다.</div>
+		<div>div태그입니다.</div>
+	</div>
+	<div class="box1">block</div>1
+	<hr>
+	<div class="box2">inline</div>2
+	<hr>
+	<div class="box3">inline-block</div>3
+</body>
+</html>

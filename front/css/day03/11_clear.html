@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>clear</title>
+	<style>
+		/* 
+		clear
+			- float이 적용된 요소가 있으면 다음 요소에 영향을 미치는데
+			  이를 초기화 하는 속성
+			- clear의 값으로 left를 적용하면 왼쪽 float 요소의 
+			  높이를 계산한 후 이후에 배치
+			- clear의 값으로 right를 적용하면 오른족 float 요소의
+			  높이를 계산한 후 이후에 배치
+			- both를 적용하면 왼쪽 오른족 float요소의 높이가 긴 요소를
+			  기준으로 배치
+		*/
+		.box{
+			width: 100px; height: 100px; float: left;
+			border: 3px solid black;
+		}
+		.fr{
+			float: right; height: 200px;
+		}
+		.container1::after{
+			content: ''; display: block;
+			clear: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="container1">
+		<div class="box fl">L</div>
+		<div class="box fr">R</div>
+	</div>
+	<div class="contents">
+		안녕하세요.안녕하세요.안녕하세요.안녕하세요.안녕하세요.안녕하세요.안녕하세요.안녕하세요.안녕하세요.
+		안녕하세요.안녕하세요.안녕하세요.안녕하세요.안녕하세요.
+	</div>
+</body>
+</html>

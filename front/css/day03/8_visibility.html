@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>visibility</title>
+	<style>
+		/* 
+		visibility
+			- 요소를 보이게하거나 안보이게 하는 속성
+			- 안 보여도 공간을 차지
+			- display : none과 비슷하지만 다름
+		*/
+		.box{	height: 50px;	border: 1px solid black;}
+		.display-none{ display: none;}
+		.visibility-hidden{ visibility: hidden; }
+
+	</style>
+</head>
+<body>
+	<div class="box display-none">display : none</div>
+	<div class="box show">show1</div>
+	<div class="box visibility-hidden">visibility:hidden</div>
+	<div class="box show">show2</div>
+</body>
+</html>

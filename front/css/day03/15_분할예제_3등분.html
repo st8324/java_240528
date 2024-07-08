@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3등분 분할 예제</title>
+	<style>
+		.container{
+			border: 10px solid black;
+		}
+		.container::after{
+			clear: both; display: block;
+			content: '';
+		}
+		.box{
+			width: calc(( 100% - 20px ) / 3);
+			height: 500px;
+			border: 10px solid red;
+			float: left;
+			box-sizing: border-box;
+		}
+		.container :nth-child(2){
+			border-color: blue; margin-left: 10px;
+		}
+		.container :last-child{
+			border-color: green; float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>박스 예제</title>
+	<style>
+		.padding-container .box{
+			border: 3px solid black;
+			width: 240px; height: 240px;
+			padding: 30px;
+		}
+		.padding-container .inner-box{
+			border: 3px solid red; height: 100%;
+			box-sizing: border-box;
+		}
+		.margin-container .box{
+			border: 3px solid black;
+			width: 300px; height: 300px;
+		}
+		.margin-container .inner-box{
+			width: 240px; height: 240px;
+			border: 3px solid red; 
+			box-sizing: border-box;
+			margin: 30px;
+		}
+	</style>
+</head>
+<body>
+	<!-- padding을 이용하여 배치 -->
+	<div class="padding-container">
+		<div class="box">
+			<div class="inner-box">
+				<div class="contents-box"></div>
+			</div>
+		</div>
+	</div>
+	<!-- margin을 이용하여 배치 -->
+	<div class="margin-container">
+		<div class="box">
+			<div class="inner-box">
+				<div class="contents-box"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

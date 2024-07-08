@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>표스타일</title>
+	<style>
+		/* 
+		caption-side
+			- 캡션 위치. top or bottom
+		border-collapse
+			- td/th의 테두리와 table의 테두리를 각각 보여줄건지
+			  합쳐서 보여줄건지를 결정하는 속성
+			- seperate(각각, 기본값), collapse(합침)
+		table-layout
+			- 첫 tr태그의 td/th의 너비가 지정된 경우 지정된 너비를
+			  고정으로 할지 비례해서 자동으로 커지게 할지를 결정하는
+				속성
+			- auto(기본값, 자동으로 커짐), fixed(고정)
+		
+		*/
+		.table1{
+			width: 100%; border: 1px solid black;
+			border-collapse: collapse;
+			table-layout: fixed;
+			caption-side: bottom;
+		}
+		.table1 th:first-of-type{
+			width: 50px; 
+		}
+		.table1 td,.table1 th{
+			border: 1px solid black;
+			height: 50px; 
+		}
+		/* 
+		empty-cells
+			- td/th가 비어있으면 보여줄지 안보여줄지 결정하는 속성
+			- border-collapse 속성이 seperate일 때 적용
+		border-spacing
+			- border-collapse 속성이 seperate일 때 적용
+			- 테두리 사이의 간격을 설정
+			- 수평, 수직 순으로 설정
+		 */
+		.table2{
+			width: 100%; border: 1px solid black;
+			caption-side: bottom;
+			empty-cells: hide;
+			border-spacing: 10px 20px;
+		}
+		.table2 th:first-of-type{
+			width: 50px; 
+		}
+		.table2 td,.table2 th{
+			border: 1px solid black;
+			height: 50px; 
+		}
+
+		.table3{
+			/* border: 1px solid black; */
+			border-collapse: collapse;
+			width: 100%;
+		}
+		.table3 tr{
+			border: 1px solid black;
+			border-width: 1px 0px;
+		}
+		.table3 tbody tr:hover{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<table class="table1">
+		<caption>게시글</caption>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>테스트입니다.</td>
+			<td>abc123</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>공지사항</td>
+			<td>관리자</td>
+		</tr>
+	</table>
+	<table class="table2">
+		<caption>게시글</caption>
+		<tr>
+			<th width="50px">번호123</th>
+			<th  width="">제목</th>
+			<th width="50px">작성자</th>
+			<th width="50px">조회수</th>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>테스트입니다.</td>
+			<td>abc123</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>공지사항</td>
+			<td>관리자</td>
+			<td></td>
+		</tr>
+	</table>
+	<table class="table3">
+		<caption>게시글</caption>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>2</td>
+				<td>테스트입니다.</td>
+				<td>abc123</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>공지사항</td>
+				<td>관리자</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

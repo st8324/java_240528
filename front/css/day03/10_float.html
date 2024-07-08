@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>float</title>
+	<style>
+		/* 
+		float
+			- 요소를 왼쪽 또는 오른족으로 배치할 때 사용
+			- 특징
+				- float이 적용된 요소의 부모 요소는 float이 적용된
+				  요소의 높이를 인식하지 못함.
+					- 해결방법 ::after 를 이용
+					- content : ''; clear : both; display : block
+				- display의 inline, inline-block, block이 의미가 
+				  없어짐.
+				- width를 지정해야 함
+				- float을 이용하여 엔터의 의한 공백을 해결
+			*/
+			.container1{ font-size: 0;}
+			.container1 .box{
+				width: 100px; height: 100px;
+				border: 3px solid black;
+				display: inline-block;
+				vertical-align: top;
+				font-size: 16px;
+			}
+			.container2 .box{
+				width: 100px; height: 100px;
+				border: 3px solid black;
+				float: left;
+			}
+			.container2 :nth-child(2){
+				float: right;
+			}
+			/* 
+			float이 적용된 요소의 부모 요소가 float이 적용된
+			요소의 높이를 포함하게 하는 코드
+			 */
+			.container2::after{
+				clear: both; content: ''; display: block;
+			}
+	</style>
+</head>
+<body>
+	<!-- 
+	inline-block을 이용한 배치 
+		- 엔터에 의한 공백이 생김
+	-->
+	<div class="container1">
+		<div class="box">1</div>
+		<div class="box"></div>
+	</div>
+	<!--
+	float을 이용한 배치
+		-  -->
+	<div class="container2">
+		<div class="box">1</div>
+		<div class="box"></div>
+	</div>
+</body>
+</html>

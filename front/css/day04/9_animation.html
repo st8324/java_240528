@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>animation</title>
+	<style>
+		/* 
+		@keyframes 애니메이션명{
+			지점{
+				속성명 : 값;
+			}
+		}
+			- 애니메이션을 등록
+			- 지점에는 from(0%), to(100%) 또는 %를 이용해서 나타냄
+		*/
+		@keyframes fontsize_scale {
+			from{
+				font-size: 16px;
+			}
+			to{
+				font-size: 50px;
+			}
+		}
+		@keyframes color_change {
+			0%{
+				color: red;
+			}
+			50%{
+				color: blue;
+			}
+			100%{
+				color : green
+			}
+		}
+		@keyframes move {
+			from{
+				transform: translateX(0);
+			}
+			to{
+				transform: translateX(200px);
+			}
+		}
+		/* 
+		animation-name
+			- 적용할 애니메이션을 지정
+			- @keyframes에 등록한 애니메이션명을 작성
+		animation-duration
+			- 애니메이션 지속 시간
+		animation-direction
+			- 애니메이션을 반복할 때 처음부터 시작할건지 역순으로 할건지 지정
+			- normal : 처음부터
+			- alternate : 역순
+		animation-iterator-count
+			- 애니메이션 반복 횟수
+			- 숫자 : 숫자번만큼 반복
+			- infinite : 무한 반복
+		animation-timing-function
+			- 애니메이션 속도를 지정. 함수형태로 되어 있음
+			- linear, ease, ease-in, ease-out, ease-in-out
+			- cublic-bezier(n,n,n,n) : n(0~1)
+		animation-fill-mode
+			- 애니메이션이 끝난 후 또는 시작 전의 상태를 지정
+			- none : 아무것도 적용하지 않음
+			- forwards : 애니메이션이 끝난 후에 키프레임 스타일을 유지
+			- backwards : 애니메이션이 시작하기 전 첫번째 키프레임 스타일을 유지
+			- both : 애니메이션이 시작하기전에는 첫번째 키프레임 스타일을 유지하고
+			  끝난 후에는 마지막 키프레임 스타일을 유지
+		animation
+			- animation-name, animation-duration, animation-timing-function
+			  animation-delay animation-iterator-count animation-direction
+				animation-fill-mode을 한번에 적용하는 단축 속성
+		*/
+		.box{
+			width: 200px; height: 200px; border: 1px solid black;
+			animation-name: move;
+			animation-duration: 1s;
+			animation-iteration-count: 1;
+			animation-direction: alternate;
+			animation-timing-function: linear;
+			animation-fill-mode: forwards;
+			animation: move 1s linear 1 alternate forwards;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">꽝!</div>
+</body>
+</html>

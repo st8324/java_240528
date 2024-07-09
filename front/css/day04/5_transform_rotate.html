@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>transform:rotate</title>
+	<style>
+		.box{ 
+			width: 200px; height: 100px;
+			border: 3px solid black; margin-bottom: 100px;
+			background: url(http://www.ikunkang.com/news/photo/202205/35907_27554_3919.jpg) 
+				center / contain no-repeat;
+		}
+		/* 
+		rotate?()
+			- 요소를 회전시키는 함수
+			- 회전하기 때문에 요소의 모양이 바뀌진 않음
+		 */
+		.r1{ transform: rotateX(60deg);}
+		.r2{ transform: rotatey(60deg);}
+		.r3{ transform: rotate(60deg);}
+		.r4{ transform: rotateZ(60deg);}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box"></div>
+		<div class="box r1"></div>
+		<div class="box r2"></div>
+		<div class="box r3"></div>
+		<div class="box r4"></div>
+		<div class="box r5"></div>
+	</div>
+</body>
+</html>

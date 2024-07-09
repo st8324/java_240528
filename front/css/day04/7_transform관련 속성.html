@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>transform 관련 속성</title>
+	<style>
+		/* 
+		transform-origin
+			- transform 속성을 이용해서 요소를 변형시킬 때 기준점을 설정
+		
+		*/
+		.box{
+			width: 200px; height: 100px;
+			border: 3px solid black; margin-bottom: 100px;
+		}
+		.scalex{
+			transform: scaleX(2); transform-origin: 0 0;
+		}
+		.rotateX{
+			transition: transform 1s; transform-origin: 0 0;
+		}
+		.rotateX:hover{
+			transform: rotateX(30deg); 
+		}
+		.container-style1, .container-style2{
+			display: inline-block;
+			border: 10px solid #f00;
+			transform: perspective(500px) rotateY(-60deg);
+		}
+		.inner-box{
+			width: 100px; height: 100px;
+			background-color: yellow;
+			transform: perspective(500px) rotateY(60deg);
+		}
+		/* 
+		transform-style
+			- 여러 가지 변형을 동시에 하는 경우 부모 요소에 적용한 3d변형을 하위 요소에
+			  적용하는 속성
+			- flat : 하위 요소를 평면으로 처리
+			- preserve-3d : 하위 요소들에 3d효과 적용
+		*/
+		.container-style2{ transform-style: preserve-3d;}
+		.container{
+			perspective: 500px;
+		}
+		.box1, .box2{
+			width: 200px; height: 200px; border: 3px solid black;
+			display: inline-block;
+			background: url(http://www.ikunkang.com/news/photo/202205/35907_27554_3919.jpg)
+				center/contain;
+			transform: rotateY(180deg);
+		}
+		/* 
+		backface-visibility
+			- 요소의 뒷면을 보일지 안보일지를 결정하는 속성
+			- hidden : 안보임
+			- visible: 보임(기본값) */
+		.box2{ backface-visibility: hidden;}
+	</style>
+</head>
+<body>
+	<div class="contaienr">
+		<div class="box"></div>
+		<div class="box scalex"></div>
+		<div class="box rotateX"></div>
+		<div class="style">
+			<div class="container-style1">
+				<div class="inner-box"></div>
+			</div>
+			<div class="container-style2">
+				<div class="inner-box"></div>
+			</div>
+		</div>
+		<div class="backface">
+			<div class="box1"></div>
+			<div class="box2"></div>
+		</div>
+	</div>
+</body>
+</html>

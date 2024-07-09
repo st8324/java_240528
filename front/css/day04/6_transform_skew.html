@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>transform:skew</title>
+	<style>
+		.box{ 
+			width: 200px; height: 100px;
+			border: 3px solid black; margin-bottom: 100px;
+		}
+		/* 
+		skew?()
+			- 요소를 비트는 함수
+		 */
+		.s1{ transform: skewX(60deg);}
+		.s2{ transform: skewY(60deg);}
+		.s3{ transform: skew(60deg, 60deg);}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="box s1"></div>
+	<div class="box s2"></div>
+	<div class="box s3"></div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배경 관련 스타일</title>
+	<style>
+		/* 
+		background-color
+			- 배경색 지정
+		background-clip
+			- 배경 범위 조절
+			- border-box : 테두리까지 적용
+			- padding-box : 패딩까지 적용
+			- content-box : 컨테츠만 적용
+		*/
+		.box1{
+			width: 300px; height: 300px; padding: 50px;
+			border: 20px solid transparent;
+			background-color: gray;
+			background-clip: border-box;
+		}
+		/* 
+		background-image
+			- 배경 이미지 설정
+			- url 함수와 함께 사용 
+		background-size
+			- 배경 크기를 설정
+			- auto : 원본크기
+			- contain : 요소가 이미지 안으로 들어갈 수 있게 확대/축소
+			- cover : 요소를 이미지가 덮을수 있도록 확대/축소
+			- px, % : 지정된 px, %만큼 확대/축소
+		background-repeat
+			- 배경 이미지를 반복할지 말지를 결정하는 속성
+			- 요소가 이미지보다 큰 경우 남은 부분을 반복할지를 결정
+			- repeat : 수평/수직 반복
+			- repeat-x : 수평 반복
+			- repeat-y : 수직 반복
+			- no-repeat : 반복 X
+		background-position
+			- 배경 이미지 위치 조절
+			- left/center/right : 수평 위치 조절
+			- top/center/ bottom : 수직 위치 조절
+			- px, % : px,%만큼 수평/수직 위치 조절
+		background-origin
+			- 배경 이미지를 배치할 때 기준을 정하는 속성
+			- border-box : 테두리 기준 배치
+			- padding-box : 패딩 기준 배치
+			- content-box : 컨텐츠 기준 배치
+		
+		*/
+		.box2{
+			width: 300px; height: 300px; padding: 50px;
+			border: 20px solid transparent;
+			background-color: gray;
+			background-clip: border-box;
+			margin-top: 50px;
+			background-image: url(http://www.ikunkang.com/news/photo/202205/35907_27554_3919.jpg);
+			/* background-image: url(https://pm.pstatic.net/resources/asset/sp_main.e0b0b60f.png); */
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: left top;
+			background-origin: border-box;
+		}
+		/* 
+		background-attachment
+			- 웹페이지가 위아래로 움직여도 배경은 운직이지 않게 고정하는 속성
+			- scroll : 기본값, 배경 이미지가 움직임
+			- fixed : 배경 이미지가 움직이지 않게 고정
+		*/
+		.box3{
+			background-image: url(http://www.ikunkang.com/news/photo/202205/35907_27554_3919.jpg);
+			width: 1000px; height: 1000px; margin-top: 50px;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+		}
+		/* 
+		background
+			- color image repeat attachment position clip origin size를 한번에 쓰는 속성
+			- position과 size를 함께 사용하는 경우 position / size순으로 작성
+		*/
+		.box4{
+			width: 300px; height: 300px; padding: 50px;
+			border: 20px solid transparent;
+			margin-top: 50px;
+			background: gray url(http://www.ikunkang.com/news/photo/202205/35907_27554_3919.jpg)
+				no-repeat left top / contain border-box;
+		}	 
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	<div class="box4"></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>그라이데이션</title>
+	<style>
+		
+		.box{
+			height: 300px; width: 300px; border: 5px solid black;
+		}
+		/* 
+		linear-gradient()
+			- 선형 그라데이션을 적용
+			- 방향, 시작색상, [중간색상 지점(%),] 끝색상 순으로 작성
+		*/
+		.l1{
+			/* 기본 */
+			background: linear-gradient(45deg, #f00, #0f0 50%, #00f);
+			/* 파이어폭스 */
+			background: -moz-linear-gradient(45deg, #f00, #0f0 50%, #00f);
+			/* 사파리, 크롬 */
+			background: -webkit-linear-gradient(45deg, #f00, #0f0 50%, #00f);
+			/* 오페라 */
+			background: -o-linear-gradient(45deg, #f00, #0f0 50%, #00f);
+		}
+		[class*=r]{width: 600px;}
+		.r1{ background: radial-gradient(red, green, blue);}
+		.r2{ background: radial-gradient(circle, red, green, blue);}
+		/* 
+		수평으로 10%, 수직으로 20% 되는 지점을 중심점으로 잡아 가장 까가운 변을
+		반지름으로 하는 원형 그라데이션을 만듬
+		 */
+		.r3{ background: radial-gradient(circle closest-side at 10% 20%, red, green, blue);}
+		.r4{ background: radial-gradient(circle at 10% 20%, red, green, blue);}
+		.r5{ background: radial-gradient(circle closest-corner at 50% 50%, red, green, blue);}
+	</style>
+</head>
+<body>
+	<div class="box l1"></div>
+	<div class="box r1"></div>
+	<div class="box r2"></div>
+	<div class="box r3"></div>
+	<div class="box r4"></div>
+	<div class="box r5"></div>
+</body>
+</html>

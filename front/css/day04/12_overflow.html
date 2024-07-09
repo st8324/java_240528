@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>overflow 예제</title>
+	<style>
+		/* 
+		overflow
+			- 요소 안에 있는 컨텐츠가 요소 크기를 벗어났을 대 어떻게 처리할건지를 정하는
+			  속성
+			- auto : 범위를 넘어가는 요소가 있으면 scroll 없으면 hidden
+			- hidden : 범위를 넘어가는 요소를 안 보이게 감춤
+			- scroll : 스크롤ㄹ을 추가해서 범위를 넘어가면 스크롤로 확인
+			- visible : 넘어가는 부분을 보여줌(기본값)
+		*/
+		.container{
+			border: 2px  solid black; height: 300px; padding: 50px;
+			margin-bottom: 150px;
+		}
+		.box{
+			background-color: gray; height: 400px;
+		}
+		.c1{ overflow: hidden;}
+		.c2{ overflow: scroll;}
+		.c3{ overflow: auto;}
+
+		/* 
+		스크롤바 안 보이게 하는 방법
+		*/
+		/* 크롬, 사파라, 오페라, 엣지 */
+		.c2::-webkit-scrollbar{
+			display: none;
+		}
+		/* 파이어 폭스 */
+		.c3{ scrollbar-width: none;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box"></div>
+	</div>
+	<div class="container c1">
+		<div class="box"></div>
+	</div>
+	<div class="container c2">
+		<div class="box"></div>
+	</div>
+	<div class="container c3">
+		<div class="box"></div>
+	</div>
+</body>
+</html>

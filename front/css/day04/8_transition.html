@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>transition</title>
+	<style>
+		/* 
+		트랜지션
+			- 웹 요소의 스타일이 변경되는 걸 감지해서 서서히 변하도록 해줌
+		transition-property
+			- 변화를 감지할 속성
+			- all : 모든 속성(기본값)
+			- none : 아무 속성도 감지하지 않음
+			- 속성명: 해당 속성만 감지, 여러개인 경우 ,를 이용하여 구분
+		transition-duration
+			- 변화가 진행되는 시간
+			- ms, s
+			- 속성이 여러개인 경우 ,를 이용하여 구분
+			- transition-property에서 지정한 속성 개수만큼 지정해야 함
+			- 기본값 0
+		transition-timing-function
+			- 트랜지션이 진행되는 구간별로 시간을 지정 => 진행 속도 변화
+			- linear : 일정한 속도
+			- ease, ease-in, ease-out, ease-in-out : 지정된 값
+			- cubic-bezier(n,n,n,n) : 구간별로 속도 지정. n:0~1
+		transition-delay
+			- 트랜지션이 두개 이상 있는 경우 하나의 트랜지션이 끝나고 다음 트랜지션이
+			  시작하는 시간
+			- ms, s
+		transtion
+			- transition-property, transition-duration, transition-timing-function,
+			  transition-delay를 한번에 쓴 단축 속성
+		*/
+		.box{
+			width: 100px; height: 100px; font-size: 30px;
+			border: 1px solid black;
+			transition-property: font-size, background-color;
+			transition-duration: 500ms, 500ms;
+			transition: font-size 500ms, background-color 500ms;
+			background-color: yellow;
+		}
+		.box:hover{
+			font-size: 80px;
+			background-color: green;
+		}
+		.container{
+
+		}
+		.inner-box{
+			width: 300px; height: 300px; background-color: red;
+			transition: transform 1s;
+		}
+		.container:hover .inner-box{
+			transform: translateX(300px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box font-size">꽝!</div>
+	<div class="container">
+		<div class="inner-box"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>메뉴2</title>
+	<style>
+		*{ padding: 0; margin: 0; color: #000;}
+		ul{ list-style: none;}
+		a{ text-decoration: none;}
+		.menu-list{ margin: 10px;}
+		.menu-item{
+			float: left; padding-right: 20px; 
+			position: relative;
+			line-height: 24px;
+		}
+		.menu-list li:first-of-type::after{
+			content: ''; position: absolute;
+			width: 4px; height: 4px; background-color: red;
+			border-radius: 50%;
+			right: 10px; top: 11px;
+		}
+		.menu-list li:nth-of-type(2)::after{
+			content: ''; position: absolute;
+			width: 1px; height: 16px; background-color: red;
+			right: 10px; top: 4px;
+		}
+		.menu-list li:nth-of-type(3)::after{
+			content: ''; position: absolute;
+			width: 1px; height: 16px; background-color: red;
+			right: 10px; top: 4px;
+			transform: skew(-15deg);
+		}
+	</style>
+</head>
+<body>
+	<ul class="menu-list">
+		<li class="menu-item">
+			<a href="#" class="menu-link">메뉴1</a>
+		</li>
+		<li class="menu-item">
+			<a href="#" class="menu-link">메뉴2</a>
+		</li>
+		<li class="menu-item">
+			<a href="#" class="menu-link">메뉴3</a>
+		</li>
+	</ul>
+</body>
+</html>

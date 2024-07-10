@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>페이지</title>
+	<style>
+		.container{
+			display: flex;
+			justify-content: center;
+		}
+		.btn-prev, .btn-next{
+			width: 32px; height: 32px; 
+			border: 1px solid black; 
+			float: left; text-align: center;
+			line-height: 32px; text-decoration: none;
+			color: black; border-radius: 50%;
+		}
+		.box{
+			float: left; line-height: 34px; 
+			padding: 0 10px;
+		}
+		.max-page{
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box-page">
+			<a href="#" class="btn-prev"><</a>
+			<span class="box">
+				<span class="current-page">1</span>
+				/
+				<span class="max-page">3</span>
+			</span>
+			<a href="#" class="btn-next">></a>
+		</div>
+	</div>
+</body>
+</html>

@@ -34,6 +34,38 @@
 		.box-title:hover{
 			text-decoration: underline;
 		}
+		.product-list{
+			width: 440px; background-color: gray;
+		}
+
+		/*
+		//방법1. float:left를 이용
+		.product-list::after{
+			clear: both; display: block; content: '';
+		}
+		.product-item{
+			float: left;
+		}
+		.product-item+.product-item{
+			margin-left: 10px;
+		}
+		.product-item:nth-child(4n+1){
+			margin-left: 0;
+		}
+		*/
+		/* 방법2 : display:flex를 이용
+		 */
+		.product-list{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+		/*.product-item{
+			margin-left: 10px; 
+		}
+		.product-item:nth-child(4n+1){
+			margin: 0;
+		}*/
 	</style>
 </head>
 <body>

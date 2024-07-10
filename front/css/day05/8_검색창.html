@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>검색창</title>
+	<style>
+		.container-search{
+			position: relative;
+		}
+		.container-search form{
+			border: 1px solid #03c75a; padding-right: 55px;
+			border-radius: 26px; 
+		}
+		.box-btn{
+			position: absolute; top: 0; right: 0;
+		}
+		.box-search{
+			padding-left: 50px;
+		}
+		.input-search{
+			padding: 10px 30px; 
+			padding-left: 0;
+			line-height: 30px;
+			display: block; width: 100%;
+			box-sizing: border-box;
+			font-size: 24px; border: 0;
+		}
+		.input-search:focus{
+			outline: 0;
+		}
+		.btn-search{
+			width: 52px; height: 52px; border-radius: 0 26px 26px 0;
+			border-width: 1px;
+			border: 1px solid #03c75a; 
+			background: transparent; border-left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-search">
+		<form action="">
+			<div class="box-search">
+				<input type="text" class="input-search">
+			</div>
+			<div class="box-btn">
+				<button class="btn-search">검색</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

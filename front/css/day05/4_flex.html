@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>flex</title>
+	<style>
+		.container{
+			border: 1px solid black;
+			/* 
+			컨테이너 : flex가 적용된 요소
+			아이템 : flex가 적용된 요소의 자식 요소
+			display : flex의 특징
+				- 아이템들의 너비 합이 컨테이너보다 크면 각 아이템들의 비율에 맞춰
+				  너비가 재조정 됨(flex-wrap의 기본값이 nowrap이기 때문에)
+			*/
+			display: flex;
+			/* 
+			flex-direction
+				- 주축 방향을 설정
+				- row : 가로. 왼->오. 기본값
+				- row-reverse : 가로. 오->왼
+				- column : 세로. 상->하
+				- column-reverse : 세로. 하->상
+			*/
+			flex-direction: row;
+			/* 
+			flex-wrap
+				- 아이템들의 크기가 컨테이너의 크기보다 큰 경우 한 줄에 할지 여러줄에 할지를 
+				  정하는 속성
+				- nowrap : 한줄. 기본값. 크기가 줄어들 수 있음
+				- wrap : 여러줄. 새 라인에 배치할 때 다음 아이템이 아래로 배치
+				- warp-reverse : 여러줄. 새 라인에 배치할 때 다음 아이템이 위로 배치
+			*/
+			flex-wrap: wrap-reverse;
+			/* 
+			flex-flow
+				- flex-direction과 flex-wrap을 한번에 적용하는 단축 속성
+			*/
+			flex-flow: row wrap;
+			/* 
+			justify-content
+				- 주축 방향으로 아이템 배치 방법을 설정하는 속성
+				- flex-start : 기본값. 주축 시작을 기준으로 배치
+				- flex-edn : 주축 끝점을 기준으로 배치
+				- center : 가운데 배치
+				- space-between : 첫번째 아이템과 마지막 아이템을 각 끝에 배치 한 후
+				  아이템 사이의 간격이 일정하도록 배치
+				- space-around : 모든 아이템 좌우 간격이 일정하도록 배치. 
+				  아이템 사이에 있는 아이템들은 여백이 커보임(여백들이 더해져서)
+				- space-evenly : 모든 여백이 동일하도록 아이템을 배치
+			*/
+			justify-content: space-around;
+			/* 
+			align-items
+				- 교차축 방향으로 아이템 배치 방법을 설정하는 속성
+				- flext-start : 아이템을 교차축 시작점에서 정렬
+				- flex-end : 아이템을 교차축 끝점에서 정렬
+				- cetner : 교차축 가운데에서 정렬
+				- baseline : 아이템을 문자 기준선에 정렬
+				- stretch : 교차축을 채우기 위해 아이템을 늘림. 기본값
+			*/
+			align-items: flex-start;
+			height: 500px;
+			/* 
+			align-content
+				- 교차축 정렬 방법을 설정
+				- flex-start : 기본값. 교차축 시작을 기준으로 배치
+				- flex-edn : 교차축 끝점을 기준으로 배치
+				- center : 가운데 배치
+				- space-between : 첫번째 아이템과 마지막 아이템을 각 끝에 배치 한 후
+				  아이템 사이의 간격이 일정하도록 배치
+				- space-around : 모든 아이템 좌우 간격이 일정하도록 배치. 
+				  아이템 사이에 있는 아이템들은 여백이 커보임(여백들이 더해져서)
+				- space-evenly : 모든 여백이 동일하도록 아이템을 배치
+			 */
+			align-content: flex-end;
+		}
+		.box{
+			width: 30%; height: auto; background: yellow; margin-bottom: 10px;
+		}
+		/* 
+		aling-self
+			- 아이템에 적용하는 속성
+			- align-items가 적용된 상태에서 특정 아이템만 따로 지정하고 싶을 때 사용
+			- 사용하는 값 align-items와 같음
+		 */
+		.box:nth-child(1){ align-self: flex-end;}
+		.box:nth-child(3){ height: 200px;}
+		.box:nth-child(5){ height: 150px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+		<div class="box">4</div>
+		<div class="box">5</div>
+		<div class="box">6</div>
+	</div>
+</body>
+</html>

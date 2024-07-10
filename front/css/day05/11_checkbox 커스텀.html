@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 커스텀</title>
+	<style>
+		[name=gender]{
+			display: none;
+		}
+		.box{
+			line-height: 30px;
+		}
+		[name=gender]+label{
+			padding-left: 30px;
+			position: relative;
+		}
+		[name=gender]+label::before{
+			width: 24px; height: 24px; position: absolute;
+			content: ''; top: 3px; left: 3px; 
+			background: url(11_radio_off.png);
+			background-size: 24px 24px;
+		}
+		[name=gender]:checked+label::before{
+			background-image: url(11_radio_on.png);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<input type="radio" name="gender" value="남성" id="male">
+		<label for="male">남성</label>
+	</div>
+	<div class="box">
+		<input type="radio" name="gender" value="여성" id="female">
+		<label for="female">여성</label>
+	</div>
+</body>
+</html>

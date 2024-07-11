@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>타이머</title>
+</head>
+<body>
+	<script>
+		/* 1초마다 시간을 콘솔에 출력하는 코드를 작성하세요. 
+		00 : 00 
+		*/
+		var s = 0, m = 0;
+
+		console.log(getTime(m, s));
+		setInterval(()=>{
+			++s;
+			if(s == 60){
+				s = 0;
+				++m;
+			}
+			console.log(getTime(m, s));
+		}, 1000);
+
+		function getTime(m, s){
+			var newM = String(m).padStart(2, '0');
+			var newS = String(s).padStart(2, '0');
+			return `${newM} : ${newS}`;
+		}
+	</script>
+</body>
+</html>

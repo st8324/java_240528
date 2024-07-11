@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Date 객체</title>
+</head>
+<body>
+	<script>
+		/* 
+		Date 객체
+			- 날짜를 관리하는 객체
+			- 생성
+				var 객체명 = new Date();
+				var 객체명 = new Date("년-월-일")
+			- 메소드
+				- getFullYear() : 연도 4자리
+				- getMonth() : 월
+				- getDate() : 일
+				- getHours() : 시
+				- getMinutes() : 분
+				- getSeconds() : 초
+				- getMilliseconds() : 밀리초
+				- getDay() : 요일을 정수로. 0~6. 일월화수목금토순
+				- getTime() : 1970년 1월 1일 0시를 기준으로 흐른 시간을 밀리초로 반환
+		문자열.padStar(size, char)
+			- 문자열이 size보다 크기가 작은 경우 char를 문자열 앞에 채워줌
+		*/
+
+		//날짜 객체를 yyyy-MM-dd HH:mm:ss.ms 형태로 출력하는 코드
+		/**날짜 객체를 문자열로 변환하는 메소드
+		 * @param {Date} date - 날짜
+		 * @returns {string} 문자열로 변환된 날짜
+		 * */
+		function convertDate(date){
+			var y = date.getFullYear();
+			//월이 1자리인 경우 앞에 0을 붙임
+			var M = String(date.getMonth()).padStart(2, '0');
+			var d = String(date.getDate()).padStart(2, '0');
+			var h = String(date.getHours()).padStart(2, '0');
+			var m = String(date.getMinutes()).padStart(2, '0');
+			var s = String(date.getSeconds()).padStart(2, '0');
+			var ms = String(date.getMilliseconds()).padStart(3, '0');
+			return `${y}-${M}-${d} ${h}:${m}:${s}.${ms}`;
+		}
+
+		var date = new Date();
+		var dateStr = convertDate(date);
+		document.write(dateStr);
+	</script>
+</body>
+</html>

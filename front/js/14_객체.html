@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>객체</title>
+</head>
+<body>
+	<script>
+		/* 
+		객체 선언 방법
+			var 객체명 = {
+				속성명 : 값,
+				속성명 : 값,
+			}
+		객체 사용 방법
+			1. 객체명.속성명
+			2. 객체명['속성명']
+		객체 속성 추가
+			객체명.속성명 = 값
+			객체명.속성명 = function(){
+				//구현
+			}
+		객체 속성 삭제
+			delete 객체명.속성명
+		*/
+		let obj = {
+			name : '홍길동',
+			age : 21
+		}
+		document.write(`이름 : ${obj.name}, 나이 : ${obj['age']}<br>`);
+		obj.age = 30;
+		document.write(`이름 : ${obj.name}, 나이 : ${obj['age']}<br>`);
+		obj.address = '서울시';
+		document.write(`이름 : ${obj.name}, 나이 : ${obj['age']}, 주소 : ${obj.address}<br>`);
+		delete obj.address;
+		document.write(`이름 : ${obj.name}, 나이 : ${obj['age']}, 주소 : ${obj.address}<br>`);
+		document.write("<hr>");
+		/* 
+		객체 생성 함수
+		function 함수명(v1, v2, ...){
+			return {
+				속성명 : v1,
+				속성명 : v2,
+				...
+			}
+		}
+		*/
+		function person(name, age){
+			return {
+				//앞에 name은 속성명, 뒤에 name은 변수명
+				name : name,
+				age : age,
+				print : function(){
+					document.write(`이름 : ${name}, 나이 : ${age}<br>`);
+				}
+			}
+		}
+		var p1 = person("홍길동", 20);
+		var p2 = person("임꺽정", 30);
+		p1.print();
+		p2.print();
+		document.write("<hr>");
+		/* 
+		생성자 함수
+			function 생성자명(v1, v2, ...){
+				this.속성명 = v1;
+				this.속성명 = v2;
+				...
+			}
+			- this 키워드 사용
+			- new를 이용하여 객체 생성
+		*/
+		function Person(name, age){
+			this.name = name;
+			this.age = age;
+			this.print = ()=>document.write(`이름 : ${this.name}, 나이 : ${this.age}<br>`);
+		}
+		var p3 = new Person("둘리", 1000);
+		p3.print();
+		var p4 = new Person("고길동", 40);
+		p4.print();
+		/* 
+		prototype을 이용한 메소드 추가
+			- 생성자.prototype.메소드명 = function(){}
+			- 모든 객체에 적용
+		*/
+		p3.old1 = function(){
+			this.age++;
+		}
+		p3.old1();
+		p3.print();
+		//p4.old1();//에러 발생. old1함수는 p3에만 추가
+		p4.print();
+		document.write('<hr>');
+		Person.prototype.old2 = function(){
+			this.age++;
+		}
+		p3.old2();
+		p3.print();
+		p4.old2();
+		p4.print();
+		/*
+		클래스 생성
+		class 클래스명{
+			constructor(v1, v2){
+				this.속성명 = v1;
+				this.속성명 = v2;
+			}
+			함수명(){
+				//구현
+			}
+		}
+		*/
+		document.write('<hr>');
+		class Person2{
+			constructor(name, age){
+				this.name = name;
+				this.age = age;
+			}
+
+			print(){
+				document.write(`이름 : ${this.name}, 나이 : ${this.age}<br>`);
+			}
+		}
+		var p5 = new Person2("가나", 22);
+		p5.print();
+		var p6 = new Person2("다라", 33);
+		p6.print();
+	</script>
+</body>
+</html>

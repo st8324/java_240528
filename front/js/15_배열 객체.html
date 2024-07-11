@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열</title>
+</head>
+<body>
+	<script>
+		/* 
+		배열 선언 방법
+		var 배열명 = [];
+		var 배열명 = new Array(크기);
+		var 배열명 = new Array(값, 값2, ..., 값n);
+		var 배열명 = Array(값1,값2,..., 값n);
+		*/
+		function print(arr){
+			document.write(arr);
+			hr();
+		}
+		function hr(){
+			document.write('<hr>');
+		}
+		var arr = [1, true, "안녕"];
+		print(arr);
+		/* 
+		push
+			- 배열에 값을 배열 끝에 추가
+		pop
+			- 배열 끝에 있는 값을 제거하고 제거한 값을 반환
+		unshift
+			- 배열에 값을 배열 앞에 추가
+		shift
+			- 배열 앞에 있는 값을 제거하고 제거한 값을 반환
+		*/
+		arr.push('하세요');
+		arr.push(123);
+		print(arr);
+
+		var value = arr.pop();
+		document.write(`삭제한 값 : ${value}<br>`);
+		print(arr);
+
+		arr.unshift('abc');
+		arr.unshift(false);
+		print(arr);
+		
+		var value = arr.shift();
+		document.write(`삭제한 값 : ${value}<br>`);
+		print(arr);
+		/*
+		탐색
+		indexOf(값)
+			- 값이 배열의 몇번지에 있는지 반환. 앞에서 뒤로. 없으면 -1
+		lastIndexOf(값)
+			- 값이 배열의 몇번지에 있는지 반환. 뒤에서 앞으로. 없으면 -1
+		includes
+			- 값이 배열에 있는지 없는지를 반환
+		*/
+		var search = 'abc';
+		arr.push("abc");
+		print(arr);
+		document.write(`배열에 ${search}가 앞에서 몇번지에 있습니까? ${arr.indexOf(search)}<br>`);
+		document.write(`배열에 ${search}가 뒤에서 몇번지에 있습니까? ${arr.lastIndexOf(search)}<br>`);
+		document.write(`배열에 ${search}가 있습니까? ${arr.includes(search)}<br>`);
+		document.write('<hr>');
+
+		print(arr);
+		search = '1';
+		document.write(`배열에 '${search}'가 앞에서 몇번지에 있습니까? ${arr.indexOf(search)}<br>`);
+		document.write(`배열에 '${search}'가 뒤에서 몇번지에 있습니까? ${arr.lastIndexOf(search)}<br>`);
+		document.write(`배열에 '${search}'가 있습니까? ${arr.includes(search)}<br>`);
+		/* 
+		join(구분자)
+			- 배열값들 사이에 구분자를 추가해서 하나의 문자열을로 반환
+		*/
+		hr();
+		document.write(`arr.join(',') : ${arr.join(',')}<br>`);
+		document.write(`arr.join('-') : ${arr.join('-')}<br>`);
+		hr();
+		/* 
+		slice(start?, end?)
+			- 배열을 잘라내서 부분 배열을 생성해서 반환
+			- 원본은 안 바뀜
+			- start번지에서 end-1번지까지 부분 배열을 생성해서 반환
+		splice(start, count?)
+			- 배열에서 start번지에서 count개만큼 삭제해서 삭제된 값을 반환
+			- 원본이 바뀜
+		splice(start, count, ...items?)
+			- 배열에서 start번지에서 count개만큼 삭제한 후 items를 추가
+		*/
+		//slice를 이용해서 arr의 복사본을 생성해서 arr2에 저장
+		var arr2 = arr.slice(0);
+		print(arr2);
+		//arr2에 제일 뒤에 a를 추가
+		arr2.push('a');
+		//arr2에 수정했을 때 arr도 같이 변경되는지를 확인하기 위해 arr를 출력. 변경 X
+		print(arr);
+		//=을 통해 arr3와 arr가 공유
+		var arr3 = arr;
+		//arr3에 제일 뒤에 d를 추가
+		arr3.push('d');
+		//arr3를 수정했을 대 arr도 같이 변경되는지를 확인하기 위해 arr를 출력. 변경 O
+		print(arr);
+
+		var values = arr.splice(1, 2);//1번지부터 2개를 삭제
+		document.write(`삭제된 값 : ${values}<br>`);
+		print(arr);
+		var values = arr.splice(0, 2, '안녕', 'Hi', 123);//1번지부터 2개를 삭제
+		document.write(`삭제된 값 : ${values}<br>`);
+		print(arr);
+		/* 
+		map(callback함수)
+			- 각 요소에 콜백 함수를 호출해서 만들어진 새로운 배열을 반환
+			- 원본은 안바뀜
+		filter(callback함수)
+			- 콜백함수 결과가 true인 요소들만 필터링
+		reduce(콜백함수, 초기값)
+			- 콜백함수를 이용해서 하나의 값을 도출
+		find(콜백함수)
+			- 콜백함수가 처음으로 true가 되는 요소를 반환
+		forEach(콜백함수)
+			- 각 요소에 콜백함수를 실행
+		*/
+		//value는 배열에서 꺼낸 값, index는 번지, array는 배열 전체
+		var arr4 = arr.map((value,index,array)=>{
+			return value + 1;
+		});
+		print(arr4);
+		//값이 숫자인 요소들만 필터
+		var arr5 = arr.filter((value,index,array)=>{
+			return typeof value == 'number';
+		});
+		print(arr5);
+		//값이 문자열인 첫번째 요소를 가져옴
+		var item = arr.find((value)=>{
+			return typeof value == 'string';
+		});
+		document.write(item);
+		hr();
+		arr.push(222);
+		print(arr);
+		var sum = arr.reduce((acc, value)=>{
+			if(typeof value == 'number'){
+				return acc + value;
+			}
+			return acc;
+		},0);
+		document.write(sum);
+		hr();
+		arr.forEach(value=>{
+			document.write(`${value}<br>`);
+		});
+		hr();
+	</script>
+</body>
+</html>

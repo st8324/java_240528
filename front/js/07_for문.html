@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>for문</title>
+</head>
+<body>
+	<script>
+		/* 
+		for .. in문
+			for(변수 in 배열 또는 객체){
+			
+			}
+			- 배열인 경우 0부터 크기-1을 하나씩 꺼내서 변수에 저장
+			- 객체연 경우 객체의 속성명을 하나씩 꺼내서 변수에 저장
+		for .. of문
+			for(변수 of 배열){
+
+			}
+			- 각 번지에 값들을 가져와서 변수에 저장
+		*/
+		let obj = {
+			name : '홍길동',
+			age : 21
+		}
+		document.write('<h1>for in</h1>')
+		for(let attr in obj){
+			document.write(`${attr} : ${obj[attr]}<br>`);
+		}
+		
+		let arr = [1, "안녕", obj];
+		document.write('<h1>for of</h1>')
+		for(let value of arr){
+			document.write(`${value}<br>`);
+		}
+	</script>
+</body>
+</html>

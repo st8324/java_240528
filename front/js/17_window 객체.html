@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>window 객체</title>
+	<style>
+		.btn-up{
+			width: 50px; height: 50px; position: fixed; border-radius: 50%;
+			border: 1px solid black; background-color: #fff;
+			bottom: 20px; right: 20px; cursor: pointer;
+		}
+	</style>
+</head>
+<body style="height: 2000px;">
+	<button type="button" onclick="childOpen();">새창 열기</button>
+	<button type="button" onclick="childClose();">새창 닫기</button>
+	<button class="btn-up" type="button" onclick="moveTop();">UP</button>
+	<br>
+	<button type="button" onclick="timeOut();">1초뒤</button>
+	<button type="button" onclick="interval();">1초마다</button>
+	<button type="button" onclick="clearI();">인터벌 제거</button>
+	<script>
+		/* 
+		window 객체
+			- 브라우저에서 최상위 객체
+			- window 객체 메소드들은 앞에 window를 생략할 수 있다
+		open('경로', target, '옵션')
+			- 새창을 염
+			- 열고 난뒤 자식창의 아이디값을 반환
+		close()
+			- 지정된 윈도우를 닫음
+		scrollTo(옵션)
+			- 지정된 위치로 스크로를 이동. 
+			- 옵션값에 따라 부드럽게 이동 가능
+		*/
+		var childWindow;
+		function childOpen(){
+			childWindow = window.open('17_window 객체_새창.html','_blank', 'width=400, height=400, top=100, left=100');
+		}
+		function childClose(){
+			if(childWindow){
+				childWindow.close();
+			}
+		}
+		function moveTop(){
+			window.scrollTo({
+				top : 0,
+				behavior : 'smooth'
+			})
+		}
+		/* 
+		setTimeOut(콜백함수, 시간)
+			- 지정된 시간이 지나면 콜백함수를 호출
+			- 생성된 timeOut 아이디를 반환
+		clearTimeOut(id)
+			- 아이디와 일치하는 timeOUt를 제거
+		setInterval(콜백함수, 시간)
+			- 일정 시간마다 콜백함수를 호출
+			- 생성된 interval 아이디를 반환
+		clearInterval(id)
+			- 아이디와 일치하는 interval를 제거
+		*/
+		function timeOut(){
+			setTimeout(()=>{
+				alert("1초가 지났습니다.");
+			}, 1000);
+		}
+		var id;
+		function interval(){
+			id = setInterval(()=>{
+				console.log("1초가 지났습니다.");
+			},1000);
+		}
+		function clearI(){
+			if(id){
+				clearInterval(id)
+			}
+		}
+	</script>
+</body>
+</html>

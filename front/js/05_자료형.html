@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자료형</title>
+</head>
+<body>
+	<script>
+		/* 
+		1. 숫자(number)
+			- 정수, 실수 모두 포함
+			- Infinity, -Infinity, NaN(Not a Number)
+		2. 문자열(string)
+			- "", '', `` 안에 있는 값들
+			- ``안에 ${변수명}을 이용해서 변수값을 문자열 안에 넣어줄 수 있다
+		3. boolean
+			- true, false
+		4. null (object)
+			- 값이 없음을 나타냄
+		5. bigint
+			- 큰 정수를 나타낼 때 사용
+			- 접미사 n을 붙임
+		6. 심볼(symbol)
+			- 고유하고 변경 불가능한 자료형
+			- 주로 객체의 속성키로 사용
+		7. object
+			- 객체, 배열, null
+			- 객체
+				{
+					속성명 : 값,
+					속성명 : 값	
+				}
+				- 변수명.속성명
+			- 배열
+				[값1, 값2, ...]
+				- 다른 자료형의 값들이 올 수 있다
+		*/
+
+		var age = 20;
+		var str = `당신의 나이는 ${age}입니다.<br>`;
+		document.write(str);
+		var person = {
+			name : '홍길동',
+			age : 21
+		}
+		person.address = '서울시';
+		document.write(`이름 : ${person.name}<br>`);
+		document.write(`나이 : ${person['age']}<br>`);
+		document.write(`주소 : ${person.address}<br>`);
+		var arr = [1, '안녕', { name : '홍길동'}];
+		console.log(arr);
+		
+		/* 
+		typeof
+			- 값 또는 변수의 자료형을 알려주는 연산자
+		*/
+		console.log(`1의 자료형 ${typeof 1}`);
+		console.log(`"1"의 자료형 ${typeof "1"}`);
+		console.log(`true의 자료형 ${typeof true}`);
+		console.log(`1n의 자료형 ${typeof 1n}`);
+		console.log(`[]의 자료형 ${typeof []}`);
+		console.log(`{}의 자료형 ${typeof {}}`);
+		console.log(`null의 자료형 ${typeof null}`);
+		var num;
+		console.log(`${num}의 자료형 ${typeof num}`);
+		let symbol = Symbol("id");
+		console.log(`심볼의 자료형 ${typeof symbol}`);
+		function test(){}
+		console.log(`함수의 자료형 ${typeof test}`);
+	</script>
+</body>
+</html>

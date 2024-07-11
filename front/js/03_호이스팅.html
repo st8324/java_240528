@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>호이스팅</title>
+</head>
+<body>
+	<script>
+		/* 
+		호이스팅
+			- 페이지 로딩 시 변수나 함수가 위로 올려지는 동작
+			- var로 선언된 변수는 호이스팅이 적용 되지만
+			  let으로 선언된 변수는 호이스팅이 적용되지 않음
+		*/
+		num = 10;
+		console.log(num);
+		var num = 20;
+		console.log(num);
+		// 위 코드가 호이스팅이 일어나면 아래와 같아짐
+		var num;
+		num = 10;
+		console.log(num);
+		num = 20;
+		console.log(num);
+
+	</script>
+</body>
+</html>

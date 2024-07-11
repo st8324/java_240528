@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>화살표 함수</title>
+</head>
+<body>
+	<script>
+		/* 
+		화살표 함수
+			- 함수 표현식 통해 함수를 선언할 때 사용
+			- 콜백함수가 필요한 경우 사용
+			- 함수명이 없음
+		*/
+		var sum1 = function(num1, num2){
+			return num1 + num2;
+		}
+		document.write(`sum1(1,2) = ${sum1(1,2)}<br>`);
+		var sum2 = (num1, num2)=> num1 + num2;
+		document.write(`sum2(1,2) = ${sum2(1,2)}<br>`);
+	</script>
+</body>
+</html>

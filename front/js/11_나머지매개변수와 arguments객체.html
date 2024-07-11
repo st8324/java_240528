@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>나머지매개변수와 arguments객체</title>
+</head>
+<body>
+	<script>
+		/* 
+		나머지 매개변수
+			- 함수 호출 시 넘겨준 인수들을 배열로 저장해서 관리
+			function 함수명(...args){
+				//구현
+			}
+		*/
+		function sum1(...args){
+			var sum = 0;
+			for(var num of args){
+				sum += num;
+			}
+			return sum;
+		}
+		document.write(`sum1(1,2,3,4,5) = ${sum1(1,2,3,4,5)}<br>`);
+		/* 
+		arguments 객체
+			- 함수에서 넘겨준 인수들을 관리하는 객체
+			- 배열처럼 사용하지만 배열이 아님
+			- 권장하진 않음
+			- 화살표 함수에서 사용할 수 없음
+		*/
+		function sum2(){
+			var sum = 0;
+			for(var i = 0; i<arguments.length; i++){
+				sum += arguments[i];
+			}
+			return sum;
+		}
+		document.write(`sum2(1,2,3,4,5) = ${sum2(1,2,3,4,5)}<br>`);
+	</script>
+</body>
+</html>

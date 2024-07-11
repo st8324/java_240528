@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>콜백 함수</title>
+</head>
+<body>
+	<script>
+		/* 
+		콜백 함수
+			- 함수의 매개변수로 들어가는 함수
+		*/
+		function checkAdult(age, adultFunc, notAdultFunc){
+			if(age >= 20){
+				adultFunc();
+			}else{
+				notAdultFunc();
+			}
+		}
+		function adult(){
+			document.write(`성인입니다.<br>`);
+		}
+		function notAdult(){
+			document.write(`미성년자입니다.<br>`);
+		}
+		checkAdult(10, adult, notAdult);
+		checkAdult(10, ()=>{
+			document.write(`성인입니다.<br>`)
+		},()=>{
+			document.write(`미성년자입니다.<br>`)
+		});
+	</script>
+</body>
+</html>

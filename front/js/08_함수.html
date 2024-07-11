@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>함수</title>
+</head>
+<body>
+	
+	<script>
+		/* 
+		함수 선언 방법
+			- 자바와 달리 리턴타입을 지정하지 않음
+		1. 함수 선언식
+			function 함수명(매개변수1, 매개변수2, ...){
+				//구현
+			}
+			- 함수 선언 위치에 상관없이 호출 가능 => 호이스팅
+		2. 함수 표현식
+			var 함수명 = function (매개변수1, 매개변수2, ...){
+				//구현
+			}
+			- 함수를 선언한 다음에 호출해야 함
+			- 화살표 함수를 적용할 수 있다
+		*/
+		hello();
+		//호이스팅이 적용되서 함수 자체가 위로 올라감
+		function hello(){
+			document.write("<h1>안녕</h1>");
+		}
+
+		//var hello2;
+
+		//hello2();
+		//함수 표현식도 호이스팅이 일어나느데 var hello2까지만 올라가서
+		//hello2가 함수인지 변수인지 위에서는 알수가 없다. 그래서 함수로 호출하면
+		//에러가 발생
+		var hello2 = function(){
+			document.write("<h1>Hi</h1>");
+		}
+		hello2();
+	</script>
+</body>
+</html>

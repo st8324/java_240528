@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연산자</title>
+</head>
+<body>
+	<script>
+		/* 
+		+연산자
+			- 변수 앞에 쓰는 단항 연산자
+			- 문자열 앞에 쓰면 숫자로 변환
+			- 숫자로 변환할 수 없는 문자가 있으면 NaN을 리턴
+		Number(문자열)
+			- 문자열을 숫자로 변환
+			- 숫자로 변환할 수 없는 문자가 있으면 NaN을 리턴
+		parseInt(문자열)
+			- 문자열을 숫자로 변환
+			- 숫자로 변환할 수 없는 문자가 있으면 숫자로 변환할 수 있는 부분까지만 숫자로
+			  변환. 처음부터 변환할 수 없으면 NaN
+		*/
+		var str = '123';
+		var num = +str;
+		document.write('<h1>+연산자</h1>');
+		document.write(`str : ${str}의 자료형은? ${typeof str}<br>`);
+		document.write(`num : ${num}의 자료형은? ${typeof num}<br><hr>`);
+		var str = '123a';
+		var num = +str;
+		document.write(`str : ${str}의 자료형은? ${typeof str}<br>`);
+		document.write(`num : ${num}의 자료형은? ${typeof num}<br><hr>`);
+		var str = '123a';
+		var num = Number(str);
+		document.write('<h1>Number()</h1>');
+		document.write(`str : ${str}의 자료형은? ${typeof str}<br>`);
+		document.write(`num : ${num}의 자료형은? ${typeof num}<br><hr>`);
+		var str = '123a';
+		var num = parseInt(str);
+		document.write('<h1>parseInt()</h1>');
+		document.write(`str : ${str}의 자료형은? ${typeof str}<br>`);
+		document.write(`num : ${num}의 자료형은? ${typeof num}<br><hr>`);
+
+		/* 
+		/ 연산자
+			- 1 / 2 => 0.5
+			- 1n / 2n => 0n
+		산술연산자
+			- 문자열이 산술연산자의 항으로 오면 숫자로 변환해서 계산
+			- 단, + 제외
+		*/
+		document.write('<h1>/연산자</h1>');
+		document.write(`1 / 2 = ${1 / 2}<br>`);
+		document.write(`1n / 2n = ${1n / 2n}<br>`);
+		document.write(`'1' / 2 = ${'1' / 2}<br>`);
+		/* 
+		자바 스크립트에서 참과 거짓은 범위가 넓다
+			- || : 각 항의 값들 중에서 처음으로 참이 되는 값을 선택. 
+			       참인 값이 없으면 마지막 값을 선택
+			- 거짓 : 0, null, undefined, '', false, NaN
+			- 0 || 1 => 1
+		*/
+		document.write('<h1>|| 연산자</h1>');
+		document.write(`0 || 1 = ${0 || 1}<br>`);
+		document.write(`null || 1 = ${null || 1}<br>`);
+		document.write(`undefined || 1 = ${undefined || 1}<br>`);
+		document.write(`'' || 1 = ${'' || 1}<br>`);
+		document.write(`'0' || 1 = ${'0' || 1}<br>`);
+		document.write(`{} || 1 = ${{} || 1}<br>`);
+		document.write(`[] || 1 = ${[] || 1}<br>`);
+
+		/* 
+		&& 연산자
+			- 각 항들 중에서 처음으로 거짓이 되는 값을 선택
+		*/
+		document.write('<h1>&& 연산자</h1>');
+		document.write(`0 && 1 = ${0 && 1}<br>`);
+
+		/*
+		?? 연산자
+			- null 병합 연산자
+			- A ?? B
+				- A가 null 또는 undefined가 아니면 A를 반환하고 맞으면 B를 반환
+			- 특정 값이 null 또는 undefined 일때 기본 값을 지정할 때 사용
+		*/
+		var age = null;
+		document.write('<h1>?? 연산자</h1>');
+		document.write(`나이는 ${age ?? 20}살입니다.<br>`);
+		
+		/*
+		** 연산자
+			- 제곱 연산자
+		*/
+		document.write('<h1>** 연산자</h1>');
+		document.write(`2 ** 3 = ${2 ** 3}<br>`);
+		/* 
+		비교 연산자
+			- ==, !=
+				- 값만 비교
+			- ===, !==
+				- 값과 자료형을 함께 비교
+		*/
+		document.write('<h1>==, != 연산자</h1>');
+		document.write(`1 == '1'? ${1 == '1'}<br>`);
+		document.write(`1 != '1'? ${1 == '1'}<br>`);
+
+		document.write('<h1>===, !== 연산자</h1>');
+		document.write(`1 === '1'? ${1 === '1'}<br>`);
+		document.write(`1 === 1? ${1 === 1}<br>`);
+		document.write(`1 !== '1'? ${1 !== '1'}<br>`);
+		document.write(`1 !== 1? ${1 !== 1}<br>`);
+	</script>
+</body>
+</html>

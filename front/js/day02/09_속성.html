@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>속성</title>
+</head>
+<body>
+	<button id="btn" data-num="10">버튼</button>
+	<script>
+		/*
+		getAttribute(속성명)
+			- 요소의 속성값을 가져옴
+			- 표준 속성이 아니어도 동작
+		setAttribute(속성명, 값)
+			- 요소의 속성값을 수정
+			- 표준 속성이 아니어도 동작
+		*/
+		var btn = document.getElementById('btn');
+		//버튼의 data-num 속성 값을 10에서 30으로 수정
+		btn.setAttribute('data-num', 30);
+		//버튼의 data-num 속성 값을 가져와서 num에 저장
+		var num = btn.getAttribute('data-num');
+		document.write(num);
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>location</title>
+</head>
+<body>
+	<button onclick="moveNaver()">naver로 이동</button> <hr>
+	<button onclick="moveURL()">샘플 URL</button> <hr>
+	<button onclick="moveGoogle()">구글로 이동</button> <hr>
+	<button onclick="pageReload()">새로고침</button> <hr>
+	<button onclick="moveLogin()">글쓰기</button> <hr>
+	<script>
+		/* 
+		location.href
+			- 현재 페이지의 url을 가져오거나 설정
+		*/
+		document.write(`현재 URL : ${location.href}<hr>`);
+		function moveNaver(){
+			location.href = 'http://naver.com';
+		}
+		function moveURL(){
+			location.href += '?a=1&b=2#abc';
+		}
+		/* 
+		location.protocol
+			- 현재 URL의 프로토콜을 반환
+			- http:, https:
+		location.host
+			- 호스트의 이름과 포트 번호를 반환
+		location.pathname
+			- URL의 경로 부분을 반환
+		location.search
+			- URL의 쿼리 문자열을 반환
+			- ?와 뒤에있는 값들 => 서버에 전송하는 값들이 있는 문자열
+		location.hash
+			- URL의 해시(#) 부분을 반환
+		location.assign(URL)
+			- 지정된 URL로 이동
+		location.reload()
+			- 현태 페이지를 다시 로드
+			- F5를 이용한 새로 고침과 같음
+		*/
+		document.write(`현재 URL의 프로토콜 : ${location.protocol}<hr>`);
+		document.write(`현재 URL의 호스트 : ${location.host}<hr>`);
+		document.write(`현재 URL의 pathname : ${location.pathname}<hr>`);
+		//샘플 URL 버튼 클릭 후 확인
+		document.write(`현재 URL의 쿼리 : ${location.search}<hr>`);
+		document.write(`현재 URL의 # : ${location.hash}<hr>`);
+
+		function moveGoogle(){
+			location.assign("http://google.com");
+		}
+		function pageReload(){
+			location.reload();
+		}
+		function moveLogin(){
+			if(confirm('해당 기능은 로그인이 필요한 서비스입니다.\n 로그인 페이지로 이동하겠습니까?')){
+				location.href='https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/'			
+			}
+		}
+	</script>
+</body>
+</html>

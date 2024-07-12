@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>navigator 객체</title>
+</head>
+<body>
+	<script>
+		/* 
+		navigator.userAgent
+			- 브라우저의 사용자 에이전트 문자열을 반환
+		navigator.language
+			- 브라우저의 언어를 반환
+		navigator.onLine
+			- 브라우저의 온라인 상태 여부를 반환
+		navigator.geolocation
+			- 위치 정보를 제공하는 객체를 반환
+		navigator.cookieEnabled
+			- 쿠키 사용 가능 여부를 반환
+		*/
+		document.write(navigator.userAgent + '<br>');
+		document.write(navigator.language + '<br>');
+		document.write(navigator.onLine + '<br>');
+		console.log(navigator.geolocation);
+		document.write(navigator.cookieEnabled + '<br>');
+	</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>탭 박스 예제</title>
+	<style>
+		*{ padding: 0; margin: 0; color: #000;}
+		ul{ list-style: none; }
+		a{text-decoration: none;}
+
+		.menu-list{
+			display: flex;
+		}
+		.menu-item{
+			width: 100%;
+		}
+		.menu-item~.menu-item{
+			margin-left: -3px;
+		}
+		.menu-link{
+			display: block; border: 3px solid black;
+			line-height: 50px; text-align: center;
+			font-weight: bold; font-size: 20px;
+		}
+		.menu-item:hover{
+			background-color: yellow;
+		}
+		
+		.box{		height: 400px; 	display: none;}
+		.box1 { background: yellow;}
+		.box2 { background: red;}
+		.box3 { background: blue;}
+		.display{ display: block;}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul class="menu-list">
+			<li class="menu-item" data-target=".box1">
+				<a href="#"class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item" data-target=".box2">
+				<a href="#"class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item" data-target=".box3">
+				<a href="#"class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="box box1 "></div>
+	<div class="box box2 "></div>
+	<div class="box box3 display"></div>
+	<script>
+		const menuList = document.querySelectorAll('.menu-item');
+		const boxList = document.querySelectorAll('.box');
+
+		menuList.forEach(element=>{
+			element.addEventListener('click', function(){
+				//클릭한 메뉴에 있는 data-target 속성 값을 가져와서 target에 저장
+				var target = this.getAttribute('data-target');
+				//모든 박스에 display 클래스를 제거해서 안보이게 함
+				removeDisplay();
+				//선택한 target에 맞는 박스를 가져옴
+				var targetElement = document.querySelector(target);
+				//가져온 박스에 display 클래스를 추가
+				targetElement.classList.add('display');
+			});
+		});
+
+		//.box들에 있는 display 클래스를 제거하는 함수
+		function removeDisplay(){
+			boxList.forEach(element=>{
+				element.classList.remove('display');
+			})
+		}
+		
+	</script>
+</body>
+</html>

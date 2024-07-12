@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>to do list</title>
+</head>
+<body>
+	<h1>오늘의 할일 등록</h1>
+	<form action="" id="form">
+		<input type="text" id="input" name="input">
+		<button type="submit" id="btn">등록</button>
+	</form>
+	<hr>
+	<h1>오늘의 할일</h1>
+	<ol id="list">
+		
+	</ol>
+	<script>
+		//for태그 선택
+		const form = document.getElementById('form');
+		//input창 선택
+		const input = document.getElementById('input');
+		//ol태그 선택
+		const list = document.getElementById('list');
+		//등록 버튼 클릭 이벤트를 추가
+		form.addEventListener('submit', function(e){
+			e.preventDefault();
+			//input창에 입력한 값을 가져옴
+			var toDo = input.value;
+			if(toDo.trim() == ''){
+				alert('내용을 입력하세요.');
+				return;
+			}
+			//가져온 값을 li태그로 감싸서 문자열로 만듬
+			var str = `<li>${toDo}</li>`;
+			
+			//ol태그 안에 li태그를 이어 붙임
+			list.innerHTML += str;
+
+			//input창의 값을 비워줌
+			input.value = ''
+		});
+	</script>
+</body>
+</html>

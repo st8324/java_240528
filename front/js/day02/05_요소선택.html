@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 선택</title>
+</head>
+<body>
+	
+	<nav id="nav">
+		<ul class="menu-list">
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+
+	<script>
+		/* 
+		getElementById(아이디명)
+			- 아이디를 이용하여 요소 선택
+			- 없거나 하나만 선택
+		getElementsByClassName(클래스명)
+			- 클래스를 이용하여 요소 선택
+			- 배열처럼 사용
+		getElementsByTagName(태그명)
+			- 태그를 이용하여 요소 선택
+			- 배열처럼 사용
+		*/
+		var nav = document.getElementById("nav");
+		console.log(nav);//있는 경우
+		var nav2 = document.getElementById("nav2");
+		console.log(nav2);//없는 경우는 null
+
+		var list = document.getElementsByClassName("menu-item");
+		console.log(list);
+
+		var as = document.getElementsByTagName("a");
+		console.log(as);
+		console.log(as[0])
+		
+		/*
+		querySelector(선택자)
+			- 선택자와 일치하는 요소 1개를 선택
+		querySelectorAll(선택자)
+			- 선택자와 일치하는 모든 요소를 선택
+		*/
+		var list2 = document.querySelectorAll(".menu-item");
+		console.log(list2)
+
+		var nav3 = document.querySelector("#nav");
+		console.log(nav3)
+		var nav4 = document.querySelector("#nav2");
+		console.log(nav4)
+	</script>
+
+	<nav id="nav2">
+		<ul class="menu-list">
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+		console.log("----------------");
+		/* 
+		getElementsByxxx은 요소를 선택한 후 뒤에 요소가 추가되면 추가된 요소가 반영
+		querySelectorxxx은 요소를 선택한 후 뒤에 요소가 추가되면 추가된 요소가 반영 X
+		*/
+		console.log(list);//기존 3개에 추가된 요소 3개가 더해져서 6개
+		console.log(list2);//기존 3개만 유지
+		list2 = document.querySelectorAll(".menu-item");
+		console.log(list2);
+	</script>
+</body>
+</html>

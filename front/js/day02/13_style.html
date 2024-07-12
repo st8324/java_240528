@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>style</title>
+	<style>
+		#box{
+			height: 200px; background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">배경을 노란색으로</button>
+	<div id="box"></div>
+	<script>
+		const box = document.getElementById('box');
+		const btn = document.getElementById('btn');
+		// box.style.backgroundColor = 'red'
+		// box.style.height = '200px'
+		btn.addEventListener('click',()=>{
+			box.style.backgroundColor = 'yellow';
+		});
+	</script>
+</body>
+</html>

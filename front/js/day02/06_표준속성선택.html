@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>속성 선택</title>
+</head>
+<body>
+
+	<a href="http://naver.com" target="_blank">검색 사이트로 이동</a>
+	<hr>
+	<button onclick="changeGoogle()">구글로 변경</button>
+	<button onclick="changeNaver()">네이버로 변경</button>
+	<button onclick="changeDaum()">다음으로 변경</button>
+	<hr>
+	<input type="text"> <br>
+	<button onclick="getValue()">텍스트 가져오기</button>
+	<script>
+		/* 
+		속성 선택
+			- 노드.표준속성명 을 통해 선택
+			- 선택된 표준 속성값을 확인하거나 변경할 수 있다
+		*/
+		function changeGoogle(){
+			//a태그 선택
+			var a = document.getElementsByTagName("a")[0];
+			//a태그의 href를 구글로 변경
+			a.href = "http://google.com";
+		}
+		function changeNaver(){
+			//a태그 선택
+			var a = document.getElementsByTagName("a")[0];
+			//a태그의 href를 네이버로 변경
+			a.href = "http://naver.com";
+		}
+		function changeDaum(){
+			//a태그 선택
+			var a = document.getElementsByTagName("a")[0];
+			//a태그의 href를 다음으로 변경
+			a.href = "http://daum.net";
+		}
+		function getValue(){
+			var textNode = document.getElementsByTagName("input")[0];
+			var text = textNode.value;
+			alert(text);
+		}
+	</script>
+</body>
+</html>

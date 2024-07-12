@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>속성 선택</title>
+</head>
+<body>
+	<button onclick="/*decrease()*/increase2(-1)">-</button>
+	<input type="text" value="0" readonly>
+	<button onclick="/*increase()*/increase2(+1)">+</button>
+	<script>
+		//숫자가 감소하는 함수
+		function decrease(){
+			//태그가 inut인 요소를 선택
+			var input = document.getElementsByTagName('input')[0];
+			//선택한 요소의 value값을 가져옴
+			var num = input.value;
+			// console.log(typeof num); //input태그에서 가져온 value는 항상 문자열
+			//가져옴 값을 감소
+			num = +num;
+			--num;
+			//선택한 요소의 value를 감소한 값으로 변경
+			input.value = num;
+		}
+		//숫자가 증가하는 함수
+		function increase(){
+			//태그가 inut인 요소를 선택
+			var input = document.getElementsByTagName('input')[0];
+			//선택한 요소의 value값을 가져옴
+			var num = input.value;
+
+			//가져옴 값을 증가
+			num = +num;
+			num++;
+			//선택한 요소의 value를 증가한 값으로 변경
+			input.value = num;
+		}
+
+		function increase2(amount){
+			//태그가 inut인 요소를 선택
+			var input = document.getElementsByTagName('input')[0];
+			//선택한 요소의 value값을 가져옴
+			var num = input.value;
+
+			//가져옴 값을 amount만큼 증가
+			num = +num;
+			num = num + amount;
+			//선택한 요소의 value를 증가한 값으로 변경
+			input.value = num;
+		}
+	</script>
+</body>
+</html>

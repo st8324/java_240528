@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>정규표현식</title>
+</head>
+<body>
+	<script>
+		let regex = /^010-\d{4}-\d{4}$/;
+		var num = '01012345678';
+		
+		checkPhoneNumber(regex, num);
+		num = '010-1234-5678';
+		checkPhoneNumber(regex, num);
+
+		function checkPhoneNumber(regex, num){
+			/* 
+			정규표현식
+				- /와 /사이에 정규표현식을 작성
+				- /을 연달아 작성하면 안됨
+			정규표현식.test(문자열)
+				- 문자열이 정규표현식에 맞으면 true, 아니면 false를 반환
+			*/
+			if(regex.test(num)){
+				document.write(`${num}는 010-0000-0000형태가 맞습니다.<br>`);
+			}else{
+				document.write(`${num}는 010-0000-0000형태가 아닙니다<br>`)
+			}
+		};
+	</script>
+</body>
+</html>

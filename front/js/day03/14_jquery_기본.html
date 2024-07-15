@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jquery 기본</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+	<div class="box1">
+		<button class="btn1">버튼1-1</button>
+		<button class="btn1">버튼1-2</button>
+		<button class="btn1">버튼1-3</button>
+	</div>
+	<div class="box2">
+		<button class="btn2">버튼2-1</button>
+		<button class="btn2">버튼2-2</button>
+		<button class="btn2">버튼2-3</button>
+	</div>
+	<script>
+		/* 
+		jquery
+			- 자바 스크립트로 작성된 프레임워크
+		jquery 사용 방법
+			- script 태그를 이용하여 jqeury.js를 가져와서 사용
+		요소 선택
+			$('선택자')
+		이벤트 등록
+			$('선택자').이벤트명(콜백함수);
+				- 등록된 이벤트에 대해서 사용
+			$('선택자').on('이벤트명', 콜백함수);
+				- 모든 이벤트에 대해서 사용
+			$(document).on('이벤트명', '선택자', 콜백함수);
+				- 모든 이벤트에 대해서 사용
+				- 뒤늦게 추가된 요소에도 자동으로 적용
+		jquery 이벤트 등록의 특징
+			- 선택한 요소가 여러개이어도 그냥 등록
+		*/
+		//js 버전 클릭 이벤트 등록
+		const btns1 = document.getElementsByClassName('btn1');
+		for(var btn of btns1){
+			btn.addEventListener('click', ()=>alert('버튼1 클릭'));
+		}
+		//jquery 버전 클릭 이벤트 등록1
+		//$('.btn2').click(()=>alert('버튼2 클릭'));
+		//jquery 버전 클릭 이벤트 등록2
+		$(document).on('click', '.btn2', ()=>alert('버튼2 클릭'));
+	</script>
+	<button class="btn1">버튼1-4</button>
+	<button class="btn2">버튼2-4</button>
+</body>
+</html>

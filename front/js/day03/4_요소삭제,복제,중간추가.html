@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소삭제,복제,중간추가</title>
+</head>
+<body>
+	<button id="btn1">요소 중간추가</button>
+	<button id="btn2">요소 삭제</button>
+	<button id="btn3">요소 복제(true)</button>
+	<button id="btn4">요소 복제(false)</button>
+	<div>
+		<h3>요소 중간 추가 박스</h3>
+		<ul id="box1">
+			<li>1</li>
+			<li>2</li>
+			<li id="center1">3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<div>
+		<h3>요소 삭제 박스</h3>
+		<ul id="box2">
+			<li>1</li>
+			<li>2</li>
+			<li id="center2">3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<div>
+		<h3>요소 복사 박스</h3>
+		<ul id="box3">
+			<li>1</li>
+			<li>2</li>
+			<li id="center3">3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script>
+		const btn1 = document.getElementById('btn1');
+		const btn2 = document.getElementById('btn2');
+		const btn3 = document.getElementById('btn3');
+		const btn4 = document.getElementById('btn4');
+		const box1 = document.getElementById('box1');
+		const box2 = document.getElementById('box2');
+		const box3 = document.getElementById('box3');
+
+		const center1 = document.getElementById('center1');
+		const center2 = document.getElementById('center2');
+
+		var count1 = 0;
+		btn1.addEventListener('click', function(){
+			/* 
+			부모요소.insertBefore(요소1, 요소2)
+				- 부모요소 안에 있는 자식요소 요소2 앞에 요소1을 추가
+				- 요소1 : 추가할 요소
+				- 요소2 : 부모요소의 자식요소. 기준 요소
+			*/
+			var li = document.createElement('li');
+			var text = document.createTextNode(`추가${++count1}`);
+			li.append(text);
+			box1.insertBefore(li, center1);
+		});
+		btn2.addEventListener('click', function(){
+			/* 
+			부모요소.removeChild(자식요소)
+				- 자식 요소를 삭제
+			요소.remove()
+				- 요소를 삭제
+			*/
+			//box2의 가운데 자식요소를 삭제
+			//box2.removeChild(center2);
+			//가운데 요소를 삭제
+			center2.remove();
+		});
+		btn3.addEventListener('click', function(){
+			/*
+			요소.cloneNode(깊은복제)
+				- 깊은복제가 true이면 깊은 복제 아니면 얕은 복제
+				- 깊은 복제 : 자식 요소들과 속성노드들도 복제
+				- 얕은 복제 : 자식 요소들은 복제하지 않음
+			*/
+			var el1 = box3.cloneNode(true);
+			var style = document.createAttribute('style');
+			style.value = 'border:1px solid blue';
+			el1.setAttributeNode(style);
+			box3.before(el1);
+		});
+		btn4.addEventListener('click', function(){
+			var el2 = box3.cloneNode(false);
+			var style = document.createAttribute('style');
+			style.value = 'border:1px solid red';
+			el2.setAttributeNode(style);
+			box3.after(el2);
+		});
+	</script>
+</body>
+</html>

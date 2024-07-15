@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 추가</title>
+	<style>
+		#box{ 
+			height: 500px; border: 1px solid black;
+			padding: 20px;
+		}
+		#box>div{
+			border: 1px solid red; margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">추가</button>
+	<div id="box">
+		<div>기준</div>
+	</div>
+	<script>
+		const box = document.getElementById('box');
+		const btn = document.getElementById('btn');
+		var count = 0;
+		btn.addEventListener('click', function(){
+			/*
+			document.createElement('태그')
+				- 태그를 이용해서 요소를 생성하여 반환
+			document.createTextNode(텍스트)
+				- 텍스트를 이용해서 텍스트 노드를 생성하여 반환
+			부모요소.append(노드1, 노드2,...)
+				- 부모 요소의 자식 요소들 중에서 마지막 자식 요소 뒤에 노드들을 추가
+			부모요소.appendChild(노드1)
+				- 부모 요소의 자식 요소들 중에서 마지막 자식 요소 뒤에 노드를 추가
+			부모요소.prepend(노드1, 노드2,...)
+				- 부모 요소의 자식 요소들 중에서 첫번째 자식 요소 앞에 노드들을 추가
+			형제요소.before(노드)
+				- 형제 요소 앞에 노드를 추가
+			형제요소.after(노드)
+				- 형제 요소 뒤에 노드를 추가
+			*/
+			//1. 요소 노드 생성
+			var innerbox1 = document.createElement('div');
+			//2. 텍스트 노드 생성
+			var text1 = document.createTextNode(`박스 : 이너 박스${++count}`);
+			//3. 요소 노드에 텍스트 노드 추가
+			innerbox1.append(text1);
+			//4. 기존 노드에 요소 노드 추가
+			box.append(innerbox1);
+		});
+
+	</script>
+</body>
+</html>

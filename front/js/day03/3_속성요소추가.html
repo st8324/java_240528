@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>속성 요소 추가</title>
+</head>
+<body>
+	<button id="btn">이미지 추가</button>
+	<div id="box"></div>
+	<script>
+		const btn = document.getElementById('btn');
+		const box = document.getElementById('box');
+
+		btn.addEventListener('click', function(){
+			/* 
+			document.createAttribute('속성명')
+				- 속성 노드를 생성하여 반환
+			속성노드.value = 값
+				- 속성 노드에 값을 지정
+			요소노드.setAttributeNode(속성노드)
+				- 요소 노드에 속성 노드를 추가
+			*/
+			//1. 요소 노드 생성
+			var img = document.createElement('img');
+			//2. 속성 노드 생성
+			var src = document.createAttribute('src');
+			var alt = document.createAttribute('alt');
+			var width = document.createAttribute('width');
+			//2-2. 속성 노드에 값 지정
+			src.value = 'https://www.fitpetmall.com/wp-content/uploads/2023/10/image-26.png';
+			alt.value = '강아지 이미지';
+			width.value = '100';
+			//3. 요소 노드에 속성 노드를 추가
+			img.setAttributeNode(src);
+			img.setAttributeNode(alt);
+			img.setAttributeNode(width);
+			//4. 기존 요소에 요소 노드를 추가
+			box.append(img);
+		});
+	</script>
+</body>
+</html>

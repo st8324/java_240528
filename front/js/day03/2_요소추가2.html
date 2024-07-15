@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 추가</title>
+	<style>
+		#box{ 
+			height: 500px; border: 1px solid black;
+			padding: 20px;
+		}
+		#box>div{
+			border: 1px solid red; margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">추가</button>
+	<div id="box">
+		<div>기준</div>
+	</div>
+	<script>
+		const box = document.getElementById('box');
+		const btn = document.getElementById('btn');
+		var count = 0;
+		btn.addEventListener('click', function(){
+			/*
+			기준요소.insertAdjacentElement('위치',요소);
+				- 기준요소에 요소를 위치에 맞게 추가
+			위치
+				- beforebegin : 기준 요소 바로 앞(before)
+				- afterbegin : 기준 요소의 첫번째 자식 요소 바로 앞(prepend)
+				- beforeend : 기준 요소 마지막 자식 요소 다음(append)
+				- afterend : 기준 요소 바로 다음(after)
+			*/
+			//1. 요소 노드 생성
+			var innerbox1 = document.createElement('div');
+			//2. 텍스트 노드 생성
+			var text1 = document.createTextNode(`박스 : 이너 박스${++count}`);
+			//3. 요소 노드에 텍스트 노드 추가
+			innerbox1.append(text1);
+			//4. 기존 노드에 요소 노드 추가
+			box.insertAdjacentElement('beforeend',innerbox1);
+		});
+
+	</script>
+</body>
+</html>

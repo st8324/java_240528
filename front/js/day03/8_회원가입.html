@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입</title>
+	<style>
+		.form-group .form-control{
+			display: block; width: 100%; box-sizing: border-box;
+			height: 30px; border-radius: 5px; border: 2px solid aqua;
+			margin: 5px 0;
+		}
+		.btn{
+			width: 100%; height: 30px; border: 2px solid aqua; border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+	아이디, 비번, 비번 확인을 입력해서 회원 가입을 진행하는 코드를 작성하세요.
+		- 아이디는 영어로만, 비번은 영어, 숫자만 사용가능.
+		- 비번 확인은 비번과 같음
+	-->
+	<form action="" method="get" id="form">
+		<h1>회원가입</h1>
+		<div class="form-group">
+			<label for="id">아이디 : </label>
+			<input type="text" name="id" placeholder="아이디" id="id"
+				class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="pw">비번 : </label>
+			<input type="text" name="pw" placeholder="비번" id="pw"
+				class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="pw2">비번 확인 : </label>
+			<input type="text" name="pw2" placeholder="비번 확인" id="pw2"
+				class="form-control">
+		</div>
+		<button class="btn" type="submit">회원가입</button>
+	</form>
+	<script>
+		const form = document.getElementById('form');
+		const inputId = document.getElementById('id');
+		const inputPw = document.getElementById('pw');
+		const inputPw2 = document.getElementById('pw2');
+
+		form.addEventListener('submit', function(e){
+
+			if(!checkId()){
+				alert('아이디는 영문 8~13자입니다.');
+				e.preventDefault();
+				return;
+			}
+
+			if(!checkPw()){
+				alert('비번은 영문,숫자 8~13자입니다.');
+				e.preventDefault();
+				return;
+			}
+
+			if(!checkPw2()){
+				alert('비번과 비번 확인이 일치하지 않습니다.');
+				e.preventDefault();
+				return;
+			}
+
+			//e.preventDefault();//기본 form태그의 기본 기능인 전송을 막아줌
+		});
+		function checkId(){
+			//영문 8~13
+			const regex = /^[a-zA-Z]{8,13}$/;
+			var id = inputId.value;
+			return regex.test(id);
+		}
+		function checkPw(){
+			//영문, 숫자 8~13
+			const regex = /^\w{8,13}$/;
+			var pw = inputPw.value;
+			return regex.test(pw);
+		}
+		function checkPw2(){
+			var pw = inputPw.value;
+			var pw2 = inputPw2.value;
+			return pw == pw2;
+		}
+		
+	</script>
+</body>
+</html>

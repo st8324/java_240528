@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문서 로딩 이벤트</title>
+</head>
+<body>
+	<script>
+		/* 
+		window.onload 이벤트
+			- 요소들이 다 로딩 된 후 실행하도록 하는 이벤트
+			- 문서와 모든 리소스(이미지 스타일시트 등)이 모두 로드 되었을 때 발생
+		document.addEventListener('DOMContentLoaded', 콜백함수)
+			- 문서 로딩이 다 된 후 콜백 함수를 실행
+			- 스타일시트, 이미지 등의 로드가 완료되지 않아도 발생
+			- 페이지의 구조가 준비 되었을 때 빠르게 실행되어야 하는 초기화 작업에 유용
+		위 두 이벤트가 같이 있는 경우
+			- DOMContentLoaded가 먼저 실행
+		*/
+		window.onload = ()=>{
+			console.log("window 로딩 완료.<br>");
+		}
+		document.addEventListener('DOMContentLoaded', ()=>{
+			console.log("문서 로딩 완료.<br>");
+		})
+	</script>
+</body>
+</html>

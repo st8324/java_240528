@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jquery 애니메이션</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		.box{ width: 100px; height: 100px; background-color: red;}
+	</style>
+</head>
+<body>
+	<button class="btn-right">오른쪽으로 이동</button>
+	<button class="btn-stop">중지</button>
+	<button class="btn-left">왼족으로 이동</button>
+	<div class="box"></div>
+	<script>
+		/* 
+		$('선택자').animate(옵션, 동작시간, 콜백함수)
+			- 옵션 
+				- 변경할 스타일
+				- 객체로 전달. { 속성1 : 값, 속성2 : 값}
+				- 속성에는 css 속성명이 들어감
+				- 속성명에 -가 들어간 경우 문자열로 처리하거나
+				  -를 제거하고 카멜표기법으로 수정
+					- margin-left => 'margin-left'
+					- margin-left => marginLeft
+				- 값에 특정 값이 아닌 현재값에 누적인 경우 += 또는 -=을 이용
+			- 같은 요소에 여러 애니메이션을 등록한 경우, 등록한 순서대로 애니메이션이 동작
+			- 콜백함수 : 애니메이션 종료 후 실행된 작업
+		$('선택자').is(':animated')
+			- 해당 요소에 애니메이션이 진행 중인지를 알려줌
+			- true : 애니메이션 진행 중. false : 애니메이션 진행중이 아님
+		$('선택자').stop(stopAll)
+			- 요소에 진행중인 애니메이션을 중지
+			- stopAll이 true이면 등록된 모든 애니메이션을 중지. 
+			  false이면 현재 진행중인 애니메이션만 중지
+		*/
+		$('.btn-right').click(()=>{
+			if(!$('.box').is(':animated')){
+				$('.box').animate({
+					'margin-left' : "+=100px"
+				}, 1000);
+			}
+		});
+		$('.btn-left').click(()=>{
+			if(!$('.box').is(':animated')){
+				$('.box').animate({
+					marginLeft : "-=100px"
+				}, 1000);
+			}
+		});
+		$('.btn-stop').click(()=>{
+			$('.box').stop(true);
+		})
+	</script>
+</body>
+</html>

@@ -14,6 +14,7 @@
 			width: 100%; height: 30px; border: 2px solid aqua; border-radius: 5px;
 			cursor: pointer;
 		}
+		.error{ color: red;}
 	</style>
 </head>
 <body>
@@ -48,25 +49,31 @@
 		const inputPw2 = document.getElementById('pw2');
 
 		form.addEventListener('submit', function(e){
+			//전송을 막을지 막지 않을지를 결정하는 변수. true면 전송안함
+			//아이디, 비번, 비번확인 검사를 모두 하기 위해서
+			var flag = false;
+			
+			removeSpan(inputId);
+			removeSpan(inputPw);
+			removeSpan(inputPw2);
 
 			if(!checkId()){
-				alert('아이디는 영문 8~13자입니다.');
-				e.preventDefault();
-				return;
+				appendSpan(inputId,'아이디는 영문 8~13자입니다.');
+				flag = true;
 			}
 
 			if(!checkPw()){
-				alert('비번은 영문,숫자 8~13자입니다.');
-				e.preventDefault();
-				return;
+				appendSpan(inputPw,'비번은 영문,숫자 8~13자입니다.');
+				flag = true;
 			}
 
 			if(!checkPw2()){
-				alert('비번과 비번 확인이 일치하지 않습니다.');
-				e.preventDefault();
-				return;
+				appendSpan(inputPw2,'비번과 비번 확인이 일치하지 않습니다.');
+				flag = true;
 			}
-
+			if(flag){
+				e.preventDefault();
+			}
 			//e.preventDefault();//기본 form태그의 기본 기능인 전송을 막아줌
 		});
 		function checkId(){
@@ -86,7 +93,20 @@
 			var pw2 = inputPw2.value;
 			return pw == pw2;
 		}
-		
+		function appendSpan(element, str){
+			var span = document.createElement('span');
+			var textNode = document.createTextNode(str);
+			var classAttr = document.createAttribute('class');
+			classAttr.value = 'error';
+			span.append(textNode);
+			span.setAttributeNode(classAttr);
+			element.after(span);
+		}
+		function removeSpan(element){
+			var span = element.nextElementSibling;
+			if(span)
+				span.remove();
+		}
 	</script>
 </body>
 </html>

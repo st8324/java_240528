@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>fetch를 이용한 비동기 통신</title>
+</head>
+<body>
+	<ul id="list"></ul>
+	<script>
+		const list = document.getElementById('list');
+		fetch('https://my-json-server.typicode.com/st8324/repo/students')
+			.then(response=>response.json())
+			.then(data=>{
+				var html = '';
+				data.forEach(element => {
+					html += 
+					`<li>${element.grade}학년 ${element.class}반 ${element.num}번
+						${element.name}</li>`;
+				});
+				list.innerHTML = html;
+			});
+		list.after('1');
+	</script>
+</body>
+</html>

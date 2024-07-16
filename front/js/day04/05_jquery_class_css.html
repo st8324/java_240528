@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>css와 클래스</title>
+	<script src="../../static/js/jquery.min.js"></script>
+	<style>
+		.box{
+			height: 300px; border: 1px solid black;
+		}
+		.bg{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn btn-bg-add">배경 추가</button>
+	<button class="btn btn-bg-remove">배경 삭제</button>
+	<button class="btn btn-bg-toggle">배경 토글</button>
+	<button class="btn btn1">배경 색(빨강)</button>
+	<button class="btn btn2">배경/테두리 색(핑크/빨강)</button>
+	<div class="box"></div>
+
+	<script>
+		/* 
+		$('선택자').addClass('클래스명')
+			- 요소에 클래스를 추가
+		$('선택자').removeClass('클래스명')
+			- 요소에 클래스를 제거
+		$('선택자').toggleClass('클래스명')
+			- 요소에 클래스가 있으면 제거, 없으면 추가
+		$('선택자').hasClass('클래스명')
+			- 요소에 클래스가 있으면 true, 없으면 false
+		*/
+		$('.btn-bg-add').click(()=>{
+			$('.box').addClass('bg');
+		})
+		$('.btn-bg-remove').click(()=>{
+			$('.box').removeClass('bg');
+		})
+		$('.btn-bg-toggle').click(()=>{
+			$('.box').toggleClass('bg');
+		})
+		/* 
+		$('선택자').css('속성A')
+			- 요소의 스타일 속성 중 속성A의 값을 가져옴
+		$('선택자').css('속성A', 값B)
+			- 요소의 스타일 속성 중 속성A의 값을 값B로 수정
+		$('선택자').css(객체)
+			- 요소의 스타일 속성 중 객체에 있는 속성들의 값을 수정
+		주의
+			- css()는 요소의 style속성에 적용되고,
+			  xxxClass()는 요소의 class속성에 적용이 됨.
+				=> 우선순위가 style속성이 높기 때문에 css()가 적용이 됨
+		*/
+		$('.btn1').click(()=>{
+			$('.box').css('background-color','red');
+		})
+		$('.btn2').click(()=>{
+			$('.box').css({
+				'background-color' : 'pink',
+				'border-color' : 'red'
+			});
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jqeury get set</title>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="box">
+		<button>버튼1</button> <br>
+		<span>안녕하세요.</span> <br>
+		<input type="text" name="title" value="제목입니다."> <br>
+		<input type="checkbox" name="sports" value="야구" checked> 야구
+	</div>
+	<div class="box-get" style="border: 1px solid black; margin: 20px 0;"></div>
+	<div class="box-set" style="border: 1px solid red; margin: 20px 0;"></div>
+	<script>
+		/* 
+		get
+			- 요소의 정보를 가져오는 것
+		text()
+			- 요소의 텍스트를 가져옴
+		html()
+			- 요소의 html 코드를 가져옴
+		val()
+			- 요소의 value를 가져옴. input태그와 같이 value가 표준인 속성만 가능
+		attr(속성A)
+			- 요소의 A 속성 값을 가져옴. 
+			- html 속성
+			- 초기 HTML 속성값에 중점을 둠
+		prop(속성A)
+			- 요소의 A 속성 값을 가져옴
+			- DOM 속성
+			- 동적인 값에 중점을 둠
+		*/
+		var res1 = '';
+		var text = $('.box').text();
+		res1 += text + '<hr>';
+		var html = $('.box').html();
+		res1 += html + '<hr>';
+		var val = $('[name=title]').val();
+		res1 += val + '<hr>';
+
+		$('.box>[name=sports]').prop('checked', false);
+
+		var attr = $('[name=sports]').attr('checked');
+		res1 += `attr('checked') : ${attr}<hr>`;
+
+		var prop = $('[name=sports]').prop('checked');
+		res1 += `prop('checked') : ${prop}<hr>`;
+
+		$('.box-get').html(res1);
+		/*
+		set
+			- 요소의 정보를 수정하는 것
+		text(문자열A)
+			- 요소의 텍스트를 문자열A로 수정
+		html(문자열A)
+			- 요소의 html 코드를 문자열A로 수정
+		val(문자열A)
+			- 요소의 value를 문자열A로 수정. input태그와 같이 value가 표준인 속성만 가능
+		attr(속성A, 값B)
+			- 요소의 A 속성 값을 값B로 수정. 
+			- html 속성
+			- 초기 HTML 속성값에 중점을 둠
+		prop(속성A, 값B)
+			- 요소의 A 속성 값을 값B로 수정. 
+			- DOM 속성
+			- 동적인 값에 중점을 둠
+		*/
+		$('.box>span').text('<a href="#">네이버로</a>'); 
+		html = $('.box>span').html();
+		$('.box>span').html(html + '<a href="#">네이버로</a>');
+		$('.box>[name=title]').val("제목이 수정되었습니다.");
+		$('.box>[name=sports]').attr('checked', 'undefined');
+		$('.box>[name=sports]').prop('checked', false);
+	</script>
+</body>
+</html>

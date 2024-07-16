@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 전체 선택 예제</title>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>
+				<input type="checkbox" id="all"> 전체선택
+			</th>
+			<th>이름</th>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" class="checkbox">
+			</td>
+			<td>홍길동</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" class="checkbox">
+			</td>
+			<td>임꺽정</td>
+		</tr>
+	</table>
+	<script>
+		//전체 선택 클릭 이벤트 등록
+		$('#all').change(function(){
+			//전체 선택한 체크박스의 checked 속성값을 가져옴
+			//this는 이벤트가 발생한 요소
+			var checked = $(this).prop('checked');
+			//다른 체크박스의 checked 속성 값을 전체 선택한 체크박스의 checked 속성값으로 수정
+			$('.checkbox').prop('checked', checked);
+		});
+
+		$('.checkbox').change(function(){
+			//.checkbox에서 체크된 요소들의 개수를 가져옴
+			var checkedCount = $('.checkbox:checked').length;
+
+			//.checkbox의 개수
+			var totalCount = $('.checkbox').length;
+			
+			if(checkedCount != totalCount){
+				$('#all').prop('checked', false);
+			}else{
+				$('#all').prop('checked', true);
+			}
+		})
+	</script>
+</body>
+</html>

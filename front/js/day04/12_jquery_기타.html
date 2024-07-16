@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>기타</title>
+	<script src="../../static/js/jquery.min.js"></script>
+	<style>
+		.box1, .box2{ 
+			background-color: yellow; border: 3px solid black;
+			padding: 30px;
+		}
+		.box2{
+			background-color: red;margin-top: 20px;
+		}
+		.inner-box{
+			background-color: blue; height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="inner-box"></div>
+	</div>
+	<div class="box2"></div>
+	<script>
+		/* 
+		요소.detach()
+			- 요소를 제거해서 반환
+		*/
+		var innerBox = $('.inner-box').detach();
+		$('.box2').append(innerBox);
+	</script>
+</body>
+</html>

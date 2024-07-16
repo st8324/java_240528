@@ -126,26 +126,31 @@
 			$(this).css('border-color', 'black');
 		})
 		
-		var offset = $('.box4').offset();
-		var x = offset.left;
-		var y = offset.top;
+		var offset = null;
+		var x = null;
+		var y = null;
 		$('.box4').mousemove(function(e){
 			if(!flag)
 				return;
-			var rx = e.pageX - x;
-			var ry = e.pageY - y;
-			$('#x').text(parseInt(rx));
-			$('#y').text(parseInt(ry));
+		
+			var mx = e.pageX - x;
+			var my = e.pageY - y;
+			$('#x').text(parseInt(mx));
+			$('#y').text(parseInt(my));
+			//return;
 			$(this).css({
 				'position' : 'absolute',
-				'top' : y+ry,
-				'left': x+rx,
-				'width' : 500
+				'top' : offset.top + my,
+				'left': offset.left + mx,
+				'width' : $(this).width()
 			})
 		})
 		var flag = false;
-		$('.box4').mousedown(function(){
+		$('.box4').mousedown(function(e){
 			flag = true;
+			offset = $(this).offset();
+			x = e.pageX;
+			y = e.pageY;
 		});
 		$('.box4').mouseup(function(){
 			flag = false;
@@ -153,6 +158,9 @@
 				'position' : 'static'
 			})
 		});
+		$('.box4').mouseleave(function(){
+			$('.box4').mouseup();
+		})
 		/* 
 		submit(콜백함수)
 			- form태그가 전송되기전 실행되는 이벤트
@@ -160,7 +168,7 @@
 			- return값이 없거나 true이면 전송
 		*/
 		$('form').submit(function(){
-			
+
 			return false;
 		})
 	</script>

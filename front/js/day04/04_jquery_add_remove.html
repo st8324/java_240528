@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>add와 remove</title>
+	<script src="../../static/js/jquery.min.js"></script>
+	<style>
+		.box1{ padding: 10px; border: 1px solid green;}
+		.box2{ padding: 10px; border: 1px solid red;}
+		.box3{ padding: 10px; border: 1px solid blue; margin-top: 10px;}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<p class="center">안녕하세요.</p>
+	</div>
+	<div class="box2">
+		<p>안녕하세요.</p>
+	</div>
+	<div class="box3">
+		<p>안녕하세요.</p>
+	</div>
+	<script>
+		/* 
+		$('선택자').append(html코드|요소)
+			- 요소의 마지막 자식요소 다음에 html코드|요소를 추가
+		$(html코드|요소).appendTo('선택자')
+			- 요소의 마지막 자식요소 다음에 html코드|요소를 추가
+		$('선택자').prepend(html코드|요소)
+			- 요소의 첫번째 자식요소 앞에 html코드|요소를 추가
+		$(html코드|요소).prependTo('선택자')
+			- 요소의 첫번째 자식요소 앞에 html코드|요소를 추가
+		$('선택자').after(html코드|요소)
+			- 요소 다음에 html코드|요소를 추가
+		$('선택자').before(html코드|요소)
+			- 요소 앞에 html코드|요소를 추가
+		
+		*/
+		$('.box1').append('<a href="#">네이버로</a>');
+		$('<a href="#">다음으로</a>').appendTo('.box1');
+		$('.box1').prepend('<div><a href="#">네이버로</a></div>');
+		$('<div><a href="#">다음으로</a></div>').prependTo('.box1');
+		$('.box1').after('<div class="box4">after</div>');
+		$('.box1').before('<div class="box5">before</div>');
+
+		/*
+		$('선택자').remove()
+			- 요소와 자식 요소들을 제거
+		$('선택자').empty()
+			- 요소의 자식 요소들을 제거
+		*/
+		$('.box2').remove();
+		$('.box3').empty();
+	</script>
+</body>
+</html>

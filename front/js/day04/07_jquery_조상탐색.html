@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>조상 탐색</title>
+	<style>
+		body *:not(script) {
+			padding: 10px; border: 3px solid black;
+			display: block;
+		}
+	</style>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<nav>
+		<ul class="menu-list">
+			<li class="menu-item ">
+				<a href="#" class="menu-link first">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+		/* 
+		요소.parent()
+			- 부모 요소를 선택
+		요소.parents()
+			- 조상 요소들을 선택
+		요소.parents('선택자')
+			- 조상 요소들 중에서 선택자와 일치하는 조상 요소들을 선택
+		요소.parentsUntil('선택자')
+			- 부모요소부터 선택자 요소 전까지의 조상 요소들을 선택
+		*/
+		$('.first').parent().css('background', 'yellow');
+		$('.first').parents().css('border-left-color', 'red');
+		$('.first')
+			.parents('.menu-list')
+			.css('border-right-color', 'red');
+		$('.first').parentsUntil('nav')
+			.css('border-top-color', 'blue');
+	</script>
+</body>
+</html>

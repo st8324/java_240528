@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 필터링</title>
+	<style>
+		body *:not(script) {
+			padding: 5px; border: 3px solid black;
+			display: block;
+		}
+		.center{ background-color: yellow;}
+	</style>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<nav>
+		<ul class="menu-list">
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+			<li class="menu-item center">
+				<a href="#" class="menu-link">메뉴4</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴5</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴6</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴7</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+		/* 
+		요소.first()
+			- 요소들 중에서 첫번째 요소
+		요소.last()
+			- 요소들 중에서 마지막 요소
+		요소.eq(a)
+			- 요소들 중에서 a+1번째에 있는 요소
+		요소.filter('선택자')
+			- 요소들 중에서 선택자와 일치하는 요소
+		요소.not('선택자')
+			- 요소들 중에서 선택자와 일치하지 않은 요소
+		*/
+		$('.menu-item').first().css('background', 'red');
+		$('.menu-item').last().css('background', 'blue');
+		$('.menu-item').eq(6).css('border-color', 'yellow');
+		$('.menu-item').filter('.center').css('border-width', '10px');
+		$('.menu-item').not('.center').css('border-style', 'dashed');
+	</script>
+</body>
+</html>

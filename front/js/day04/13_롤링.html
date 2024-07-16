@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		ul, ol{ list-style: none;}
+		a{text-decoration: none;}
+
+		.container{
+			height: 50px; border: 1px solid black;
+			width: 300px; overflow: hidden;
+		}
+		.news-list{
+			width: 300%; height: 100%;
+		}
+		.news-item{
+			width: 33.33%; height: 100%; float: left;
+		}
+		.news-link{
+			display: block;line-height: 50px;
+		}
+		.news-item.item1{background: yellow;}
+		.news-item.item2{background: tomato;}
+		.news-item.imte3{background: aliceblue;}
+	</style>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<ul class="news-list">
+			<li class="news-item item1">
+				<a href="#" class="news-link">기사1</a>
+			</li>
+			<li class="news-item item2">
+				<a href="#" class="news-link">기사2</a>
+			</li>
+			<li class="news-item item3">
+				<a href="#" class="news-link">기사3</a>
+			</li>
+		</ul>
+	</div>
+	<script>
+		var id = rolling();
+
+		$('.container').hover(function(){
+			//setInterval을 중지
+			clearInterval(id);
+		}, function(){
+			//setInterval을 시작
+			id = rolling();
+		})
+
+		function rolling(){
+			return setInterval(() => {
+					if(!$('.news-item').is(':animated')){
+						$('.news-item')
+							.first()
+							.animate({'margin-left' : '-300px'}, 900, function(){
+								$(this)
+									.removeAttr('style')
+									.detach()
+									.appendTo('.news-list');
+							})
+					}
+				}, 1000);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>메뉴</title>
+	<script src="../../static/js/jquery.min.js"></script>
+	<style>
+		*{ margin: 0; padding: 0;}
+		ul,ol { list-style: none;}
+		a{text-decoration: none;}
+
+		.menu-list{ display: flex;}
+		.menu-item{ width: 100%; border: 2px solid black;}
+		.menu-item+.menu-item{ margin-left: -2px;}
+		.menu-link{ 
+			display: block; height: 30px; line-height: 30px;
+			text-align: center; color: black;
+		}
+		.menu-item:hover{
+			background-color: aliceblue;
+		}
+		.container{ margin-top: 10px;}
+		.box{ border: 2px solid black; height: 200px; display: none;}
+		.bg-red{ background-color: red;}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul class="menu-list">
+			<li class="menu-item item1" data-target=".box1">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item item2" data-target=".box2">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item item3" data-target=".box3">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="container">
+		<div class="box box1">1</div>
+		<div class="box box2">2</div>
+		<div class="box box3">3</div>
+	</div>
+	<script>
+
+		$('.menu-item').click(function(){
+			/*
+			$('선택자').data('a')
+				- 요소의 data-a 속성 값을 가져옴
+			$('선택자').data('a', 'b')
+				- 요소의 data-a 속성 값을 b로 수정
+			*/
+			//var target = $(this).attr('data-target');
+			var target = $(this).data('target');
+			$('.box').hide();
+			$(target).show();
+			$('.menu-item').removeClass('bg-red');
+			$(this).addClass('bg-red');
+		})
+		$('.menu-item').first().click();
+		/*
+		$('.item1').click(function(){
+			$('.box').hide();
+			$('.box1').show();
+		})
+		$('.item2').click(function(){
+			$('.box').hide();
+			$('.box2').show();
+		})
+		$('.item3').click(function(){
+			$('.box').hide();
+			$('.box3').show();
+		})
+		$('.item1').click();
+		*/
+	</script>
+</body>
+</html>

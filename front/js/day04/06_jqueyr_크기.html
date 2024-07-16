@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>너비 높이</title>
+	<script src="../../static/js/jquery.min.js"></script>
+	<style>
+		.box{
+			margin: 20px; border: 10px solid black; padding: 30px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script>
+		/* 
+		$('선택자').width()/height()
+			- 요소의 컨텐츠 너비/높이
+		$('선택자').innerWidth()/innerHeight()
+			- 요소의 컨텐츠+패딩 너비/높이
+		$('선택자').outerWidth()/outerHeight()
+			- 요소의 컨텐츠+패딩+테두리 너비/높이
+		$('선택자').outerWidth(true)/outerHeight(true)
+			- 요소의 컨텐츠+패딩+테두리+마진 너비/높이
+		*/
+		var contentWidth = $('.box').width();
+		var paddingWidth = $('.box').innerWidth();
+		var borderWidth = $('.box').outerWidth();
+		var marginWidth = $('.box').outerWidth(true);
+		var str = `
+			컨텐츠 너비 : ${contentWidth} <br>
+			컨텐츠 + 패딩 너비 : ${paddingWidth} <br>
+			컨텐츠 + 패딩 + 테두리 너비 : ${borderWidth} <br>
+			컨텐츠 + 패딩 + 테두리 + 마진 너비 : ${marginWidth} <br>
+		`
+		$('.box').html(str);
+	</script>
+</body>
+</html>

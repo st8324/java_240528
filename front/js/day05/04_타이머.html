@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>타이머</title>
+	<script src="../../static/js/jquery.min.js"></script>
+	<style>
+		.box-timer{
+			border: 2px solid black; padding: 30px;
+			font-size: 30px; text-align: center; width: 500px;
+			margin: 0 auto; box-sizing: border-box;
+		}
+		.box-btns{
+			width: 500px; margin: 10px auto;
+		}
+		.box-btns::after{
+			clear: both; display: block; content: '';
+		}
+		.btn{
+			width: 45%; float: left; border: 2px solid black; height: 30px;
+			cursor: pointer;
+		}
+		.btn-stop{
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="box-timer">
+		00:00:00
+	</div>
+	<div class="box-btns">
+		<button class="btn btn-start">시작</button>
+		<button class="btn btn-stop">중지</button>
+	</div>
+	
+	<script>
+		var s = 0, m = 0, h = 0;
+		var id = null;
+		$('.btn-start').click(function(){
+			if(id != null){
+				return;
+			}
+			id = setInterval(function(){
+				++s;
+				if(s == 60){
+					s = 0;
+					++m;
+				}
+				if(m == 60){
+					m = 0;
+					++h
+				}
+				$('.box-timer').text(getTime(h, m, s));
+			}, 100);
+		})
+
+		$('.btn-stop').click(function(){
+			clearInterval(id);
+			id = null;
+		})
+		//n자리보다 작은 숫자 앞에 0으로 채우는 함수
+		function padZero(num, n){
+			return String(num).padStart(n, '0');
+		}
+		function getTime(h, m, s){
+			return `${padZero(h,2)}:${padZero(m,2)}:${padZero(s, 2)}`;
+		}
+	</script>
+</body>
+</html>

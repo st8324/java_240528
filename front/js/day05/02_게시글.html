@@ -65,5 +65,87 @@
 			</tbody>
 		</table>
 	</div>
+	<script>
+		var list = [];
+		//form태그에 sumbit 이벤트를 등록
+		$('form').submit(function(){
+			//제목을 가져옴
+			var title = $('#title').val();
+			//작성자를 가져옴
+			var writer = $('#writer').val();
+			//내용을 가져옴
+			var content = $('#content').val();
+			//제목, 내용, 작성자를 이용해서 객체를 생성
+			/*var post = {
+				num : list.length + 1,
+				title : title,
+				writer : writer,
+				content : content,
+				views : 0
+			}
+			*/
+			var post = new Post(list.length + 1, title, writer, content);
+			var post = Post2(list.length + 1, title, writer, content);
+			var post = new Post3(list.length + 1, title, writer, content);
+			//생성한 객체를 list 앞에 추가
+			list.unshift(post);
+			//제목, 작성자, 내용을 비움
+			$('#title').val('');
+			$('#writer').val('');
+			$('#content').val('');
+			//displayList를 호출
+			displayList(list);
+			//false를 리턴
+			return false;
+		});
+		//list를 이용해서 테이블에 번호, 제목, 작성자, 조회수를 화면에 배치하는 함수
+		function displayList(list){
+			
+			var str = '';
+			if(list.length == 0){
+				str = `
+					<tr>
+						<th colspan="4">등록된 게시글이 없습니다.</th>
+					</tr>
+				`;
+			}
+			for(var i = 0; i < list.length; i++){
+				str += `
+					<tr>
+						<td>${list[i].num}</td>
+						<td>${list[i].title}</td>
+						<td>${list[i].writer}</td>
+						<td>${list[i].views}</td>
+					</tr>
+				`
+			}
+			$('.table tbody').html(str);
+		}
+		class Post{
+			constructor(num, title, writer, content){
+				this.num = num;
+				this.title = title;
+				this.content = content;
+				this.writer = writer;
+				this.views = 0;
+			}
+		}
+		function Post2(num, title, writer, content){
+			return {
+				num : num,
+				title : title,
+				writer : writer,
+				content : content,
+				views : 0
+			}
+		}
+		function Post3(num, title, writer, content){
+			this.num = num;
+			this.title = title;
+			this.content = content;
+			this.writer = writer;
+			this.views = 0;
+		}
+	</script>
 </body>
 </html>

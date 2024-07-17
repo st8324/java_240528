@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입</title>
+	<style>
+		.form-group>label,.form-group>input{
+			float: left;
+		}
+		.form-group::after{
+			display: block; content: ''; clear: both;
+		}
+		.form-group>label{
+			width: 100px;
+		}
+		.form-group>.form-control{
+			width: calc(100% - 100px); box-sizing: border-box;
+		}
+		.form-control{
+			margin-bottom: 10px;
+		}
+		.text-center{
+			text-align: center;
+		}
+		.table{
+			border: 1px solid black; width: 100%;
+		}
+		.table td, .table th{
+			border: 1px solid black;
+		}
+		.table thead, .table tfoot{
+			background-color: tomato;
+		}
+		.table .btn{ 
+			width: 100%;
+		}
+		[class^=error]{ 
+			color: red; margin-bottom: 10px; display: none;
+		}
+	</style>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<!-- 
+	비번 클릭시 비번 아래에 비번은 영문, 숫자 포함 8~13자입니다라고 보임
+	아이디, 비번, 비번확인을 입력하지 않고 작성하기를 누르면 
+	각 항목 밑에 필수항목입니다라고 출력되도록 기능을 구현
+	 -->
+	<form action="">
+		<fieldset>
+			<legend>회원가입</legend>
+			<div class="form-group">
+				<label for="id">아이디</label>
+				<input type="text" name="id" id="id" class="form-control">
+			</div>
+			<div class="error-id"></div>
+			<div class="form-group">
+				<label for="pw">비번</label>
+				<input type="password" name="pw" id="pw" class="form-control">
+			</div>
+			<div class="error-pw"></div>
+			<div class="form-group">
+				<label for="pw2">비번 확인</label>
+				<input type="password" name="pw2" id="pw2" class="form-control">
+			</div>
+			<div class="error-pw2"></div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn">작성하기</button>
+			</div>
+		</fieldset>
+	</form>
+	<hr>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th colspan="2">기사제목</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>2</td>
+				<td>오늘의 날씨는?</td>
+				<td><button class="btn">기사보기</button></td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>오늘의 뉴스는 무엇인가요??</td>
+				<td><button class="btn">기사보기</button></td>
+				<td>100</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="3">기사 개수</th>
+				<th>2</th>
+			</tr>
+		</tfoot>
+	</table>
+	<script>
+		//비번 클릭 이벤트 등록
+		$('#pw').click(function(){
+			//.error-pw에 비번은 영문, 숫자 포함 8~13자입니다라고 화면에 추가
+			$('.error-pw').text('비번은 영문, 숫자 포함 8~13자입니다').show();
+		});
+		$('#pw').blur(function(){
+			$('.error-pw').text('').hide();
+		})
+		//form태그에 submit 이벤트 등록
+		$('form').submit(function(){
+			var flag = true;
+			//아이디 값을 가져옴
+			var id = $('#id').val();
+			//아이디 값이 비어있으면 .error-id에 필수항목입니다라고 화면에 추가
+			if(id == ''){
+				$('.error-id').text('필수 항목입니다.').show();
+				flag = false;
+			}
+			//아니면 .error-id가 비도록 화면에 추가
+			else{
+				$('.error-id').text('').hide();
+			}
+
+			//비번 값을 가져옴
+			var pw = $('#pw').val();
+			//비번 값이 비어있으면 .error-pw에 필수항목입니다라고 화면에 추가
+			if(pw == ''){
+				$('.error-pw').text('필수 항목입니다.').show();
+				flag = false;
+			}
+			//아니면 .error-pw가 비도록 화면에 추가
+			else{
+				$('.error-pw').text('').hide();
+			}
+			//비번 확인값을 가져옴
+			var pw2 = $('#pw2').val();
+			//비번확인 값이 비어있으면 .error-pw2에 필수항목입니다라고 화면에 추가
+			if(pw2 == ''){
+				$('.error-pw2').text('필수 항목입니다.').show();
+				flag = false;
+			}
+			//아니면 .error-pw2가 비도록 화면에 추가
+			else{
+				$('.error-pw2').text('').hide();
+			}
+			return flag;
+		});
+	</script>
+</body>
+</html>

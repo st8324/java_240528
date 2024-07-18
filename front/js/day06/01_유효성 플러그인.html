@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>유효성 플러그인</title>
+	<!-- jquery를 사용하기 위해 추가 -->
+	<script src="../../static/js/jquery.min.js"></script>
+	<!-- jquery validation을 사용하기 위해 추가 -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+	<!-- jquery validation에서 regex을 사용하기 위해 추가 -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+	<style>
+		.error{color: red;}
+	</style>
+</head>
+<body>
+	<form action="" id="form">
+		<h1>회원가입</h1>
+		<div>
+			<label>
+				아이디 <input type="text" name="id">
+			</label>
+		</div>
+		<div>
+			<label for="id" id="id-error" class="error"></label>
+		</div>
+		<div>
+			<label>
+				비번 <input type="password" name="pw" id="pw">
+			</label>
+		</div>
+		<div>
+			<label for="pw" id="pw-error" class="error"></label>
+		</div>
+		<div>
+			<label>
+				비번 확인 <input type="password" name="pw2">
+			</label>
+		</div>
+		<div>
+			<label for="pw2" id="pw2-error" class="error"></label>
+		</div>
+		<div>
+			<label>
+				나이 <input type="text" name="age">
+			</label>
+		</div>
+		<div>
+			<label for="age" id="age-error" class="error"></label>
+		</div>
+		<div>
+			<label>
+				홈페이지 <input type="text" name="homepage">
+			</label>
+		</div>
+		<div>
+			<label for="homepage" id="homepage-error" class="error"></label>
+		</div>
+		<div>
+			<label>
+				이메일 <input type="text" name="email">
+			</label>
+		</div>
+		<div>
+			<label for="email" id="email-error" class="error"></label>
+		</div>
+		<div>
+			<button type="submit">회원가입</button>
+		</div>
+	</form>
+	<script>
+		$('#form').validate({
+			/* 
+			rules : 유효성 검사를 할 규칙들. 객체
+				- 속성 : 입력태그의 name이 속성명에 해당
+				- 값 : 옵션 객체
+				- 옵션 객체
+					- 속성 : 옵션명
+					- 값 : 해당 옵션에 맞는 값
+				- 옵션
+					- required 
+						- 필수항목
+						- true
+					- maxlength
+						- 최대 길이
+						- 숫자
+					- minlength
+						- 최소 길이
+						- 숫자
+					- equalTo
+						- 다른 값과 같은지 확인
+						- id값을 가져옴
+					- digits
+						- 숫자 체크
+						- true
+					- email
+						- 이메일 형식 체크
+						- true
+					- url
+						- url 형식 체크
+						- true
+					- regex
+						- 기본 옵션이 아님. 메소드를 추가해야 함.
+						- 정규표현식
+			*/
+			rules : {
+				id : {
+					required : true,
+					regex : /^\w{8,13}$/
+				},
+				pw : {
+					required : true,
+					regex : /^[a-zA-Z0-9!@#$]{8,15}$/
+				},
+				pw2 : {
+					equalTo : pw
+				},
+				age : {
+					digits : true
+				},
+				homepage : {
+					url : true
+				},
+				email : {
+					email : true
+				}
+			},
+			/*
+			messages : 유효성 검사가 맞지 않을 때 출력할 메세지들. 객체
+				- 최대, 최소 글자의 값을 가져오려면 {0} 형태로 사용하면 됨
+			*/
+			messages : {
+				id : {
+					required : '필수 항목입니다.',
+					regex : '아이디는 영어, 숫자만 가능하며, 8~13자이어야 합니다.'
+				},
+				pw : {
+					required : '필수 항목입니다.',
+					regex : '아이디는 영어, 숫자, 특수문자(!@#$)만 가능하며, 8~15자이어야 합니다.'
+				},
+				pw2 : {
+					equalTo : '비번과 일치하지 않습니다.'
+				},
+				age : {
+					digits : '숫자만 입력하세요.'
+				},
+				homepage : {
+					url : 'URL 형식이 아닙니다.'
+				},
+				email : {
+					email : 'email 형식이 아닙니다'
+				}
+			},
+			/*
+			submitHandler : 유효성 검사에 성공하면 전송하기 전 확인할 작업을 처리하는 속성. 함수
+			*/
+			submitHandler : function(){
+				if($('[name=age]').val() > 200){
+					alert('나이는 200보다 작아야 합니다.');
+					return false;
+				}
+				return true;
+			}
+		});
+		$.validator.addMethod('regex', function(value, element, regex){
+			var re = new RegExp(regex);
+			return this.optional(element) || re.test(value);
+		}, "정규표현식을 확인하세요.");
+	</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>선택 예제</title>
+	<style>
+		.box{
+			width: 150px; height: 50px; border: 3px solid black; line-height: 50px;
+			font-size: 30px; font-weight: bold; text-align: center;
+		}
+		.box-list{
+			display: flex; justify-content: space-evenly;
+		}
+		.box-check-list{
+			text-align: center; margin-top: 10px;
+		}
+	</style>
+	<script src="../../static/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="box-list">
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+		</div>
+		<div class="box-check-list">
+			<label>
+				<input type="checkbox" name="sports" value="야구"> 야구
+			</label>
+			<label>
+				<input type="checkbox" name="sports" value="농구"> 농구
+			</label>
+			<label>
+				<input type="checkbox" name="sports" value="축구"> 축구
+			</label>
+			<label>
+				<input type="checkbox" name="sports" value="배구"> 배구
+			</label>
+			<label>
+				<input type="checkbox" name="sports" value="골프"> 골프
+			</label>
+		</div>
+	</div>
+	<script>
+		var list = [];
+		//체크박스의 값이 변하면
+		$('[name=sports]').change(function(){
+			//이벤트가 발생한 체크박스의 체크 상태를 가져옴
+			var checked = $(this).prop('checked');
+			//이벤트가 발생한 체크박스의 value를 가져옴
+			var value = $(this).val();
+			//체크된 상태면 value값을 리스트에 추가
+			if(checked){
+				if(list.length == 3){
+					$(this).prop('checked', false);
+					alert('최대 3개까지 선택 가능합니다.');
+					return;
+				}
+				list.push(value);
+			}
+			//체크가 해제된 상태면 value값을 리스트에서 제거
+			else{
+				var index = list.indexOf(value);
+				list.splice(index, 1);
+			}
+			//display 함수를 호출
+			display(list);
+		});
+		//list가 주어지문 주어진 list에 맞게 박스를 작성하는 메소드
+		function display(list){
+			//모든 박스의 텍스트를 빈 텍스트로 수정
+			$('.box').text('');
+			//반복문을 이용하여 list에 있는 값을 하나씩 꺼내서 박스의 텍스트로 순차적으로 수정
+			//eq(번지)
+			for(var i = 0; i<list.length; i++){
+				$('.box').eq(i).text(list[i]);
+			}
+		}
+	</script>
+</body>
+</html>

@@ -76,7 +76,28 @@ create table if not exists student.score(
 );
 
 # 테이블 삭제
-# drap table if exists 테이블명; 
+# drop table if exists 테이블명; 
+drop table if exists score2;
+
+# 테이블 수정 - 컬럼 추가
+# alter table 테이블명 add 컬럼명 타입 [zerofill] [unique] ... ; 
+alter table student.score add test int not null;
+
+# 테이블 수정 - 컬럼 수정
+# alter table 테이블명 change 기존컬럼명 새컬럼명 타입 [zerofill] [unique] ... ;
+alter table student.score change test totalScore int not null default 0;
+
+# 테이블 수정 - 컬럼 삭제
+# alter table 테이블명 drop 컬럼명 
+alter table student.score drop totalScore;
+
+# 테이블 수정 - 제약조건 추가
+# alter table 테이블명 add constraint 제약조건명 제약조건;
+alter table student.score add constraint aa check(midTerm >= 0 and midTerm <= 100);
+
+# 테이블 수정 - 제약조건 삭제
+# alter table 테이블명 drop constraint 제약조건명;
+alter table student.score drop constraint aa;
 
 
 

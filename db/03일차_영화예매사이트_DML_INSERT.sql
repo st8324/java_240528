@@ -56,9 +56,48 @@ INSERT INTO CASTING VALUES(NULL, '감독', 1, 1),
 # 1관 : A1~A3, B1~B3, C1~C4
 # 2관 : A1~A4, B1~B4, C1~C2
 # 3관 : A1~A2, B1~B2, C1~C2, D1~D2, E1~E2
-
+INSERT INTO THEATER 
+VALUES(NULL, 'CGV강남', 3, 30, '서울특별시 강남구 역삼동 814-6 스타플렉스', '서울');
+INSERT INTO SCREEN
+VALUES(NULL,'1관', 10, 1),(NULL,'2관', 10, 1),(NULL,'3관', 10, 1);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 1), (NULL, 'A2', 1),(NULL, 'A3', 1),
+(NULL, 'B1', 1), (NULL, 'B2', 1),(NULL, 'B3', 1),
+(NULL, 'C1', 1), (NULL, 'C2', 1),(NULL, 'C3', 1),(NULL, 'C4', 1);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 2), (NULL, 'A2', 2),(NULL, 'A3', 2),(NULL, 'A4', 2),
+(NULL, 'B1', 2), (NULL, 'B2', 2),(NULL, 'B3', 2),(NULL, 'B4', 2),
+(NULL, 'C1', 2), (NULL, 'C2', 2);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 3), (NULL, 'A2', 3),
+(NULL, 'B1', 3), (NULL, 'B2', 3),
+(NULL, 'C1', 3), (NULL, 'C2', 3),
+(NULL, 'D1', 3), (NULL, 'D2', 3),
+(NULL, 'E1', 3), (NULL, 'E2', 3);
 # 영등포 CGV를 등록. 상영관 : 4, 좌석 : 44
 # 1관 : A1~A3, B1~B3, C1~C4
 # 2관 : A1~A4, B1~B4, C1~C2
-# 3관 : A1~A3, B1~B3, C1~C3, D1~D4
+# 3관 : A1~A3, B1~B3, C1~C3, D1~D3
 # 4관 : A1~A6, B1~B6
+INSERT INTO THEATER 
+VALUES(NULL, 'CGV영등포', 4, 44, '서울특별시 영등포구 영등포동 4가 441-10번지 경방 타임스퀘어 4~7층', '서울');
+INSERT INTO SCREEN VALUES
+(NULL,'1관', 10, 2),(NULL,'2관', 10, 2),(NULL,'3관', 12, 2),(NULL,'4관', 12, 2);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 4), (NULL, 'A2', 4),(NULL, 'A3', 4),
+(NULL, 'B1', 4), (NULL, 'B2', 4),(NULL, 'B3', 4),
+(NULL, 'C1', 4), (NULL, 'C2', 4),(NULL, 'C3', 4),(NULL, 'C4', 4);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 5), (NULL, 'A2', 5),(NULL, 'A3', 5),(NULL, 'A4', 5),
+(NULL, 'B1', 5), (NULL, 'B2', 5),(NULL, 'B3', 5),(NULL, 'B4', 5),
+(NULL, 'C1', 5), (NULL, 'C2', 5);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 6), (NULL, 'A2', 6),(NULL, 'A3', 6),
+(NULL, 'B1', 6), (NULL, 'B2', 6),(NULL, 'B3', 6),
+(NULL, 'C1', 6), (NULL, 'C2', 6),(NULL, 'C3', 6),
+(NULL, 'D1', 6), (NULL, 'D2', 6),(NULL, 'D3', 6);
+INSERT INTO SEAT VALUES
+(NULL, 'A1', 7), (NULL, 'A2', 7),(NULL, 'A3', 7),
+(NULL, 'A4', 7), (NULL, 'A5', 7),(NULL, 'A6', 7),
+(NULL, 'B1', 7), (NULL, 'B2', 7),(NULL, 'B3', 7),
+(NULL, 'B4', 7), (NULL, 'B5', 7),(NULL, 'B6', 7);

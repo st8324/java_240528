@@ -146,6 +146,28 @@ CREATE TABLE `price` (
 	`pr_price`	int	NOT NULL
 );
 
+DROP TABLE IF EXISTS `ticketing_list`;
+
+CREATE TABLE `ticketing_list` (
+	`tl_num`	int primary key auto_increment	NOT NULL,
+	`tl_ti_num`	int	NOT NULL,
+	`tl_se_num`	int	NOT NULL
+);
+
+ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_ticketing_TO_ticketing_list_1` FOREIGN KEY (
+	`tl_ti_num`
+)
+REFERENCES `ticketing` (
+	`ti_num`
+);
+
+ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_seat_TO_ticketing_list_1` FOREIGN KEY (
+	`tl_se_num`
+)
+REFERENCES `seat` (
+	`se_num`
+);
+
 ALTER TABLE `character` ADD CONSTRAINT `FK_person_TO_character_1` FOREIGN KEY (
 	`ch_ps_num`
 )

@@ -54,6 +54,89 @@ FROM
 WHERE
     TI_ME_ID = 'abc123';
 
+# 데드풀과 울버린 CGV강남점 1관 7/27 10:00에 예약된 좌석을 조회하는 쿼리 
+# 1번 스케쥴에 예약된 좌석을 조회하는 쿼리 
+SELECT 
+    SE_NAME '예약된 좌석번호'
+FROM
+    (SELECT * FROM TICKETING WHERE TI_SD_NUM = 1) TT
+    JOIN
+		TICKETING_LIST ON TI_NUM = TL_TI_NUM
+	JOIN
+		SEAT ON TL_SE_NUM = SE_NUM;
+
+# CGV강남점 1관의 좌석을 조회하는 쿼리 
+# 1번 상영관에 좌석들을 조회하는 쿼리 
+SELECT * FROM SEAT WHERE SE_SC_NUM = 1;
+
 
 # 데드풀과 울버린 CGV강남점 1관 7/27 10:00에 예약 가능한 좌석을 조회하는 쿼리 
+# 1번 스케쥴에 예약 가능한 1번 상영관 좌석을 조회하는 쿼리 
+# 1번 스케쥴에 예약된 좌석이 아닌 + 1번 상영관 좌석
+SELECT 
+    SE_NAME
+FROM
+    SEAT
+WHERE
+    SE_SC_NUM = 1
+        AND SE_NAME NOT IN (SELECT 
+            SE_NAME
+        FROM
+            (SELECT 
+                *
+            FROM
+                TICKETING
+            WHERE
+                TI_SD_NUM = 1) TT
+                JOIN
+            TICKETING_LIST ON TI_NUM = TL_TI_NUM
+                JOIN
+            SEAT ON TL_SE_NUM = SE_NUM);
+# 1번 스케쥴에서 예약 가능한 좌석들의 수를 조회 
+SELECT 
+    COUNT(SE_NAME) 예약가능한좌석수
+FROM
+    SEAT
+WHERE
+    SE_SC_NUM = 1
+        AND SE_NAME NOT IN (SELECT 
+            SE_NAME
+        FROM
+            (SELECT 
+                *
+            FROM
+                TICKETING
+            WHERE
+                TI_SD_NUM = 1) TT
+                JOIN
+            TICKETING_LIST ON TI_NUM = TL_TI_NUM
+                JOIN
+            SEAT ON TL_SE_NUM = SE_NUM);
+
+# 장르별 등록된 영화 개수를 조회하는 쿼리 
+SELECT 
+    GE_NAME 장르, COUNT(MG_NUM) 영화수
+FROM
+    MOVIE_GENRE
+        RIGHT JOIN
+    GENRE ON GE_NAME = MG_GE_NAME
+GROUP BY GE_NAME;
+
+# 개봉한 영화를 조회하는 쿼리 
+SELECT * FROM MOVIE WHERE MO_DATE <= NOW();
+
+# 오늘부터 한달 사이에 개봉한 영화를 조회하는 쿼리 
+SELECT 
+    *
+FROM
+    MOVIE
+WHERE
+    MO_DATE BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW();
+
+
+
+
+
+
+
 

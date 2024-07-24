@@ -25,5 +25,44 @@ WHERE
 	PR_PRICE > ALL(SELECT PR_PRICE FROM PRODUCT WHERE PR_CA_CODE = 'AB');
 
 # 의류의 가장 싼 제품보다 비싼 제품을 조회하는 쿼리(단, 의류는 CD, 의류 제품은 제외) 
+SELECT 
+	* 
+FROM 
+	PRODUCT 
+WHERE 
+	PR_PRICE > ANY(SELECT PR_PRICE FROM PRODUCT WHERE PR_CA_CODE = 'CD')
+    AND PR_CA_CODE != 'CD';
+SELECT 
+	* 
+FROM 
+	(SELECT * FROM PRODUCT WHERE PR_CA_CODE != 'CD') PRODUCT2
+WHERE 
+	PR_PRICE > ANY(SELECT PR_PRICE FROM PRODUCT WHERE PR_CA_CODE = 'CD');
+
+# 가전 제품과 가격이 일치하는 제품들을 조회하는 쿼리(가전 제품은 제외)
+SELECT 
+    *
+FROM
+    PRODUCT
+WHERE
+    PR_PRICE = ANY (SELECT 
+            PR_PRICE
+        FROM
+            PRODUCT
+        WHERE
+            PR_CA_CODE = 'AB')
+	AND PR_CA_CODE != 'AB';
+SELECT 
+    *
+FROM
+    PRODUCT
+WHERE
+    PR_PRICE IN(SELECT 
+            PR_PRICE
+        FROM
+            PRODUCT
+        WHERE
+            PR_CA_CODE = 'AB')
+	AND PR_CA_CODE != 'AB';
 
 

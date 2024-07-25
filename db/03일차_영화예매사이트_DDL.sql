@@ -267,4 +267,4 @@ REFERENCES `schedule` (
 );
 
 ALTER TABLE `cgv`.`schedule` 
-ADD COLUMN `sc_possible` INT NOT NULL AFTER `sd_sc_num`;
+ADD COLUMN `sd_possible` INT NOT NULL AFTER `sd_sc_num`;

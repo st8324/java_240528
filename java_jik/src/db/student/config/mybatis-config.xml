@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<package name="db.student.vo"/>
+		<package name="db.student.model.vo"/>
 	</typeAliases>
 	
 	<environments default="development">

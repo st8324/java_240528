@@ -3,7 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="db.student.dao.StudentDAO">
-	
+	<select id="selectStudent" resultType="StudentVO">
+		select 
+			* 
+		from 
+			student 
+		where 
+			st_grade = #{std.st_grade} 
+			and st_class = #{std.st_class} 
+			and st_num = #{std.st_num}
+	</select>
+	<insert id="insertStudent">
+		insert into student(st_grade, st_class, st_num, st_name)
+		values(#{std.st_grade},#{std.st_class},#{std.st_num},#{std.st_name})
+	</insert>
 </mapper>
 
 

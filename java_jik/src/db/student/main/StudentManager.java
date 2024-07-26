@@ -65,10 +65,10 @@ public class StudentManager implements Program{
 			student();
 			break;
 		case 2:
-			subject();
+			//subject();
 			break;
 		case 3:
-			exit();
+			//exit();
 			break;
 		default:
 			
@@ -107,23 +107,23 @@ public class StudentManager implements Program{
 			studentController.insertStudent();
 			break;
 		case 2:
-			studentUpdate();
+			//studentUpdate();
 			break;
 		case 3:
-			studentDelete();
+			//studentDelete();
 			break;
 		case 4:
-			studnetSearch();
+			//studnetSearch();
 			break;
 		case 5:
-			prev();
+			//prev();
 			break;
 		default:
 			
 		}
 		
 	}
-
+/*
 	private void studentInsert() {
 		//입력한 정보를 이용하여 객체를 생성
 		StudentVO std = inputStudentExpand();
@@ -136,31 +136,7 @@ public class StudentManager implements Program{
 		list.add(std);
 		System.out.println("학생이 추가되었습니다.");
 	}
-	/**학년 반 번호를 입력받아 학생 객체를 만들어서 반환하는 메소드
-	 * @return 학년, 반, 번호가 있는 만들어진 학생 객체
-	 * */
-	public StudentVO inputStudent() {
-		//학년, 반, 번호, 이름을 입력
-		System.out.print("학년 : ");
-		int grade = nextInt();
-		System.out.print("반 : ");
-		int classNum = nextInt();
-		System.out.print("번호 : ");
-		int num = nextInt();
-		return new StudentVO(grade, classNum, num, "");
-	}
-	/**학년 반 번호 이름을 입력받아 학생 객체를 만들어서 반환하는 메소드
-	 * @return 학년, 반, 번호, 이름이 있는 만들어진 학생 객체
-	 */
-	public StudentVO inputStudentExpand() {
-		StudentVO std = inputStudent();
-		
-		System.out.print("이름 : ");
-		scan.nextLine();
-		String name = scan.nextLine();
-		std.setName(name);
-		return std;
-	}
+	
 
 	private void studentUpdate() {
 		int menu;
@@ -567,4 +543,5 @@ public class StudentManager implements Program{
 		System.out.println("프로그램을 종료합니다.");
 		
 	}
+	*/
 }

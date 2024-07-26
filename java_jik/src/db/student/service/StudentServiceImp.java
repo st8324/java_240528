@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.student.dao.StudentDAO;
+import db.student.model.vo.StudentVO;
 
 public class StudentServiceImp implements StudentService{
 
@@ -26,5 +27,20 @@ public class StudentServiceImp implements StudentService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean insertStudent(StudentVO std) {
+		if(std == null) {
+			return false;
+		}
+		//이미 등록된 학생인지 확인 
+		//학년, 반, 번호가 있는 학생 정보를 주면서 학년, 반, 번호와 일치하는 학생 정보를 가져오라고 시킴
+		StudentVO dbStd = studentDao.selectStudent(std);
+		//등록된 학생이면
+		if(dbStd != null) {
+			return false;
+		}
+
+		return studentDao.insertStudent(std);
 	}
 }

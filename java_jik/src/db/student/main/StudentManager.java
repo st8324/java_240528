@@ -109,7 +109,7 @@ public class StudentManager implements Program{
 			studentUpdate();
 			break;
 		case 3:
-			//studentDelete();
+			studentController.deleteStudent();
 			break;
 		case 4:
 			//studnetSearch();
@@ -170,41 +170,6 @@ public class StudentManager implements Program{
 	}
 
 /*
-	private void studentInfoUpdate() {
-		//수정하려는 학년, 반, 번호를 입력
-		//입력한 정보를 이용해서 학생 객체를 생성
-		//=>indexOf 또는 contains등을 이용해서 객체를 쉽게 비교하기 위해서
-		StudentVO std = inputStudent();
-		
-		//생성한 학생객체를 이용해서 리스트에 몇번지에 있는지 번지를 가져옴
-		int index = list.indexOf(std);
-		//번지가 유효하지 않은 번지이면 => 번지가 0보다 작으면 알림문구 출력 후 종료
-		if(index < 0) {
-			System.out.println("일치하는 학생이 없습니다.");
-			return;
-		}
-		//유효한번지이면 수정할 학년,반,번호, 이름을 입력
-		//위에서 입력한 학년,반,번호, 이름으로 객체를 생성
-		StudentVO newStudent = inputStudentExpand();
-		
-		//수정할 객체를 리스트에서 번지에 있는 객체를 삭제해서 가져옴
-		//=>번지를 이용해서 삭제하면 삭제된 객체를 반환
-		std = list.remove(index);
-		//생성한 객체가 리스트에 있는 확인해서 있으면 알림문구 출력 후 종료
-		if(list.contains(newStudent)) {
-			System.out.println("이미 등록된 학생 정보로 수정할 수 없습니다.");
-			//삭제했던 학생 정보를 추가
-			list.add(std);
-			return;
-		}
-		//삭제된 객체의 update 메소드를 이용해서 학년, 반, 번호, 이름을 수정
-		//update메소드는 Student 클래스에서 새로 추가해야 함
-		std.update(newStudent);
-		//리스트에 삭제되었던 객체를 추가
-		list.add(std);
-	}
-
-
 	private void insertSubejctScore() {
 		//등록된 과목이 없으면 알림문구 출력 후 종료
 		if(subjectList.size() == 0) {
@@ -366,18 +331,7 @@ public class StudentManager implements Program{
 	
 
 
-	private void studentDelete() {
-		//학년, 반, 번호를 입력해서 학생 객체를 생성
-		StudentVO std = inputStudent();
-		//리스트에서 학생 객체를 삭제하고 삭제에 성공하면 알림문구 출력 후 종료
-		if(list.remove(std)) {
-			System.out.println("학생을 삭제했습니다.");
-			System.out.println(list);
-			return;
-		}
-		//아니면 알림문구 출력
-		System.out.println("일치하는 학생이 없습니다.");
-	}
+	
 
 
 	private void studnetSearch() {

@@ -27,6 +27,13 @@
 		where
 			st_key = #{new.st_key}
 	</update>
+	<delete id="deleteStudent">
+		delete from student
+		where
+			st_grade = #{std.st_grade} 
+			and st_class = #{std.st_class} 
+			and st_num = #{std.st_num}
+	</delete>
 </mapper>
 
 

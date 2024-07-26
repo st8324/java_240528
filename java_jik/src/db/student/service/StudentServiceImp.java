@@ -67,4 +67,11 @@ public class StudentServiceImp implements StudentService{
 		newStudent.setSt_key(std.getSt_key());
 		return studentDao.updateStudent(newStudent);
 	}
+
+	public boolean deleteStudent(StudentVO std) {
+		if(std == null) {
+			return false;
+		}
+		return studentDao.deleteStudent(std);
+	}
 }

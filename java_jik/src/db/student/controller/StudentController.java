@@ -73,4 +73,17 @@ public class StudentController {
 		System.out.println("이미 등록된 학생 정보로 수정할 수 없습니다.");
 		
 	}
+
+	public void deleteStudent() {
+
+		//삭제할 학생정보 입력 
+		StudentVO std = inputStudent();
+		
+		if(studentService.deleteStudent(std)) {
+			System.out.println("학생을 삭제했습니다.");
+			return;
+		}
+		
+		System.out.println("일치하는 학생이 없습니다.");
+	}
 }

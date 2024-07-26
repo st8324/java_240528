@@ -8,4 +8,6 @@ public interface SubjectDAO {
 
 	boolean insertSubject(@Param("subject")String subject);
 
+	boolean updateSubject(@Param("old")String subject, @Param("new")String newSubject);
+
 }

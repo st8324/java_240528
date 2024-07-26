@@ -17,6 +17,13 @@
 		(2,1,#{subject}),(2,2,#{subject}),
 		(3,1,#{subject}),(3,2,#{subject})
 	</insert>
+	<update id="updateSubject">
+		update subject
+		set
+			su_name = #{new}
+		where
+			su_name = #{old}
+	</update>
 </mapper>
 
 

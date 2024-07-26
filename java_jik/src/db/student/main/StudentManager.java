@@ -196,7 +196,7 @@ public class StudentManager implements Program{
 			subjectController.insertSubject();
 			break;
 		case 2:
-			//updateSubject();
+			subjectController.updateSubject();
 			break;
 		case 3:
 			//deleteSubject();
@@ -371,51 +371,7 @@ public class StudentManager implements Program{
 		return new SubjectVO(name, grade, semester, 0, 0, 0);
 	}
 	
-	
-
-
-	private void insertSubject() {
-		//과목명을 입력
-		System.out.print("과목 : ");
-		scan.nextLine();
-		String subject = scan.nextLine();
-		//과목 리스트에 등록된 과목인지 확인해서 등록되었으면 안내문구 출력 후 종료
-		if(subjectList.contains(subject)) {
-			System.out.println("이미 등록된 과목입니다.");
-			return;
-		}
-		//과목 리스트에 과목을 추가
-		subjectList.add(subject);
-		System.out.println("과목을 추가했습니다.");
-	}
-
-
-	private void updateSubject() {
-		//수정할 과목을 입력
-		System.out.print("과목 : ");
-		scan.nextLine();
-		String subject = scan.nextLine();
-		//수정할 과목이 있는지 없는지 확인해서 없으면 알림 문구 출력후 종료
-		if(!subjectList.contains(subject)) {
-			System.out.println("등록되지 않은 과목입니다.");
-			return;
-		}
-		//새 과목명 입력
-		System.out.print("새 과목 : ");
-		String newSubject = scan.nextLine();
-		//새 과목명이 이미 등록되어 있으면 안내문구 출력 후 종료
-		if(subjectList.contains(newSubject)) {
-			System.out.println("등록된 과목으로 수정할 수 없습니다.");
-			return;
-		}
-		//아니면 수정할 과목명 삭제
-		subjectList.remove(subject);
-		//새 과목명 추가
-		subjectList.add(newSubject);
-		System.out.println("과목을 수정했습니다.");
-	}
-
-
+		
 	private void deleteSubject() {
 		//삭제할 과목명을 입력
 		System.out.print("과목 : ");

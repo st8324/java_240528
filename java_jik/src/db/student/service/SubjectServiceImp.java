@@ -40,4 +40,18 @@ public class SubjectServiceImp implements SubjectService {
 		}
 		return subjectDao.insertSubject(subject);
 	}
+
+	public boolean updateSubject(String subject, String newSubject) {
+		//없는 과목을 수정하려고 하면 실패
+		int oldCount = subjectDao.selectCountSubject(subject);
+		if(oldCount == 0) {
+			return false;
+		}
+		//수정될 과목명이 이미 있는 경우면 실패 
+		int newCount = subjectDao.selectCountSubject(newSubject);
+		if(newCount != 0) {
+			return false;
+		}
+		return subjectDao.updateSubject(subject, newSubject);
+	}
 }

@@ -17,6 +17,16 @@
 		insert into student(st_grade, st_class, st_num, st_name)
 		values(#{std.st_grade},#{std.st_class},#{std.st_num},#{std.st_name})
 	</insert>
+	<update id="updateStudent">
+		update student
+		set
+			st_grade = #{new.st_grade},
+			st_class = #{new.st_class},
+			st_num = #{new.st_num},
+			st_name = #{new.st_name}
+		where
+			st_key = #{new.st_key}
+	</update>
 </mapper>
 
 

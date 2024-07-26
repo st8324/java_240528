@@ -43,4 +43,28 @@ public class StudentServiceImp implements StudentService{
 
 		return studentDao.insertStudent(std);
 	}
+
+	public boolean contains(StudentVO std) {
+		if(std == null) {
+			return false;
+		}
+		StudentVO dbStd = studentDao.selectStudent(std);
+		return dbStd != null;
+	}
+
+	public boolean updateStudent(StudentVO std, StudentVO newStudent) {
+		if(std == null || newStudent == null) {
+			return false;
+		}
+		//기본키를 가져오기 위해서
+		std = studentDao.selectStudent(std);
+		
+		//새 학생 정보가 있는 학생이면 안되기 때문에 확인 
+		StudentVO dbStd = studentDao.selectStudent(newStudent);
+		if(dbStd != null && !std.equals(dbStd)) {
+			return false;
+		}
+		newStudent.setSt_key(std.getSt_key());
+		return studentDao.updateStudent(newStudent);
+	}
 }

@@ -68,7 +68,7 @@ public class StudentManager implements Program{
 			//subject();
 			break;
 		case 3:
-			//exit();
+			exit();
 			break;
 		default:
 			
@@ -103,11 +103,10 @@ public class StudentManager implements Program{
 	private void runStudentMenu(int menu) {
 		switch (menu) {
 		case 1:
-			//studentInsert();
 			studentController.insertStudent();
 			break;
 		case 2:
-			//studentUpdate();
+			studentUpdate();
 			break;
 		case 3:
 			//studentDelete();
@@ -116,27 +115,13 @@ public class StudentManager implements Program{
 			//studnetSearch();
 			break;
 		case 5:
-			//prev();
+			prev();
 			break;
 		default:
 			
 		}
 		
 	}
-/*
-	private void studentInsert() {
-		//입력한 정보를 이용하여 객체를 생성
-		StudentVO std = inputStudentExpand();
-		//객체가 리스트에 있으면 안내문구 출력 후 종료
-		if(list.contains(std)) {
-			System.out.println("이미 등록된 학년, 반, 번호입니다.");
-			return;
-		}
-		//없으면 추가 후 안내문구 출력
-		list.add(std);
-		System.out.println("학생이 추가되었습니다.");
-	}
-	
 
 	private void studentUpdate() {
 		int menu;
@@ -164,16 +149,16 @@ public class StudentManager implements Program{
 	private void runStudentUpdateMenu(int menu) {
 		switch(menu) {
 		case 1:
-			studentInfoUpdate();
+			studentController.updateStudent();
 			break;
 		case 2:
-			insertSubejctScore();
+			//insertSubejctScore();
 			break;
 		case 3:
-			updateSubjectScore();
+			//updateSubjectScore();
 			break;
 		case 4:
-			deleteSubjectScore();
+			//deleteSubjectScore();
 			break;
 		case 5:
 			prev();
@@ -184,7 +169,7 @@ public class StudentManager implements Program{
 		
 	}
 
-
+/*
 	private void studentInfoUpdate() {
 		//수정하려는 학년, 반, 번호를 입력
 		//입력한 정보를 이용해서 학생 객체를 생성
@@ -378,9 +363,7 @@ public class StudentManager implements Program{
 	}
 	
 
-	private void defaultPrint() {
-		System.out.println("올바른 메뉴를 선택하세요.");
-	}
+	
 
 
 	private void studentDelete() {
@@ -422,9 +405,7 @@ public class StudentManager implements Program{
 	}
 
 
-	private void prev() {
-		System.out.println("이전으로 돌아갑니다.");		
-	}
+	
 
 
 	private void subject() {
@@ -539,9 +520,15 @@ public class StudentManager implements Program{
 	}
 
 
+	
+	*/
+	private void prev() {
+		System.out.println("이전으로 돌아갑니다.");		
+	}
 	private void exit() {
 		System.out.println("프로그램을 종료합니다.");
-		
 	}
-	*/
+	private void defaultPrint() {
+		System.out.println("올바른 메뉴를 선택하세요.");
+	}
 }

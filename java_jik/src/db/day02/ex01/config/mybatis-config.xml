@@ -3,18 +3,49 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <environments default="development">
-    <environment id="development">
-      <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/student"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-      </dataSource>
-    </environment>
-  </environments>
-  <mappers>
-    <mapper resource="db/day02/ex01/dao/StudentMapper.xml"/>
-  </mappers>
+	<!--
+	설정시 태그 순서는 다음과 같이 작성해야 에러가 발생하지 않음 
+		properties,
+		settings,
+		typeAliases,
+		typeHandlers,
+		objectFactory,
+		objectWrapperFactory,
+		reflectorFactory,
+		plugins,
+		environments,
+		databaseIdProvider,
+		mappers
+	 -->
+	<!-- 
+	select 검색 후 데이터가 추가 됐을 때 추가된 데이터가 조회 안되는 경우가 발생할 수 있음
+	=> 캐쉬를 사용해서 => 캐쉬를 사용하지 않음
+	 -->
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+	</settings>
+	
+	<!-- 
+	Mapper에서 resultType에 클래스이름을 쓸 때 패키지까지 같이 써야하는 불편함이 있는데,
+	typeAliases를 이용하면 resultType에서 패키지 이름을 쓰지 않아도 됨 
+	 -->
+	<typeAliases>
+		<package name="db.day02.ex01.vo"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/student"/>
+				<property name="username" value="root"/>
+				<property name="password" value="root"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="db/day02/ex01/dao/StudentMapper.xml"/>
+	</mappers>
 </configuration>

@@ -7,8 +7,28 @@
 	<!-- <태그명 id="메서드명">
 		//쿼리
 	</태그명> -->
+	
+	<resultMap type="StudentVO" id="StudentMap">
+		<id property="studentNum" column="studentNum"/>
+		<result property="grade" column="grade"/>
+		<result property="classNum" column="class"/>
+		<result property="num" column="num"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
 	<insert id="insertStudent">
 		insert into student(grade, class, num, name)
 			values(#{grade}, #{classNum}, #{num}, #{name})
 	</insert>
+	<select id="selectStudentList" resultType="StudentVO">
+		select * from student
+	</select>
+	<select id="selectStudentList2" resultMap="StudentMap">
+		select * from student
+	</select>
+	<select id="selectStudentByKey" resultMap="StudentMap">
+		select * from student where studentNum = #{studentNum}
+	</select>
 </mapper>
+
+

@@ -24,6 +24,14 @@
 		where
 			su_name = #{old}
 	</update>
+	<delete id="deleteSubject">
+		delete from subject
+		where
+			su_name = #{subject}
+	</delete>
+	<select id="selectSubjectNameList" resultType="SubjectVO">
+		select distinct su_name from subject
+	</select>
 </mapper>
 
 

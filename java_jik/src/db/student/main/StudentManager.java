@@ -199,10 +199,10 @@ public class StudentManager implements Program{
 			subjectController.updateSubject();
 			break;
 		case 3:
-			//deleteSubject();
+			subjectController.deleteSubject();
 			break;
 		case 4:
-			//searchSubject();
+			subjectController.selectSubject();
 			break;
 		case 5:
 			prev();
@@ -370,32 +370,6 @@ public class StudentManager implements Program{
 		int semester = nextInt();
 		return new SubjectVO(name, grade, semester, 0, 0, 0);
 	}
-	
-		
-	private void deleteSubject() {
-		//삭제할 과목명을 입력
-		System.out.print("과목 : ");
-		scan.nextLine();
-		String subject = scan.nextLine();
-		//리스트에서 과목을 삭제해서 성공하면 알림문구 출력 후 종료
-		if(subjectList.remove(subject)) {
-			System.out.println("과목을 삭제했습니다.");
-			return;
-		}
-		//실패하면 알림문구 출력
-		System.out.println("등록되지 않은 과목입니다.");
-	}
-
-
-	private void searchSubject() {
-		System.out.println("과목 목록");
-		for(String subject : subjectList) {
-			System.out.println(subject);
-		}
-		
-	}
-
-
 	
 	*/
 	private void prev() {

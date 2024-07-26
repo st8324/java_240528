@@ -2,6 +2,7 @@ package db.student.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.student.dao.StudentDAO;
 import db.student.dao.SubjectDAO;
+import db.student.model.vo.SubjectVO;
 
 public class SubjectServiceImp implements SubjectService {
 
@@ -53,5 +55,17 @@ public class SubjectServiceImp implements SubjectService {
 			return false;
 		}
 		return subjectDao.updateSubject(subject, newSubject);
+	}
+
+	public boolean deleteSubject(String subject) {
+		int count = subjectDao.selectCountSubject(subject);
+		if(count == 0) {
+			return false;
+		}
+		return subjectDao.deleteSubject(subject);
+	}
+
+	public ArrayList<SubjectVO> selectSubjectNameList() {
+		return subjectDao.selectSubjectNameList();
 	}
 }

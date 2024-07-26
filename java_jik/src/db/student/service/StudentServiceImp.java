@@ -74,4 +74,8 @@ public class StudentServiceImp implements StudentService{
 		}
 		return studentDao.deleteStudent(std);
 	}
+
+	public StudentVO selectStudent(StudentVO std) {
+		return studentDao.selectStudent(std);
+	}
 }

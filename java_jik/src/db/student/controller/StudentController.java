@@ -86,4 +86,20 @@ public class StudentController {
 		
 		System.out.println("일치하는 학생이 없습니다.");
 	}
+
+	public void selectStudent() {
+		//학년 반 번호를 입력 후 객체를 생성
+		StudentVO std = inputStudent();
+		
+		StudentVO dbStd = studentService.selectStudent(std);
+		if(dbStd == null) {
+			System.out.println("일치하는 학생이 없습니다.");
+			return;
+		}
+		System.out.println(dbStd);
+		//학생 성적을 가져옴
+		
+		//가져온 학생 성적을 출력
+		
+	}
 }

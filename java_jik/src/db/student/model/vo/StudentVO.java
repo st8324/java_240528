@@ -35,6 +35,11 @@ public class StudentVO{
 	public int hashCode() {
 		return Objects.hash(st_class, st_grade, st_num);
 	}
+
+	@Override
+	public String toString() {
+		return st_grade + "학년 " + st_class + "반 " + st_num + "번 "	+ st_name;
+	}
 	
 	
 }

@@ -112,7 +112,7 @@ public class StudentManager implements Program{
 			studentController.deleteStudent();
 			break;
 		case 4:
-			//studnetSearch();
+			studentController.selectStudent();
 			break;
 		case 5:
 			prev();
@@ -327,36 +327,6 @@ public class StudentManager implements Program{
 		return new SubjectVO(name, grade, semester, 0, 0, 0);
 	}
 	
-
-	
-
-
-	
-
-
-	private void studnetSearch() {
-		//학년 반 번호를 입력 후 객체를 생성
-		StudentVO std = inputStudent();
-		
-		//생성된 객체와 일치하는 객체를 가져옴
-		//리스트에서 객체와 일치하는 번지를 가져옴
-		int index = list.indexOf(std);
-		//번지가 0보다 작으면 객체에 null을 저장
-		if(index < 0) {
-			std = null;
-		}
-		//아니면 객체에 번지에 있는 객체를 가져옴
-		else {
-			std = list.get(index);
-		}
-		//가져온 객체가 null이면 안내문구 출력 후 종료
-		if(std == null) {
-			System.out.println("일치하는 학생이 없습니다.");
-			return;
-		}
-		//null이 아니면 학생 정보를 출력
-		std.print();
-	}
 
 
 	

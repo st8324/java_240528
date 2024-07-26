@@ -1,12 +1,10 @@
 package db.student.main;
 
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import db.student.controller.StudentController;
-import db.student.model.vo.StudentVO;
-import db.student.model.vo.SubjectVO;
+import db.student.controller.SubjectController;
 import program.Program;
 
 public class StudentManager implements Program{
@@ -14,6 +12,7 @@ public class StudentManager implements Program{
 	private Scanner scan = new Scanner(System.in);
 
 	private StudentController studentController = new StudentController(scan);
+	private SubjectController subjectController = new SubjectController(scan);
 	
 	@Override
 	public void printMenu() {
@@ -65,7 +64,7 @@ public class StudentManager implements Program{
 			student();
 			break;
 		case 2:
-			//subject();
+			subject();
 			break;
 		case 3:
 			exit();
@@ -159,6 +158,51 @@ public class StudentManager implements Program{
 			break;
 		case 4:
 			//deleteSubjectScore();
+			break;
+		case 5:
+			prev();
+			break;
+		default:
+			defaultPrint();
+		}
+		
+	}
+	
+	private void subject() {
+
+		int menu;
+		do {
+			printSubjectMenu();
+			menu = nextInt();
+			runSubjectMenu(menu);
+		}while(menu != 5);
+		
+	}
+
+	private void printSubjectMenu() {
+		System.out.print("과목 관리 메뉴\n"
+				+ "1. 과목 추가\n"
+				+ "2. 과목 수정\n"
+				+ "3. 과목 삭제\n"
+				+ "4. 과목 확인\n"
+				+ "5. 이전으로\n"
+				+ "메뉴 선택 : ");
+	}
+
+
+	private void runSubjectMenu(int menu) {
+		switch(menu) {
+		case 1:
+			subjectController.insertSubject();
+			break;
+		case 2:
+			//updateSubject();
+			break;
+		case 3:
+			//deleteSubject();
+			break;
+		case 4:
+			//searchSubject();
 			break;
 		case 5:
 			prev();
@@ -327,55 +371,7 @@ public class StudentManager implements Program{
 		return new SubjectVO(name, grade, semester, 0, 0, 0);
 	}
 	
-
-
 	
-
-
-	private void subject() {
-
-		int menu;
-		do {
-			printSubjectMenu();
-			menu = nextInt();
-			runSubjectMenu(menu);
-		}while(menu != 5);
-		
-	}
-
-	private void printSubjectMenu() {
-		System.out.print("과목 관리 메뉴\n"
-				+ "1. 과목 추가\n"
-				+ "2. 과목 수정\n"
-				+ "3. 과목 삭제\n"
-				+ "4. 과목 확인\n"
-				+ "5. 이전으로\n"
-				+ "메뉴 선택 : ");
-	}
-
-
-	private void runSubjectMenu(int menu) {
-		switch(menu) {
-		case 1:
-			insertSubject();
-			break;
-		case 2:
-			updateSubject();
-			break;
-		case 3:
-			deleteSubject();
-			break;
-		case 4:
-			searchSubject();
-			break;
-		case 5:
-			prev();
-			break;
-		default:
-			defaultPrint();
-		}
-		
-	}
 
 
 	private void insertSubject() {

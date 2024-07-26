@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.student.dao.SubjectDAO">
+	<select id="selectCountSubject" resultType="int">
+		select 
+			count(*) 
+		from 
+			subject 
+		where 
+			su_name = #{subject}
+	</select>
+	<insert id="insertSubject">
+		insert into subject(su_grade, su_semester, su_name) values
+		(1,1,#{subject}),(1,2,#{subject}),
+		(2,1,#{subject}),(2,2,#{subject}),
+		(3,1,#{subject}),(3,2,#{subject})
+	</insert>
+</mapper>
+
+

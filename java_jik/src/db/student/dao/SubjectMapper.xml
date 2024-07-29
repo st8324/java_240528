@@ -32,6 +32,16 @@
 	<select id="selectSubjectNameList" resultType="SubjectVO">
 		select distinct su_name from subject
 	</select>
+	<select id="selectSubject" resultType="SubjectVO">
+		select 
+			* 
+		from 
+			subject 
+		where 
+			su_grade = #{subject.su_grade} 
+			and su_semester = #{subject.su_semester} 
+			and su_name = #{subject.su_name} 
+	</select>
 </mapper>
 
 

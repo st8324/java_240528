@@ -159,7 +159,7 @@ public class StudentManager implements Program{
 			//updateSubjectScore();
 			break;
 		case 4:
-			//deleteSubjectScore();
+			scoreController.deleteScore();
 			break;
 		case 5:
 			prev();
@@ -219,17 +219,7 @@ public class StudentManager implements Program{
 	
 
 
-	private SubjectVO inputSubject() {
-		SubjectVO subject = inputRequiredSubject();
-		System.out.print("중간 : ");
-		int midterm = nextInt();
-		System.out.print("기말 : ");
-		int finals = nextInt();
-		System.out.print("수행 : ");
-		int performace = nextInt();
-		subject.update(midterm, finals, performace);
-		return subject;
-	}
+	
 
 
 	private void updateSubjectScore() {
@@ -322,16 +312,7 @@ public class StudentManager implements Program{
 		
 	}
 
-	public SubjectVO inputRequiredSubject() {
-		System.out.print("과목 : ");
-		scan.nextLine();
-		String name = scan.nextLine();
-		System.out.print("학년 : ");
-		int grade = nextInt();
-		System.out.print("학기 : ");
-		int semester = nextInt();
-		return new SubjectVO(name, grade, semester, 0, 0, 0);
-	}
+	
 	
 	*/
 	private void prev() {

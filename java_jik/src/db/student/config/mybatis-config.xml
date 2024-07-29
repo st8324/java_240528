@@ -27,5 +27,6 @@
 	<mappers>
 		<mapper resource="db/student/dao/StudentMapper.xml"/>
 		<mapper resource="db/student/dao/SubjectMapper.xml"/>
+		<mapper resource="db/student/dao/ScoreMapper.xml"/>
 	</mappers>
 </configuration>

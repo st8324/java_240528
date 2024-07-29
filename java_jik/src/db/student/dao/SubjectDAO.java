@@ -18,4 +18,6 @@ public interface SubjectDAO {
 
 	ArrayList<SubjectVO> selectSubjectNameList();
 
+	SubjectVO selectSubject(@Param("subject")SubjectVO subject);
+
 }

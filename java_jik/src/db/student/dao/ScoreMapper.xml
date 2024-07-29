@@ -3,7 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="db.student.dao.ScoreDAO">
-	
+	<select id="selectScore" resultType="ScoreVO">
+		select * from score 
+		where
+			sc_st_key = #{st_key} 
+			and sc_su_key = #{su_key}
+	</select>
+	<insert id="insertScore">
+		insert into score(sc_midTerm, sc_finalTerm, sc_performance, sc_st_key, sc_su_key)
+		values(
+			#{score.sc_midTerm},
+			#{score.sc_finalTerm},
+			#{score.sc_performance},
+			#{score.sc_st_key},
+			#{score.sc_su_key})
+	</insert>
 </mapper>
 
 

@@ -12,4 +12,6 @@ public interface ScoreDAO {
 
 	boolean deleteScore(@Param("st_key")int st_key, @Param("su_key")int su_key);
 
+	boolean updateScore(@Param("score")ScoreVO score);
+
 }

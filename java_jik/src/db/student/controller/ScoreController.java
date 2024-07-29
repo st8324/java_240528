@@ -95,4 +95,22 @@ public class ScoreController {
 			System.out.println("과목 성적을 삭제하지 못했습니다.");
 		}
 	}
+
+	public void updateScore() {
+		//학생 정보를 입력하여 객체를 생성
+		StudentVO std = inputStudent();
+		
+		//수정할 과목을 입력
+		SubjectVO subject = inputSubject();
+		
+		//수정할 성적을 입력 
+		ScoreVO score = inputScore();
+		
+		if(scoreService.updateScore(std, subject, score)) {
+			System.out.println("과목 성적을 수정했습니다.");
+		}
+		else {
+			System.out.println("과목 성적을 수정하지 못했습니다.");
+		}
+	}
 }

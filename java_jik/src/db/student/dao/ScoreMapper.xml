@@ -24,6 +24,16 @@
 			sc_st_key = #{st_key} 
 			and sc_su_key = #{su_key} 
 	</delete>
+	<update id="updateScore">
+		update score 
+		set
+			sc_midTerm = #{score.sc_midTerm},
+			sc_finalTerm = #{score.sc_finalTerm},
+			sc_performance = #{score.sc_performance}
+		where
+			sc_st_key = #{score.sc_st_key}
+			and sc_su_key = #{score.sc_su_key}
+	</update>
 </mapper>
 
 

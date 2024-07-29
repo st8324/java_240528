@@ -156,7 +156,7 @@ public class StudentManager implements Program{
 			scoreController.insertScore();
 			break;
 		case 3:
-			//updateSubjectScore();
+			scoreController.updateScore();
 			break;
 		case 4:
 			scoreController.deleteScore();
@@ -215,106 +215,6 @@ public class StudentManager implements Program{
 		
 	}
 
-/*
-	
-
-
-	
-
-
-	private void updateSubjectScore() {
-		//학생 정보를 입력하여 객체를 생성
-		StudentVO std = inputStudent();
-		//학생 리스트에서 학생 객체가 몇번지에 있는지 번지를 가져옴
-		int index = list.indexOf(std);
-		//번지가 유효하지 않으면 알림문구 출력 후 종료
-		if(index < 0) {
-			System.out.println("일차하는 학생이 없습니다.");
-			return;
-		}
-		//번지에 있는 학생 객체를 가져옴
-		std = list.get(index);
-		
-		//학생의 과목 리스트를 가져옴
-		List<SubjectVO> subjects = std.getSubjectList();
-		
-		//삭제할 과목, 학년, 학기 정보를 입력
-		//과목, 학년, 학기를 이용해서 객체를 생성
-		SubjectVO subject = inputRequiredSubject();
-		
-		//과목이 과목리스트에 없으면 안내문구 출력 후 종료
-		if(!subjectList.contains(subject.getName())) {
-			System.out.println("등록되지 않은 과목이어서 삭제할 수 없습니다.");
-			return;
-		}
-		
-		//과목 객체가 학생 성적 리스트에 없으면 안내문구 출력 후 종료
-		if(!subjects.contains(subject)) {
-			System.out.println("등록되지 않은 과목 성적이어서 삭제할 수 없습니다.");
-			return;
-		}
-		//중간, 기말, 수행평가를 입력
-		System.out.print("중간 : ");
-		int midterm = nextInt();
-		System.out.print("기말 : ");
-		int finals = nextInt();
-		System.out.print("수행 : ");
-		int performace = nextInt();
-		
-		//과목 객체의 성적을 수정
-		subject.update(midterm, finals, performace);
-		
-		//제거하고 추가하는 이유는 이렇게 하지 않으면
-		//subjects에서 해당 과목이 몇번에 있는지 확인해서 해당 과목 정보를 가져오고
-		//성적을 수정해야하는데 번거롭기 때문에 아래와 같이 작성
-		//리스트에서 과목 객체를 제거
-		subjects.remove(subject);
-		//리스트에서 과목 객체를 추가
-		subjects.add(subject);
-		System.out.println("과목 성적을 수정했습니다.");
-		
-	}
-
-
-	private void deleteSubjectScore() {
-		//학생 정보를 입력하여 객체를 생성
-		StudentVO std = inputStudent();
-		//학생 리스트에서 학생 객체가 몇번지에 있는지 번지를 가져옴
-		int index = list.indexOf(std);
-		//번지가 유효하지 않으면 알림문구 출력 후 종료
-		if(index < 0) {
-			System.out.println("일차하는 학생이 없습니다.");
-			return;
-		}
-		//번지에 있는 학생 객체를 가져옴
-		std = list.get(index);
-		
-		//학생의 과목 리스트를 가져옴
-		List<SubjectVO> subjects = std.getSubjectList();
-		
-		//삭제할 과목, 학년, 학기 정보를 입력
-		//과목, 학년, 학기를 이용해서 객체를 생성
-		SubjectVO subject = inputRequiredSubject();
-		
-		//과목이 과목리스트에 없으면 안내문구 출력 후 종료
-		if(!subjectList.contains(subject.getName())) {
-			System.out.println("등록되지 않은 과목이어서 삭제할 수 없습니다.");
-			return;
-		}
-		
-		//학생 과목 리스트에서 과목 객체를 삭제하여 성공하면 안내문구 출력 후 종료
-		if(subjects.remove(subject)) {
-			System.out.println("과목 성적을 삭제했습니다.");
-			return;
-		}
-		//실패하면 안내문구 출력 후 종료
-		System.out.println("등록되지 않은 과목 성적이어서 삭제할 수 없습니다.");
-		
-	}
-
-	
-	
-	*/
 	private void prev() {
 		System.out.println("이전으로 돌아갑니다.");		
 	}

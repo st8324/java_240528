@@ -10,4 +10,6 @@ public interface ScoreService {
 
 	boolean deleteScore(StudentVO std, SubjectVO subject);
 
+	boolean updateScore(StudentVO std, SubjectVO subject, ScoreVO score);
+
 }

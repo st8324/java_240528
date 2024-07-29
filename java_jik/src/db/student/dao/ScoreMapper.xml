@@ -18,6 +18,12 @@
 			#{score.sc_st_key},
 			#{score.sc_su_key})
 	</insert>
+	<delete id="deleteScore">
+		delete from score 
+		where
+			sc_st_key = #{st_key} 
+			and sc_su_key = #{su_key} 
+	</delete>
 </mapper>
 
 

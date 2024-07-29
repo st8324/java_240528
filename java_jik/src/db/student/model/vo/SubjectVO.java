@@ -11,5 +11,11 @@ public class SubjectVO {
 	private String su_name;
 	private int su_grade;
 	private int su_semester;
+
+	public SubjectVO(String name, int grade, int semester) {
+		this.su_name = name;
+		this.su_grade = grade;
+		this.su_semester = semester;
+	}
 	
 }

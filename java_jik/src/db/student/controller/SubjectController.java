@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import db.student.model.vo.SubjectVO;
+import db.student.service.SubjectService;
 import db.student.service.SubjectServiceImp;
 
 public class SubjectController {
 
 	private Scanner scan = new Scanner(System.in);
-	private SubjectServiceImp subjectService = new SubjectServiceImp();
+	private SubjectService subjectService = new SubjectServiceImp();
 	
 	public SubjectController(Scanner scan) {
 		this.scan = scan;

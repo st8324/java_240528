@@ -163,3 +163,34 @@ REFERENCES `reprot_type` (
 	`rt_name`
 );
 
+ALTER TABLE `community`.`post` DROP FOREIGN KEY `FK_community_TO_post_1`;
+ALTER TABLE `community`.`post` 
+ADD CONSTRAINT `FK_community_TO_post_1`
+  FOREIGN KEY (`po_co_num`)
+  REFERENCES `community`.`community` (`co_num`)
+  ON DELETE CASCADE
+  ON UPDATE RESTRICT;
+
+ALTER TABLE `community`.`recommend` 
+DROP FOREIGN KEY `FK_post_TO_recommend_1`;
+ALTER TABLE `community`.`recommend` 
+ADD CONSTRAINT `FK_post_TO_recommend_1`
+  FOREIGN KEY (`re_po_num`)
+  REFERENCES `community`.`post` (`po_num`)
+  ON DELETE CASCADE;
+
+ALTER TABLE `community`.`file` 
+DROP FOREIGN KEY `FK_post_TO_file_1`;
+ALTER TABLE `community`.`file` 
+ADD CONSTRAINT `FK_post_TO_file_1`
+  FOREIGN KEY (`fi_po_num`)
+  REFERENCES `community`.`post` (`po_num`)
+  ON DELETE CASCADE;
+  
+ALTER TABLE `community`.`comment` 
+DROP FOREIGN KEY `FK_post_TO_comment_1`;
+ALTER TABLE `community`.`comment` 
+ADD CONSTRAINT `FK_post_TO_comment_1`
+  FOREIGN KEY (`cm_po_num`)
+  REFERENCES `community`.`post` (`po_num`)
+  ON DELETE CASCADE;

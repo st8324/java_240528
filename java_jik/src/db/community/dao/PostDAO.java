@@ -12,4 +12,6 @@ public interface PostDAO {
 
 	boolean updateCommunity(@Param("vo")CommunityVO oldVo);
 
+	boolean deleteCommunity(@Param("co_name")String name);
+
 }

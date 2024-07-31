@@ -6,4 +6,6 @@ public interface PostService {
 
 	boolean updateCommunity(String oldName, String newName);
 
+	boolean deleteCommunity(String name);
+
 }

@@ -13,6 +13,9 @@
 	<update id="updateCommunity">
 		UPDATE COMMUNITY SET CO_NAME = #{vo.co_name} WHERE CO_NUM = #{vo.co_num}
 	</update>
+	<delete id="deleteCommunity">
+		DELETE FROM COMMUNITY WHERE CO_NAME = #{co_name}
+	</delete>
 </mapper>
 
 

@@ -80,4 +80,10 @@ public class PostServiceImp implements PostService {
 		//다오에게 이전커뮤니티VO를 주면서 커뮤니티명을 수정하라고 요청하고 처리 여부를 반환
 		return postDao.updateCommunity(oldVo);
 	}
+
+	@Override
+	public boolean deleteCommunity(String name) {
+		//다오에게 커뮤니티명을 주면서 삭제하라고 요청 후 삭제 여부를 반환
+		return postDao.deleteCommunity(name);
+	}
 }

@@ -82,8 +82,35 @@ public class ProgramImp implements Program {
 	}
 
 	private void user() {
-		// TODO Auto-generated method stub
-		System.out.println("사용자입니다.");
+		PrintController.printBar();
+		System.out.println(member.getMe_id()+"님 환영합니다.");
+		PrintController.printBar();
+		char menu = '0';
+		do {
+			PrintController.printUserMenu();
+			
+			menu = scan.next().charAt(0);
+			PrintController.printBar();
+			
+			runUser(menu);
+		}while(menu != '5');
+	}
+
+	private void runUser(char menu) {
+		switch(menu) {
+		case '1':
+			postController.insertPost(member.getMe_id());
+			break;
+		case '2':
+			
+			break;
+		case '3':
+			PrintController.logout();
+			break;
+		default:
+			PrintController.wrongMenu();
+		}
+		
 	}
 
 	private void admin() {

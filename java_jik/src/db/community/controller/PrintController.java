@@ -52,5 +52,15 @@ public class PrintController {
 	public static void logout() {
 		System.out.println("로그아웃 합니다.");
 	}
+
+	public static void printUserMenu() {
+		System.out.println("------사용자 메뉴------");
+		System.out.println("1. 게시글 등록");
+		System.out.println("2. 게시글 검색");
+		System.out.println("3. 로그아웃");
+		System.out.println("---------------------");
+		System.out.print("메뉴 선택 : ");
+		
+	}
 	
 }

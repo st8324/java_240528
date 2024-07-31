@@ -1,7 +1,10 @@
 package db.community.controller;
 
+import java.util.List;
 import java.util.Scanner;
 
+import db.community.model.vo.CommunityVO;
+import db.community.model.vo.PostVO;
 import db.community.service.PostService;
 import db.community.service.PostServiceImp;
 
@@ -64,6 +67,38 @@ public class PostController {
 		//실패하면 커뮤니티 삭제 실패!를 출력
 		else {
 			System.out.println("커뮤니티 삭제 실패!");
+		}
+		
+	}
+
+	public void insertPost(String id) {
+		//커뮤니티 출력(기본키와 이름을 함께)
+		//서비스에게 커뮤니티 리스트를 요청
+		List<CommunityVO> list = postService.getCommunityList();
+		//커뮤니티 리스트를 이용하여 화면에 출력
+		for(CommunityVO community : list) {
+			System.out.println(community);
+		}
+		
+		//커뮤니티 번호를 입력
+		System.out.print("커뮤니티 번호 선택 : ");
+		int coNum = scan.nextInt();
+		//제목 입력
+		System.out.print("제목 : ");
+		scan.nextLine();
+		String title = scan.nextLine();
+		//내용 입력
+		System.out.print("내용 : ");
+		String content = scan.nextLine();
+		//커뮤니티 번호, 제목, 내용, 작성자를 이용하여 게시글VO를 생성
+		PostVO post = new PostVO(coNum, title, content, id);
+		//서비스에게 게시글VO를 주면서 게시글을 등록하라고 요청하고 성공 여부를 출력
+		PrintController.printBar();
+		if(postService.insertPost(post)) {
+			System.out.println("게시글 등록 성공!");
+		}
+		else {
+			System.out.println("게시글 등록 실패!");
 		}
 		
 	}

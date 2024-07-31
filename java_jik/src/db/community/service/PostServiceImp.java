@@ -2,6 +2,7 @@ package db.community.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import db.community.dao.MemberDAO;
 import db.community.dao.PostDAO;
 import db.community.model.vo.CommunityVO;
+import db.community.model.vo.PostVO;
 
 public class PostServiceImp implements PostService {
 
@@ -85,5 +87,17 @@ public class PostServiceImp implements PostService {
 	public boolean deleteCommunity(String name) {
 		//다오에게 커뮤니티명을 주면서 삭제하라고 요청 후 삭제 여부를 반환
 		return postDao.deleteCommunity(name);
+	}
+
+	@Override
+	public List<CommunityVO> getCommunityList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insertPost(PostVO post) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

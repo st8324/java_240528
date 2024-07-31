@@ -17,7 +17,7 @@
 		DELETE FROM COMMUNITY WHERE CO_NAME = #{co_name}
 	</delete>
 	<select id="selectCommunityList" resultType="CommunityVO">
-		select * from community
+		select * from community order by co_num
 	</select>
 	<insert id="insertPost" useGeneratedKeys="true" keyProperty="po.po_num">
 		INSERT INTO POST(PO_TITLE, PO_CONTENT, PO_ME_ID, PO_CO_NUM)

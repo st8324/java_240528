@@ -2,6 +2,7 @@ package db.community.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.regex.Pattern;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -48,5 +49,27 @@ public class MemberServiceImp implements MemberService {
 		memberDao.updateFail(user.getMe_id(), 1);
 		//다르면 null을 반환
 		return null;
+	}
+
+	@Override
+	public boolean signup(String id, String pw, String email) {
+		//아이디 중복 검사
+		//다오에게 아이디를 주면서 회원 정보를 가져오라고 시켜서 있으면 false를 리턴
+		MemberVO user = memberDao.selectMember(id);
+		if(user != null) {
+			return false;
+		}
+		//아이디가 정규 표현식에 맞지 않으면 false를 리턴
+		String idRegex = "^\\w{6,13}$";
+		if(!Pattern.matches(idRegex, id)) {
+			return false;
+		}
+		//비번이 정규 표현식에 맞지 않으면 false를 리턴
+		String pwRegex = "^[a-zA-Z0-9!@#$]{6,15}$";
+		if(!Pattern.matches(pwRegex, pw)) {
+			return false;
+		}
+		//다오에게 아이디, 비번, 이메일을 주면서 회원가입하라고 시킴
+		return memberDao.insertMember(id, pw, email);
 	}
 }

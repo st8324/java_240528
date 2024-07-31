@@ -28,5 +28,13 @@ public class PrintController {
 	public static void loginFail() {
 		System.out.println("로그인 실패!");
 	}
+
+	public static void signupSuccess() {
+		System.out.println("회원가입 성공!");		
+	}
+
+	public static void signupFail() {
+		System.out.println("회원가입 실패!");		
+	}
 	
 }

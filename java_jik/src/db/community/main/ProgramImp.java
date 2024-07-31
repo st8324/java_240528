@@ -81,16 +81,21 @@ public class ProgramImp implements Program {
 
 	private void user() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("사용자입니다.");
 	}
 
 	private void admin() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("관리자입니다.");
 	}
 
 	private void signup() {
-		// TODO Auto-generated method stub
+		
+		if(memberController.signup()) {
+			PrintController.signupSuccess();
+		}else {
+			PrintController.signupFail();
+		}
 		
 	}
 

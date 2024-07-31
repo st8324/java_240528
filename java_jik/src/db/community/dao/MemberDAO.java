@@ -10,4 +10,6 @@ public interface MemberDAO {
 
 	void updateFail(@Param("id")String id, @Param("add")int add);
 
+	boolean insertMember(@Param("id")String id, @Param("pw")String pw, @Param("email")String email);
+
 }

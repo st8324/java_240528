@@ -24,6 +24,10 @@
 		where
 			me_id = #{id}
 	</update>
+	<insert id="insertMember">
+		INSERT INTO MEMBER(ME_ID, ME_PW, ME_EMAIL, ME_MS_NAME) 
+		VALUES(#{id}, #{pw}, #{email}, '사용');
+	</insert>
 </mapper>
 
 

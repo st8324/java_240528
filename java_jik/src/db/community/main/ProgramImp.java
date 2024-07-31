@@ -2,6 +2,7 @@ package db.community.main;
 
 import java.util.Scanner;
 
+import db.community.controller.MemberController;
 import db.community.controller.PrintController;
 import db.community.model.vo.MemberVO;
 import program.Program;
@@ -10,6 +11,7 @@ public class ProgramImp implements Program {
 
 	private Scanner scan = new Scanner(System.in);
 	private MemberVO member = null;
+	private MemberController memberController = new MemberController(scan);
 	
 	@Override
 	public void printMenu() {
@@ -60,7 +62,30 @@ public class ProgramImp implements Program {
 	}
 
 	private void login() {
+		//회원 정보를 입력받아 회원 정보와 일치하는 회원의 정보를 가져옴
+		member = memberController.login();
+
+		//회원 정보가 없으면
+		if(member == null) {
+			PrintController.loginFail();
+			return;
+		}
+		//관리자이면 관리자 기능을 실행 
+		if(member.getMe_authority().equals("ADMIN")) {
+			admin();
+			return;
+		}
+		//회원이면 회원 기능을 실행
+		user();
+	}
+
+	private void user() {
+		// TODO Auto-generated method stub
 		
+	}
+
+	private void admin() {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -24,5 +24,9 @@ public class PrintController {
 	public static void exit() {
 		System.out.println("프로그램을 종료합니다.");
 	}
+
+	public static void loginFail() {
+		System.out.println("로그인 실패!");
+	}
 	
 }

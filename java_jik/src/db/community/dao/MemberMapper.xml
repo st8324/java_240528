@@ -3,7 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="db.community.dao.MemberDAO">
-	
+	<select id="selectMember" resultType="MemberVO">
+		<!-- 
+		CDATA는 문자 데이터에서 <, >, &와 같이 기능이 있는 문자가 문자로 인식되는게 아니라
+		기능으로 인식되는걸 막아주는 역할  
+		-->
+		<![CDATA[
+		select * from member where me_id = #{id} and me_fail < 5
+		]]>
+	</select>
+	<update id="updateFail">
+		update member 
+		set
+		<if test="add == 0">
+			me_fail = 0
+		</if>
+		<if test="add != 0">
+			me_fail = me_fail+1
+		</if>
+		where
+			me_id = #{id}
+	</update>
 </mapper>
 
 

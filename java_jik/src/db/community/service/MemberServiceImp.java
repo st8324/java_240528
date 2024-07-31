@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.community.dao.MemberDAO;
+import db.community.model.vo.MemberVO;
 import db.student.dao.SubjectDAO;
 
 public class MemberServiceImp implements MemberService {
@@ -27,5 +28,25 @@ public class MemberServiceImp implements MemberService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public MemberVO login(String id, String pw) {
+		//다오에게 아이디를 주고 회원 가져오라고 시킴
+		MemberVO user = memberDao.selectMember(id);
+		//가져온 회원 정보가 없으면 null을 리턴
+		if(user == null) {
+			return null;
+		}
+		//회원 정보가 있으면 회원의 비번과 입력받은 비번을 확인해서 같으면 회원정보를 반환
+		if(user.getMe_pw().equals(pw)) {
+			//로그인 실패 횟수를 0으로 수정
+			memberDao.updateFail(user.getMe_id(), 0);
+			return user;
+		}
+		//로그인 실패 횟수를 1 증가
+		memberDao.updateFail(user.getMe_id(), 1);
+		//다르면 null을 반환
+		return null;
 	}
 }

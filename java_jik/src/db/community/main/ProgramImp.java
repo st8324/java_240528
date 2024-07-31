@@ -108,6 +108,7 @@ public class ProgramImp implements Program {
 			postController.insertCommunity();
 			break;
 		case '2':
+			postController.updateCommunity();
 			break;
 		case '3':
 			break;

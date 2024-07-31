@@ -9,6 +9,10 @@
 	<insert id="insertCommunity">
 		INSERT INTO COMMUNITY(CO_NAME) VALUES(#{co_name})
 	</insert>
+	
+	<update id="updateCommunity">
+		UPDATE COMMUNITY SET CO_NAME = #{vo.co_name} WHERE CO_NUM = #{vo.co_num}
+	</update>
 </mapper>
 
 

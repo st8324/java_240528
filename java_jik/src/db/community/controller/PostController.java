@@ -29,6 +29,27 @@ public class PostController {
 		}
 		
 	}
+
+	public void updateCommunity() {
+		//이전 커뮤니티명을 입력
+		System.out.print("커뮤니티명 : ");
+		String oldName = scan.next();
+		
+		//이후 커뮤니티명을 입력
+		System.out.print("새 커뮤니티명 : ");
+		String newName = scan.next();
+		
+		//서비스에게 이전 커뮤니티명과 이후 커뮤니티명을 주고 커뮤니티명을 수정하라고 요청한 후 성공하면
+		//커뮤니티 수정 성공!을 출력
+		PrintController.printBar();
+		if(postService.updateCommunity(oldName, newName)) {
+			System.out.println("커뮤니티 수정 성공!");
+		}
+		//실패하면 커뮤니티 수정 실패!를 출력
+		else {
+			System.out.println("커뮤니티 수정 실패!");
+		}
+	}
 	
 	
 }

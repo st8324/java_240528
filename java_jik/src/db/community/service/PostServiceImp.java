@@ -48,4 +48,36 @@ public class PostServiceImp implements PostService {
 		//다오에게 커뮤니티명을 주고 db에 추가하라고 시킨후 성공 여부를 리턴
 		return postDao.insertCommunity(community);
 	}
+
+	@Override
+	public boolean updateCommunity(String oldName, String newName) {
+		//이전 커뮤니티명과 이후 커뮤니티명 중에 null이 있거나 이후 커뮤니티명의 길이가 0이면 false를 리턴 
+		if(oldName == null || newName == null || newName.trim().length() == 0) {
+			return false;
+		}
+		//이전 커뮤니티명과 이후 커뮤니티명이 같으면 false를 리턴
+		if(oldName.equals(newName)) {
+			return false;
+		}
+		//등록된 커뮤니티명이어야 수정할 수 있다
+		//이전 커뮤니티명을 이용해서 커뮤니티VO를 가져옴
+		CommunityVO oldVo = postDao.selectCommunity(oldName);
+		
+		//커뮤니티VO가 null이면 false를 리턴
+		if(oldVo == null) {
+			return false;
+		}
+		
+		//바꾸려는 커뮤니티명이 이미 등록되어있으면 수정할 수 없다 
+		//이후 커뮤니티명을 이용해서 커뮤니티VO를 가져옴
+		CommunityVO newVo = postDao.selectCommunity(newName);
+		//이후 커뮤니티VO가 null이 아니면 false를 리턴
+		if(newVo != null) {
+			return false;
+		}
+		//이전 커뮤니티VO의 커뮤니티명을 이후 커뮤니티명으로 수정
+		oldVo.setCo_name(newName.trim());
+		//다오에게 이전커뮤니티VO를 주면서 커뮤니티명을 수정하라고 요청하고 처리 여부를 반환
+		return postDao.updateCommunity(oldVo);
+	}
 }

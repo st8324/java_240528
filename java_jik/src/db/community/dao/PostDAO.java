@@ -10,4 +10,6 @@ public interface PostDAO {
 
 	boolean insertCommunity(@Param("co_name")String community);
 
+	boolean updateCommunity(@Param("vo")CommunityVO oldVo);
+
 }

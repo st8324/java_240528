@@ -16,6 +16,13 @@
 	<delete id="deleteCommunity">
 		DELETE FROM COMMUNITY WHERE CO_NAME = #{co_name}
 	</delete>
+	<select id="selectCommunityList" resultType="CommunityVO">
+		select * from community
+	</select>
+	<insert id="insertPost" useGeneratedKeys="true" keyProperty="po.po_num">
+		INSERT INTO POST(PO_TITLE, PO_CONTENT, PO_ME_ID, PO_CO_NUM)
+		VALUES(#{po.po_title}, #{po.po_content}, #{po.po_me_id}, #{po.po_co_num})
+	</insert>
 </mapper>
 
 

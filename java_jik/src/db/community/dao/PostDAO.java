@@ -1,8 +1,11 @@
 package db.community.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import db.community.model.vo.CommunityVO;
+import db.community.model.vo.PostVO;
 
 public interface PostDAO {
 
@@ -13,5 +16,9 @@ public interface PostDAO {
 	boolean updateCommunity(@Param("vo")CommunityVO oldVo);
 
 	boolean deleteCommunity(@Param("co_name")String name);
+
+	List<CommunityVO> selectCommunityList();
+
+	boolean insertPost(@Param("po")PostVO post);
 
 }

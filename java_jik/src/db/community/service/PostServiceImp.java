@@ -91,13 +91,34 @@ public class PostServiceImp implements PostService {
 
 	@Override
 	public List<CommunityVO> getCommunityList() {
-		// TODO Auto-generated method stub
-		return null;
+		return postDao.selectCommunityList();
 	}
 
 	@Override
 	public boolean insertPost(PostVO post) {
-		// TODO Auto-generated method stub
-		return false;
+		//게시글VO null체크해서 문제 있으면 false를 리턴
+		if(post == null) {
+			return false;
+		}
+		//제목 null체크, 빈문자열 체크해서 문제 있으면 false를 리턴
+		if(!checkString(post.getPo_title())) {
+			return false;
+		}
+		//내용 null체크, 빈문자열 체크해서 문제 있으면 false를 리턴
+		if(!checkString(post.getPo_content())) {
+			return false;
+		}
+		//다오에게 게시글 VO를 주면서 게시글을 등록하라고 요청한 후 성공 여부를 반환
+		//System.out.println(post);//기본키 0
+		boolean res = postDao.insertPost(post);
+		//System.out.println(post);//추가된 게시글의 기본키가 나옴
+		return res;
+	}
+	//문자열이 null이거나 공백으로 된 문자열이면 false, 아니면 true
+	private boolean checkString(String str) {
+		if(str == null || str.trim().length() == 0) {
+			return false;
+		}
+		return true;
 	}
 }

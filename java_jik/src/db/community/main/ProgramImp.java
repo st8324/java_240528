@@ -3,6 +3,7 @@ package db.community.main;
 import java.util.Scanner;
 
 import db.community.controller.MemberController;
+import db.community.controller.PostController;
 import db.community.controller.PrintController;
 import db.community.model.vo.MemberVO;
 import program.Program;
@@ -12,6 +13,7 @@ public class ProgramImp implements Program {
 	private Scanner scan = new Scanner(System.in);
 	private MemberVO member = null;
 	private MemberController memberController = new MemberController(scan);
+	private PostController postController = new PostController(scan);
 	
 	@Override
 	public void printMenu() {
@@ -85,8 +87,39 @@ public class ProgramImp implements Program {
 	}
 
 	private void admin() {
-		// TODO Auto-generated method stub
-		System.out.println("관리자입니다.");
+		PrintController.printBar();
+		System.out.println("관리자님 환영합니다.");
+		PrintController.printBar();
+		char menu = '0';
+		do {
+			PrintController.printAdminMenu();
+			
+			menu = scan.next().charAt(0);
+			PrintController.printBar();
+			
+			runAdmin(menu);
+		}while(menu != '5');
+	}
+
+	private void runAdmin(char menu) {
+		
+		switch(menu) {
+		case '1':
+			postController.insertCommunity();
+			break;
+		case '2':
+			break;
+		case '3':
+			break;
+		case '4':
+			break;
+		case '5':
+			PrintController.logout();
+			break;
+		default:
+			PrintController.wrongMenu();
+		}
+		
 	}
 
 	private void signup() {

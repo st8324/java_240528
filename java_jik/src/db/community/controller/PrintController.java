@@ -36,5 +36,21 @@ public class PrintController {
 	public static void signupFail() {
 		System.out.println("회원가입 실패!");		
 	}
+
+	public static void printAdminMenu() {
+		System.out.println("------관리자 메뉴------");
+		System.out.println("1. 커뮤니티 등록");
+		System.out.println("2. 커뮤니티 수정");
+		System.out.println("3. 커뮤니티 삭제");
+		System.out.println("4. 회원 정지");
+		System.out.println("5. 로그아웃");
+		System.out.println("---------------------");
+		System.out.print("메뉴 선택 : ");
+		
+	}
+
+	public static void logout() {
+		System.out.println("로그아웃 합니다.");
+	}
 	
 }

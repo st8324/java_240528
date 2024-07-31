@@ -85,6 +85,12 @@ public class PostServiceImp implements PostService {
 
 	@Override
 	public boolean deleteCommunity(String name) {
+		//등록된 커뮤니티수가 1이면 false를 리턴 
+		List<CommunityVO> list = postDao.selectCommunityList();
+		if(list.size() == 1) {
+			return false;
+		}
+		
 		//다오에게 커뮤니티명을 주면서 삭제하라고 요청 후 삭제 여부를 반환
 		return postDao.deleteCommunity(name);
 	}

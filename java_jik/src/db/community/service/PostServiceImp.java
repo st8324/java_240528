@@ -155,4 +155,15 @@ public class PostServiceImp implements PostService {
 	public boolean deletePost(int po_num) {
 		return postDao.deletePost(po_num);
 	}
+
+	@Override
+	public boolean updatePost(PostVO post) {
+		if(post == null) {
+			return false;
+		}
+		if(!checkString(post.getPo_title()) || !checkString(post.getPo_content())) {
+			return false;
+		}
+		return postDao.updatePost(post);
+	}
 }

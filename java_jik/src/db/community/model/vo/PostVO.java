@@ -46,4 +46,10 @@ public class PostVO {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		return format.format(po_date);
 	}
+
+	public PostVO(int po_num, String title, String content) {
+		this.po_num = po_num;
+		this.po_title = title;
+		this.po_content = content;
+	}
 }

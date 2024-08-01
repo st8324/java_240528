@@ -168,13 +168,16 @@ public class PostController {
 
 	public boolean updatePost(int po_num) {
 		//새 제목 입력
-		
+		System.out.print("새 제목 : ");
+		scan.nextLine();
+		String title = scan.nextLine();
 		//새 내용 입력
-		
+		System.out.print("새 내용 : ");
+		String content = scan.nextLine();
 		//게시글 번호, 새제목, 내용을 이용하여 게시글VO를 생성
-		
+		PostVO post = new PostVO(po_num, title, content);
 		//서비스에게 게시글VO를 주면서 수정하라고 요청 후 수정 여부를 반환
-		return false;
+		return postService.updatePost(post);
 	}
 	
 	

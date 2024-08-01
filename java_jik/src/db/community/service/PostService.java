@@ -26,4 +26,6 @@ public interface PostService {
 
 	boolean deletePost(int po_num);
 
+	boolean updatePost(PostVO post);
+
 }

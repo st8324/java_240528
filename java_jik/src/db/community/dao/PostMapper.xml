@@ -39,6 +39,13 @@
 	<delete id="deletePost">
 		delete from post where po_num = #{po_num}
 	</delete>
+	<update id="updatePost">
+		update post set
+			po_title = #{po.po_title},
+			po_content = #{po.po_content}
+		where
+			po_num = #{po.po_num}
+	</update>
 </mapper>
 
 

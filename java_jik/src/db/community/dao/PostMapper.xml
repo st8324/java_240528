@@ -36,6 +36,9 @@
 		select count(*) from post 
 		where po_co_num = #{cri.coNum} and po_title like concat('%', #{cri.search} ,'%')
 	</select>
+	<delete id="deletePost">
+		delete from post where po_num = #{po_num}
+	</delete>
 </mapper>
 
 

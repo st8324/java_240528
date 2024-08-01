@@ -150,4 +150,9 @@ public class PostServiceImp implements PostService {
 		}
 		return postDao.selectPostListCount(cri);
 	}
+
+	@Override
+	public boolean deletePost(int po_num) {
+		return postDao.deletePost(po_num);
+	}
 }

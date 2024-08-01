@@ -24,4 +24,6 @@ public interface PostService {
 
 	int selectPostListTotalCount(Criteria cri);
 
+	boolean deletePost(int po_num);
+
 }

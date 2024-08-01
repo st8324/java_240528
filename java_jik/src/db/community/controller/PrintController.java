@@ -78,5 +78,23 @@ public class PrintController {
 	public static void prev() {
 		System.out.println("이전으로 돌아갑니다.");
 	}
+
+	public static void printPostSubMenu(boolean writer) {
+		System.out.println("----게시글 상세 메뉴----");
+		System.out.println("1. 댓글 조회");
+		System.out.println("2. 댓글 추가");
+		System.out.println("3. 이전으로");
+		if(writer) {
+			System.out.println("4. 게시글 수정");
+			System.out.println("5. 게시글 삭제");
+		}
+		System.out.println("---------------------");
+		System.out.print("메뉴 선택 : ");
+		
+	}
+
+	public static void notWriter() {
+		System.out.println("작성자가 아닙니다.");
+	}
 	
 }

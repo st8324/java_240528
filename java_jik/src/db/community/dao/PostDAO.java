@@ -28,4 +28,6 @@ public interface PostDAO {
 
 	int selectPostListCount(@Param("cri")Criteria cri);
 
+	boolean deletePost(@Param("po_num")int po_num);
+
 }

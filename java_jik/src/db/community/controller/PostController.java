@@ -138,7 +138,7 @@ public class PostController {
 		
 	}
 
-	public void printPostDetail() {
+	public PostVO printPostDetail() {
 		//게시글 번호 입력
 		System.out.print("번호 : ");
 		int poNum = scan.nextInt();
@@ -154,11 +154,27 @@ public class PostController {
 			scan.nextLine();//사용자가 입력한 엔터 처리
 			PrintController.printBar();
 		}
+		return post;
 	}
 
 	public PageMaker getPageMaker(Criteria cri, int maxValue) {
 		int totalCount = postService.selectPostListTotalCount(cri);
 		return new PageMaker(totalCount, maxValue, cri);
+	}
+
+	public boolean deletePost(int po_num) {
+		return postService.deletePost(po_num);
+	}
+
+	public boolean updatePost(int po_num) {
+		//새 제목 입력
+		
+		//새 내용 입력
+		
+		//게시글 번호, 새제목, 내용을 이용하여 게시글VO를 생성
+		
+		//서비스에게 게시글VO를 주면서 수정하라고 요청 후 수정 여부를 반환
+		return false;
 	}
 	
 	

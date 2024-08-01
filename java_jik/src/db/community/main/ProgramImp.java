@@ -6,6 +6,7 @@ import db.community.controller.MemberController;
 import db.community.controller.PostController;
 import db.community.controller.PrintController;
 import db.community.model.vo.MemberVO;
+import db.community.model.vo.PostVO;
 import db.community.pagination.Criteria;
 import db.community.pagination.PageMaker;
 import db.community.pagination.PostCriteria;
@@ -158,13 +159,92 @@ public class ProgramImp implements Program {
 			search(pm);
 			break;
 		case '4':
-			postController.printPostDetail();
+			detail();
 			break;
 		case '5':
 			PrintController.prev();
 			break;
 		default:
 			PrintController.wrongMenu();
+		}
+		
+	}
+
+	private void detail() {
+		//게시글 출력
+		PostVO post = postController.printPostDetail();
+		PrintController.printBar();
+		if(post == null) {
+			return;
+		}
+		char menu = '0';
+		do {
+			PrintController.printPostSubMenu(post.getPo_me_id().equals(member.getMe_id()));
+			
+			menu = scan.next().charAt(0);
+			PrintController.printBar();
+			
+			runPostSubMenu(menu, post);
+			PrintController.printBar();
+			//삭제 시 게시글 상세에 더 머물 필요가 없어서 빠져 나가게 함
+			if(post.getPo_num() == 0) {
+				break;
+			}
+		}while(menu != '3');
+		
+	}
+
+	private void runPostSubMenu(char menu, PostVO post) {
+		switch(menu) {
+		case '1':
+			break;
+		case '2':
+			break;
+		case '3':
+			PrintController.prev();
+			break;
+		case '4':
+			postUpdate(post);
+			break;
+		case '5':
+			postDelete(post);
+			break;
+		default:
+			PrintController.wrongMenu();
+		}
+		
+	}
+
+	private void postUpdate(PostVO post) {
+		if(post == null) {
+			return;
+		}
+		//작성자인지 확인
+		if(!post.getPo_me_id().equals(member.getMe_id())) {
+			PrintController.notWriter();
+			return;
+		}
+		if(postController.updatePost(post.getPo_num())) {
+			System.out.println("게시글 수정 성공!");
+		}else {
+			System.out.println("게시글 수정 실패!");
+		}
+	}
+
+	private void postDelete(PostVO post) {
+		if(post == null) {
+			return;
+		}
+		//작성자인지 확인
+		if(!post.getPo_me_id().equals(member.getMe_id())) {
+			PrintController.notWriter();
+			return;
+		}
+		if(postController.deletePost(post.getPo_num())) {
+			System.out.println("게시글 삭제 성공!");
+			post.setPo_num(0);
+		}else {
+			System.out.println("게시글 삭제 실패!");
 		}
 		
 	}

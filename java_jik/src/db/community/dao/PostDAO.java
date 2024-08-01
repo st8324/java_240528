@@ -21,4 +21,8 @@ public interface PostDAO {
 
 	boolean insertPost(@Param("po")PostVO post);
 
+	List<PostVO> selectPostList(@Param("co_num")int coNum, @Param("search")String search);
+
+	PostVO selectPost(@Param("po_num")int poNum);
+
 }

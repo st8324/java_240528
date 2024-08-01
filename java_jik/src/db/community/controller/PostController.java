@@ -102,6 +102,57 @@ public class PostController {
 		}
 		
 	}
+
+	public void printCommunityList() {
+		List<CommunityVO> list = postService.getCommunityList();
+		//커뮤니티 리스트를 이용하여 화면에 출력
+		for(CommunityVO community : list) {
+			System.out.println(community);
+		}
+	}
+
+	public void printPostList(int coNum, String search) {
+		
+		//서비스에게 페이지 정보(커뮤니티 번호, 검색어)를 주면서 게시글 리스트를 가져오라고 시킴
+		List<PostVO> list = null;
+		try {
+			 list = postService.getPostList(coNum, search);
+		}catch(Exception e) {
+			PrintController.printBar();
+			//위에서 예외가 발생하면 없는 커뮤니티입니다.라고 출력하고 종료
+			System.out.println("없는 커뮤니티입니다.");
+			return;
+		}
+		//가져온 게시글 리스트의 길이가 0이면 등록된 게시글이 없습니다라고 출력하고 종료
+		if(list.size() == 0) {
+			System.out.println("등록된 게시글이 없습니다.");
+			return;
+		}
+		//가져온 게시글 리스트를 반복문을 이용해서 출력. 
+		//이 때, PostVO의 toString을 오버라이딩
+		for(PostVO post : list) {
+			System.out.println(post);
+		}
+		
+	}
+
+	public void printPostDetail() {
+		//게시글 번호 입력
+		System.out.print("번호 : ");
+		int poNum = scan.nextInt();
+		//서비스에게 게시글 번호를 주면서 게시글을 가져오라고 요청
+		PostVO post = postService.getPost(poNum);
+		//가져온 게시글을 출력
+		if(post == null) {
+			System.out.println("등록되지 않은 게시글이거나 삭제된 게시글입니다.");
+		}else {
+			post.print();
+			System.out.println("엔터를 치세요.");
+			scan.nextLine();//버퍼에 남은 엔터 처리
+			scan.nextLine();//사용자가 입력한 엔터 처리
+			PrintController.printBar();
+		}
+	}
 	
 	
 }

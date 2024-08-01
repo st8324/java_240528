@@ -128,4 +128,14 @@ public class PostServiceImp implements PostService {
 		}
 		return true;
 	}
+
+	@Override
+	public List<PostVO> getPostList(int coNum, String search) {
+		return postDao.selectPostList(coNum, search);
+	}
+
+	@Override
+	public PostVO getPost(int poNum) {
+		return postDao.selectPost(poNum);
+	}
 }

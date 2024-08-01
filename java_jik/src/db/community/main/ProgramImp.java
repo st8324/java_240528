@@ -102,10 +102,53 @@ public class ProgramImp implements Program {
 			postController.insertPost(member.getMe_id());
 			break;
 		case '2':
-			
+			search();
 			break;
 		case '3':
 			PrintController.logout();
+			break;
+		default:
+			PrintController.wrongMenu();
+		}
+		
+	}
+
+	private void search() {
+		String search = "";
+		char menu = '0';
+		//커뮤니티 선택
+		//커뮤니티 출력
+		postController.printCommunityList();
+		PrintController.printBar();
+		//커뮤니티 선택
+		System.out.print("커뮤니티 번호 선택 : ");
+		int coNum = scan.nextInt();
+		do {
+			//컨트롤러가 페이저 정보(검색어, 커뮤니티 번호)에 맞는 게시글 리스트를 출력
+			postController.printPostList(coNum, search);
+			//메뉴를 출력
+			PrintController.printPostMenu();
+			//메뉴를 선택
+			menu = scan.next().charAt(0);
+			//선택한 메뉴를 실행
+			runPostMenu(menu);
+		}while(menu != '5');
+		
+	}
+
+	private void runPostMenu(char menu) {
+		switch(menu) {
+		case '1':
+			break;
+		case '2':
+			break;
+		case '3':
+			break;
+		case '4':
+			postController.printPostDetail();
+			break;
+		case '5':
+			PrintController.prev();
 			break;
 		default:
 			PrintController.wrongMenu();

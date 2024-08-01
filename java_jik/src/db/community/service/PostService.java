@@ -17,4 +17,8 @@ public interface PostService {
 
 	boolean insertPost(PostVO post);
 
+	List<PostVO> getPostList(int coNum, String search);
+
+	PostVO getPost(int poNum);
+
 }

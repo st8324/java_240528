@@ -23,6 +23,14 @@
 		INSERT INTO POST(PO_TITLE, PO_CONTENT, PO_ME_ID, PO_CO_NUM)
 		VALUES(#{po.po_title}, #{po.po_content}, #{po.po_me_id}, #{po.po_co_num})
 	</insert>
+	<select id="selectPostList" resultType="PostVO">
+		select * from post 
+		where po_co_num = #{co_num} and po_title like concat('%', #{search} ,'%')
+	</select>
+	
+	<select id="selectPost" resultType="PostVO">
+		select * from post where po_num = #{po_num}
+	</select>
 </mapper>
 
 

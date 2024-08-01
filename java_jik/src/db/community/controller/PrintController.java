@@ -62,5 +62,21 @@ public class PrintController {
 		System.out.print("메뉴 선택 : ");
 		
 	}
+
+	public static void printPostMenu() {
+		System.out.println("------게시글 메뉴------");
+		System.out.println("1. 이전");
+		System.out.println("2. 다음");
+		System.out.println("3. 검색");
+		System.out.println("4. 상세 조회");
+		System.out.println("5. 이전으로");
+		System.out.println("---------------------");
+		System.out.print("메뉴 선택 : ");
+		
+	}
+
+	public static void prev() {
+		System.out.println("이전으로 돌아갑니다.");
+	}
 	
 }

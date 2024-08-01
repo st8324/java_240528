@@ -13,6 +13,7 @@ import db.community.dao.MemberDAO;
 import db.community.dao.PostDAO;
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
+import db.community.pagination.Criteria;
 
 public class PostServiceImp implements PostService {
 
@@ -130,8 +131,11 @@ public class PostServiceImp implements PostService {
 	}
 
 	@Override
-	public List<PostVO> getPostList(int coNum, String search) {
-		return postDao.selectPostList(coNum, search);
+	public List<PostVO> getPostList(Criteria cri) {
+		if(cri == null) {
+			throw new RuntimeException();
+		}
+		return postDao.selectPostList(cri);
 	}
 
 	@Override

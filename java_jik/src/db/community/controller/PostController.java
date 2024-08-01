@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
+import db.community.pagination.Criteria;
 import db.community.service.PostService;
 import db.community.service.PostServiceImp;
 
@@ -111,12 +112,12 @@ public class PostController {
 		}
 	}
 
-	public void printPostList(int coNum, String search) {
+	public void printPostList(Criteria cri) {
 		
 		//서비스에게 페이지 정보(커뮤니티 번호, 검색어)를 주면서 게시글 리스트를 가져오라고 시킴
 		List<PostVO> list = null;
 		try {
-			 list = postService.getPostList(coNum, search);
+			 list = postService.getPostList(cri);
 		}catch(Exception e) {
 			PrintController.printBar();
 			//위에서 예외가 발생하면 없는 커뮤니티입니다.라고 출력하고 종료

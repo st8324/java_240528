@@ -4,6 +4,7 @@ import java.util.List;
 
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
+import db.community.pagination.Criteria;
 
 public interface PostService {
 
@@ -17,7 +18,7 @@ public interface PostService {
 
 	boolean insertPost(PostVO post);
 
-	List<PostVO> getPostList(int coNum, String search);
+	List<PostVO> getPostList(Criteria cri);
 
 	PostVO getPost(int poNum);
 

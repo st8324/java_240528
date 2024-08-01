@@ -6,6 +6,9 @@ import db.community.controller.MemberController;
 import db.community.controller.PostController;
 import db.community.controller.PrintController;
 import db.community.model.vo.MemberVO;
+import db.community.pagination.Criteria;
+import db.community.pagination.PageMaker;
+import db.community.pagination.PostCriteria;
 import program.Program;
 
 public class ProgramImp implements Program {
@@ -114,7 +117,6 @@ public class ProgramImp implements Program {
 	}
 
 	private void search() {
-		String search = "";
 		char menu = '0';
 		//커뮤니티 선택
 		//커뮤니티 출력
@@ -123,15 +125,17 @@ public class ProgramImp implements Program {
 		//커뮤니티 선택
 		System.out.print("커뮤니티 번호 선택 : ");
 		int coNum = scan.nextInt();
+		Criteria cri = new PostCriteria(1, "", coNum);
 		do {
+			PageMaker pm = postController.getPageMaker(cri, Integer.MAX_VALUE);
 			//컨트롤러가 페이저 정보(검색어, 커뮤니티 번호)에 맞는 게시글 리스트를 출력
-			postController.printPostList(coNum, search);
+			postController.printPostList(cri);
 			//메뉴를 출력
 			PrintController.printPostMenu();
 			//메뉴를 선택
 			menu = scan.next().charAt(0);
 			//선택한 메뉴를 실행
-			runPostMenu(menu);
+			runPostMenu(menu, );
 		}while(menu != '5');
 		
 	}

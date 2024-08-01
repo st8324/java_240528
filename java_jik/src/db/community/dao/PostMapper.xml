@@ -25,7 +25,7 @@
 	</insert>
 	<select id="selectPostList" resultType="PostVO">
 		select * from post 
-		where po_co_num = #{co_num} and po_title like concat('%', #{search} ,'%')
+		where po_co_num = #{cri.coNum} and po_title like concat('%', #{cri.search} ,'%')
 	</select>
 	
 	<select id="selectPost" resultType="PostVO">

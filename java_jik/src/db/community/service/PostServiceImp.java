@@ -115,10 +115,11 @@ public class PostServiceImp implements PostService {
 			return false;
 		}
 		//다오에게 게시글 VO를 주면서 게시글을 등록하라고 요청한 후 성공 여부를 반환
-		//System.out.println(post);//기본키 0
-		boolean res = postDao.insertPost(post);
-		//System.out.println(post);//추가된 게시글의 기본키가 나옴
-		return res;
+		try {
+			return postDao.insertPost(post);
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	//문자열이 null이거나 공백으로 된 문자열이면 false, 아니면 true
 	private boolean checkString(String str) {

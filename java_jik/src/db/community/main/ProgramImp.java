@@ -93,7 +93,7 @@ public class ProgramImp implements Program {
 			PrintController.printBar();
 			
 			runUser(menu);
-		}while(menu != '5');
+		}while(menu != '3');
 	}
 
 	private void runUser(char menu) {

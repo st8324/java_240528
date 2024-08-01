@@ -126,7 +126,11 @@ public class ProgramImp implements Program {
 		System.out.print("커뮤니티 번호 선택 : ");
 		int coNum = scan.nextInt();
 		Criteria cri = new PostCriteria(1, "", coNum);
+		cri.setPerPageNum(2);
 		do {
+			PrintController.printBar();
+			System.out.println(cri.getPage() + "페이지 결과입니다.(검색어 : '" + cri.getSearch() + "')");
+			PrintController.printBar();
 			PageMaker pm = postController.getPageMaker(cri, Integer.MAX_VALUE);
 			//컨트롤러가 페이저 정보(검색어, 커뮤니티 번호)에 맞는 게시글 리스트를 출력
 			postController.printPostList(cri);
@@ -134,19 +138,24 @@ public class ProgramImp implements Program {
 			PrintController.printPostMenu();
 			//메뉴를 선택
 			menu = scan.next().charAt(0);
+			PrintController.printBar();
 			//선택한 메뉴를 실행
-			runPostMenu(menu, );
+			runPostMenu(menu, pm);
+			PrintController.printBar();
 		}while(menu != '5');
 		
 	}
 
-	private void runPostMenu(char menu) {
+	private void runPostMenu(char menu, PageMaker pm) {
 		switch(menu) {
 		case '1':
+			page(pm, -1);
 			break;
 		case '2':
+			page(pm, 1);
 			break;
 		case '3':
+			search(pm);
 			break;
 		case '4':
 			postController.printPostDetail();
@@ -158,6 +167,29 @@ public class ProgramImp implements Program {
 			PrintController.wrongMenu();
 		}
 		
+	}
+
+	private void search(PageMaker pm) {
+		//검색어 입력
+		System.out.print("검색어 : ");
+		scan.nextLine();
+		String search = scan.nextLine();
+		//페이지메이커의 검색어를 입력받은 검색어로 수정
+		pm.getCri().setSearch(search);
+		
+	}
+
+	private void page(PageMaker pm, int add) {
+		int page = pm.getCri().getPage(); 
+		if(add > 0 && pm.isNext()) {
+			pm.getCri().setPage(page + 1);
+		}else if(add < 0 && pm.isPrev()) {
+			pm.getCri().setPage(page - 1);
+		}else if(add > 0){
+			System.out.println("마지막 페이지입니다.");
+		}else {
+			System.out.println("처음 페이지입니다.");
+		}
 	}
 
 	private void admin() {

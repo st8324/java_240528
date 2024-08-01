@@ -26,10 +26,15 @@
 	<select id="selectPostList" resultType="PostVO">
 		select * from post 
 		where po_co_num = #{cri.coNum} and po_title like concat('%', #{cri.search} ,'%')
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<select id="selectPost" resultType="PostVO">
 		select * from post where po_num = #{po_num}
+	</select>
+	<select id="selectPostListCount" resultType="int">
+		select count(*) from post 
+		where po_co_num = #{cri.coNum} and po_title like concat('%', #{cri.search} ,'%')
 	</select>
 </mapper>
 

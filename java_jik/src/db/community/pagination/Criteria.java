@@ -18,4 +18,7 @@ public class Criteria {
 		this.page = page;
 		this.search = search;
 	}
+	public int getPageStart() {
+		return (page - 1) * perPageNum;
+	}
 }

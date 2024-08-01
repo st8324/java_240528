@@ -142,4 +142,12 @@ public class PostServiceImp implements PostService {
 	public PostVO getPost(int poNum) {
 		return postDao.selectPost(poNum);
 	}
+
+	@Override
+	public int selectPostListTotalCount(Criteria cri) {
+		if(cri == null) {
+			return 0;
+		}
+		return postDao.selectPostListCount(cri);
+	}
 }

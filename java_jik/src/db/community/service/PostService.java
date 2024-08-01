@@ -22,4 +22,6 @@ public interface PostService {
 
 	PostVO getPost(int poNum);
 
+	int selectPostListTotalCount(Criteria cri);
+
 }

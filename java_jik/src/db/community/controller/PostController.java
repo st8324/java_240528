@@ -6,6 +6,7 @@ import java.util.Scanner;
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
 import db.community.pagination.Criteria;
+import db.community.pagination.PageMaker;
 import db.community.service.PostService;
 import db.community.service.PostServiceImp;
 
@@ -153,6 +154,11 @@ public class PostController {
 			scan.nextLine();//사용자가 입력한 엔터 처리
 			PrintController.printBar();
 		}
+	}
+
+	public PageMaker getPageMaker(Criteria cri, int maxValue) {
+		int totalCount = postService.selectPostListTotalCount(cri);
+		return new PageMaker(totalCount, maxValue, cri);
 	}
 	
 	

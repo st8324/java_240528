@@ -199,6 +199,7 @@ public class ProgramImp implements Program {
 		case '1':
 			break;
 		case '2':
+			postController.insertComment(post, member.getMe_id());
 			break;
 		case '3':
 			PrintController.prev();

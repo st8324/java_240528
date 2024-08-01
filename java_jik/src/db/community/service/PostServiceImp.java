@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.community.dao.MemberDAO;
 import db.community.dao.PostDAO;
+import db.community.model.vo.CommentVO;
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
 import db.community.pagination.Criteria;
@@ -165,5 +166,16 @@ public class PostServiceImp implements PostService {
 			return false;
 		}
 		return postDao.updatePost(post);
+	}
+
+	@Override
+	public boolean insertCommnet(CommentVO comment) {
+		if(comment == null) {
+			return false;
+		}
+		if(!checkString(comment.getCm_content())) {
+			return false;
+		}
+		return postDao.insertComment(comment);
 	}
 }

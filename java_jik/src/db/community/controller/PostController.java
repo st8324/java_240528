@@ -3,6 +3,7 @@ package db.community.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import db.community.model.vo.CommentVO;
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
 import db.community.pagination.Criteria;
@@ -178,6 +179,28 @@ public class PostController {
 		PostVO post = new PostVO(po_num, title, content);
 		//서비스에게 게시글VO를 주면서 수정하라고 요청 후 수정 여부를 반환
 		return postService.updatePost(post);
+	}
+
+	public void insertComment(PostVO post, String id) {
+		//post null이면 댓글을 추가할 수 없습니다를 출력하고 종료
+		if(post == null) {
+			System.out.println("댓글을 추가할 수 없습니다.");
+			return;
+		}
+		//댓글 입력
+		System.out.print("댓글 : ");
+		scan.nextLine();
+		String content = scan.nextLine();
+		//게시글 번호, 댓글 내용, 작성자를 이용하여 댓글VO를 생성
+		CommentVO comment = new CommentVO(post.getPo_num(), content, id);
+		//서비스에게 댓글VO를 주면서 추가하라고 요청후 성공하면 댓글 추가 성공!을 출력
+		if(postService.insertCommnet(comment)) {
+			System.out.println("댓글 추가 성공!");
+		}
+		//실패하면 댓글 추가 실패!를 출력
+		else {
+			System.out.println("댓글 추가 실패!");
+		}
 	}
 	
 	

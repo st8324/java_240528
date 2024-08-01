@@ -46,6 +46,13 @@
 		where
 			po_num = #{po.po_num}
 	</update>
+	<insert id="insertComment">
+		INSERT INTO COMMENT(CM_NUM, CM_CONTENT, CM_PO_NUM, CM_ORI_NUM, CM_ME_ID)
+		SELECT 
+			IFNULL(MAX(CM_NUM), 0) + 1, #{co.cm_content}, #{co.cm_po_num}, 
+			IFNULL(MAX(CM_NUM), 0) + 1 , #{co.cm_me_id} 
+		FROM COMMENT
+	</insert>
 </mapper>
 
 

@@ -33,4 +33,6 @@ public interface PostService {
 
 	List<CommentVO> getCommentList(int po_num);
 
+	void updatePostView(int poNum);
+
 }

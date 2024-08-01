@@ -143,6 +143,8 @@ public class PostController {
 		//게시글 번호 입력
 		System.out.print("번호 : ");
 		int poNum = scan.nextInt();
+		//서비스에게 조회하려는 게시글의 조회수를 증가 시키라고 요청
+		postService.updatePostView(poNum);
 		//서비스에게 게시글 번호를 주면서 게시글을 가져오라고 요청
 		PostVO post = postService.getPost(poNum);
 		//가져온 게시글을 출력

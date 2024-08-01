@@ -37,4 +37,6 @@ public interface PostDAO {
 
 	List<CommentVO> selectCommentList(@Param("po_num")int po_num);
 
+	void updatePostView(@Param("po_num")int poNum);
+
 }

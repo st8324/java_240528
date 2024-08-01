@@ -53,6 +53,9 @@
 			IFNULL(MAX(CM_NUM), 0) + 1 , #{co.cm_me_id} 
 		FROM COMMENT
 	</insert>
+	<select id="selectCommentList" resultType="CommentVO">
+		select * from comment where cm_po_num = #{po_num}
+	</select>
 </mapper>
 
 

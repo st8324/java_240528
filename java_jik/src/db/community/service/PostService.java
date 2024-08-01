@@ -31,4 +31,6 @@ public interface PostService {
 
 	boolean insertCommnet(CommentVO comment);
 
+	List<CommentVO> getCommentList(int po_num);
+
 }

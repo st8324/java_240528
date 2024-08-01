@@ -202,6 +202,35 @@ public class PostController {
 			System.out.println("댓글 추가 실패!");
 		}
 	}
+
+	public void printCommentList(PostVO post) {
+		//서비스에게 게시글 번호를 주면서 댓글 리스트를 가져오라고 요청
+		List<CommentVO> list = null;
+		try {
+			list = postService.getCommentList(post.getPo_num());
+		}
+		//예외 발생 시 등록되지 않은 게시글이거나 삭제된 게시글입니다.라고 출력
+		catch(Exception e) {
+			System.out.println("등록되지 않은 게시글이거나 삭제된 게시글입니다.");
+			return;
+		}
+		
+		//댓글 리스트가 0개이면 등록된 댓글이 없습니다.라고 출력
+		if(list.size() == 0) {
+			System.out.println("등록된 댓글이 없습니다.");
+			return;
+		}
+		System.out.println("댓글 목록");
+		//있으면 댓글 리스트에서 하나씩 꺼내 출력.(CommentV의 toString을 오버라이딩)
+		for(CommentVO comment : list) {
+			System.out.println(comment);
+		}
+		PrintController.printBar();
+		System.out.println("엔터를 치세요.");
+		scan.nextLine();//버퍼에 남은 엔터 처리
+		scan.nextLine();//사용자가 입력한 엔터 처리
+		PrintController.printBar();
+	}
 	
 	
 }

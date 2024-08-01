@@ -35,4 +35,6 @@ public interface PostDAO {
 
 	boolean insertComment(@Param("co")CommentVO comment);
 
+	List<CommentVO> selectCommentList(@Param("po_num")int po_num);
+
 }

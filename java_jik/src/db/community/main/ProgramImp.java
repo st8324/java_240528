@@ -197,6 +197,7 @@ public class ProgramImp implements Program {
 	private void runPostSubMenu(char menu, PostVO post) {
 		switch(menu) {
 		case '1':
+			postController.printCommentList(post);
 			break;
 		case '2':
 			postController.insertComment(post, member.getMe_id());

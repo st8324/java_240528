@@ -4,3 +4,5 @@
 .settings/
 
 java_jik/.gitignore
+
+MANIFEST.MF

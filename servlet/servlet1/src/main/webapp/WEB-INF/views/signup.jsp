@@ -23,23 +23,25 @@
 		<!-- 
 		회원 가입을 위한 화면을 구성
 		- 아이디, 비번, 비번확인, 이메일
+		서버로 아이디, 비번, 이메일을 전송하고
+		서버에서는 전송받은 아이디, 비번, 이메일을 콘솔에 출력
 		-->
-		<form action="">
+		<form action="<%=request.getContextPath()%>/signup" method="post">
 			<div class="form-group">
-				<label for="usr">아이디:</label>
-				<input type="text" class="form-control" id="usr">
+				<label for="id">아이디:</label>
+				<input type="text" class="form-control" id="id" name="id">
 			</div>
 			<div class="form-group">
-				<label for="pwd">비번:</label>
-				<input type="password" class="form-control" id="pwd">
+				<label for="pw">비번:</label>
+				<input type="password" class="form-control" id="pw" name="pw">
 			</div>
 			<div class="form-group">
-				<label for="pwd">비번확인:</label>
-				<input type="password" class="form-control" id="pwd">
+				<label for="pw2">비번확인:</label>
+				<input type="password" class="form-control" id="pw2" name="pw2">
 			</div>
 			<div class="form-group">
-				<label for="pwd">이메일:</label>
-				<input type="password" class="form-control" id="pwd">
+				<label for="email">이메일:</label>
+				<input type="email" class="form-control" id="email" name="email">
 			</div>
 			<button type="submit" class="btn btn-outline-success col-12">회원가입</button>
 		</form>

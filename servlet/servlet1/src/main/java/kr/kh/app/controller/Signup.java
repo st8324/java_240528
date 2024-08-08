@@ -1,4 +1,4 @@
-package servlet1.controller;
+package kr.kh.app.controller;
 
 import java.io.IOException;
 
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import servlet1.model.dto.LoginDTO;
-import servlet1.service.MemberService;
-import servlet1.service.MemberServiceImp;
+import kr.kh.app.model.dto.LoginDTO;
+import kr.kh.app.service.MemberService;
+import kr.kh.app.service.MemberServiceImp;
 
 
 @WebServlet("/signup")
@@ -32,10 +32,13 @@ public class Signup extends HttpServlet {
 		LoginDTO member = new LoginDTO(id, pw, email);
 		
 		if(memberService.signup(member)) {
-			response.sendRedirect(request.getContextPath() + "/");
+			request.setAttribute("msg", "회원 가입에 성공했습니다.");
+			request.setAttribute("url", "/");
 		}else {
-			doGet(request, response);
+			request.setAttribute("msg", "회원 가입에 실패했습니다.");
+			request.setAttribute("url", "/signup");
 		}
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 		
 	}
 

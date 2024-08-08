@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<package name="servlet1.model.vo"/>
+		<package name="kr.kh.app.model.vo"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -25,6 +25,6 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="servlet1/dao/MemberMapper.xml"/>
+		<mapper resource="kr/kh/app/dao/MemberMapper.xml"/>
 	</mappers>
 </configuration>

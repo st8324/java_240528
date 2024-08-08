@@ -1,6 +1,5 @@
-package servlet1.service;
+package kr.kh.app.service;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.ibatis.io.Resources;
@@ -8,23 +7,24 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import servlet1.dao.MemberDAO;
-import servlet1.model.dto.LoginDTO;
+import kr.kh.app.dao.MemberDAO;
+import kr.kh.app.model.dto.LoginDTO;
 
 public class MemberServiceImp implements MemberService {
 
 	private MemberDAO memberDao;
 	
 	public MemberServiceImp() {
-		String resource = "servlet1/config/mybatis-config.xml";
+		String resource = "kr/kh/app/config/mybatis-config.xml";
 		InputStream inputStream;
 		SqlSession session;
 		try {
+
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			session = sessionFactory.openSession(true);
 			memberDao = session.getMapper(MemberDAO.class);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -34,9 +34,13 @@ public class MemberServiceImp implements MemberService {
 		if(member == null) {
 			return false;
 		}
+		//아이디 중복 검사해서 있으면 false를 리턴
+		if(memberDao.selectMember(member.getId()) != null) {
+			return false;
+		}
+		
 		//유효성 검사 실패 시 false를 리턴 
 		
-		//
 		return memberDao.insertMember(member);
 	}
 }

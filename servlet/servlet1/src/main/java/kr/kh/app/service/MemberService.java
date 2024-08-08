@@ -1,6 +1,6 @@
-package servlet1.service;
+package kr.kh.app.service;
 
-import servlet1.model.dto.LoginDTO;
+import kr.kh.app.model.dto.LoginDTO;
 
 public interface MemberService {
 

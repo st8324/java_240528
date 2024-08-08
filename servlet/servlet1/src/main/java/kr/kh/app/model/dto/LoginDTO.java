@@ -1,4 +1,4 @@
-package servlet1.model.dto;
+package kr.kh.app.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

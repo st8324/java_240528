@@ -1,4 +1,4 @@
-package servlet1.controller;
+package kr.kh.app.controller;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import servlet1.model.vo.Person;
+import kr.kh.app.model.vo.Person;
 
 @WebServlet("/")
 public class Main extends HttpServlet {

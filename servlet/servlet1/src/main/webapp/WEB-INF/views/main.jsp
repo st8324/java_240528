@@ -14,13 +14,16 @@
 	<a href="<%=request.getContextPath()%>?name=홍길동&age=21">이름은 홍길동, 나이는 21</a>
 	<br>
 	<a href="<%=request.getContextPath()%>/signup">회원가입</a>
+	<br>
+	<a href="<%=request.getContextPath()%>/login">로그인</a>
 	<!-- 
-	1. main.jsp에 회원가입 링크를 추가
-	 - 링크는 /servlet1/signup
-	2. Signup 서블릿을 추가
-	 - views/signup.jsp와 연결
-	3. signup.jsp 추가
+	1. main.jsp에 로그인 링크를 추가
+	 - 링크는 /servlet1/login
+	2. Login 서블릿을 추가
+	 - views/login.jsp와 연결
+	3. login.jsp 추가
 	
 	 -->
+	 ${user}
 </body>
 </html>

@@ -1,6 +1,7 @@
 package kr.kh.app.service;
 
 import java.io.InputStream;
+import java.util.regex.Pattern;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -40,7 +41,41 @@ public class MemberServiceImp implements MemberService {
 		}
 		
 		//유효성 검사 실패 시 false를 리턴 
+		if(!checkValidate(member)) {
+			return false;
+		}
 		
-		return memberDao.insertMember(member);
+		//
+		try {
+			//이메일이 중복되면 추가할 수 없어서(유니크 설정) 예외가 발생
+			return memberDao.insertMember(member);
+		}catch(Exception e) {
+			return false;
+		}
+	}
+
+	private boolean checkValidate(LoginDTO member) {
+		if( member == null || 
+			member.getId() == null || 
+			member.getPw() == null || 
+			member.getEmail() == null) {
+			return false;
+		}
+		//아이디 유효성 검사. 영어, 숫자 6~13
+		String idRegex = "\\w{6,13}$";
+		if(!Pattern.matches(idRegex, member.getId())) {
+			return false;
+		}
+		//비번 유효성 검사. 영어, 숫자, !@#$ 6~15
+		String pwRegex = "^[a-zA-Z0-9!@#$]{6,15}$";
+		if(!Pattern.matches(pwRegex, member.getPw())) {
+			return false;
+		}
+		//이메일 유효성 검사.
+		String emailRegex = "^[A-Za-z0-9_]+@[A-Za-z0-9_]+(\\.[A-Za-z]{2,}){1,}$";
+		if(!Pattern.matches(emailRegex, member.getEmail())) {
+			return false;
+		}
+		return true;
 	}
 }

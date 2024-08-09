@@ -11,7 +11,11 @@
 		select * from community where co_num = #{co_num}
 	</select>
 	<select id="selectPostList" resultType="PostVO">
-		select * from post where po_co_num = #{co_num}
+		select * from post where po_co_num = #{cri.co_num}
 		order by po_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectPostTotalCount" resultType="int">
+		select count(*) from post where po_co_num = #{cri.co_num}
 	</select>
 </mapper>

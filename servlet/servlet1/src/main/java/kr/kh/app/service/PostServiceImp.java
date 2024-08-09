@@ -12,6 +12,8 @@ import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.dao.PostDAO;
 import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.PostVO;
+import kr.kh.app.pagination.Criteria;
+import kr.kh.app.pagination.PageMaker;
 
 public class PostServiceImp implements PostService {
 
@@ -43,8 +45,20 @@ public class PostServiceImp implements PostService {
 	}
 
 	@Override
-	public List<PostVO> getPostList(int coNum) {
-		return postDao.selectPostList(coNum);
+	public List<PostVO> getPostList(Criteria cri) {
+		if(cri == null) {
+			throw new RuntimeException();
+		}
+		return postDao.selectPostList(cri);
+	}
+
+	@Override
+	public PageMaker getPageMaker(Criteria cri, int displayPageNum) {
+		if(cri == null) {
+			throw new RuntimeException();
+		}
+		int totalCount = postDao.selectPostTotalCount(cri);
+		return new PageMaker(totalCount, displayPageNum, cri);
 	}
 
 }

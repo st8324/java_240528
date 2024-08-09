@@ -43,6 +43,43 @@
 			</c:if>
 		</tbody>
 	</table>
+	<ul class="pagination justify-content-center">
+		<c:if test="${pm.prev}">
+			<li class="page-item">
+				<c:url var="url" value="/post/list">
+					<c:param name="co_num" value="${pm.cri.co_num}"/>
+					<c:param name="page" value="${pm.startPage-1}"/>
+				</c:url>
+				<a class="page-link" href="${url}">이전</a>
+			</li>
+		</c:if>
+		<c:forEach begin="${pm.startPage}" end="${pm.endPage }" var="i">
+			<c:choose>
+				<c:when test="${pm.cri.page == i}">
+					<c:set var="active" value="active"/>
+				</c:when>
+				<c:otherwise>
+					<c:set var="active" value=""/>
+				</c:otherwise>
+			</c:choose>
+			<li class="page-item ${active}">
+				<c:url var="url" value="/post/list">
+					<c:param name="co_num" value="${pm.cri.co_num}"/>
+					<c:param name="page" value="${i}"/>
+				</c:url>
+				<a class="page-link" href="${url}">${i}</a>
+			</li>
+		</c:forEach>
+		<c:if test="${pm.next}">
+			<li class="page-item">
+				<c:url var="url" value="/post/list">
+					<c:param name="co_num" value="${pm.cri.co_num}"/>
+					<c:param name="page" value="${pm.endPage+1}"/>
+				</c:url>
+				<a class="page-link" href="${url}">다음</a>
+			</li>
+		</c:if>
+	</ul>
 </div>
 </body>
 </html>

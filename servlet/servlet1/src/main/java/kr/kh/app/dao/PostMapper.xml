@@ -7,4 +7,11 @@
 	<select id="selectCommunityList" resultType="CommunityVO">
 		select * from community order by co_num
 	</select>
+	<select id="selectCommunity" resultType="CommunityVO">
+		select * from community where co_num = #{co_num}
+	</select>
+	<select id="selectPostList" resultType="PostVO">
+		select * from post where po_co_num = #{co_num}
+		order by po_num desc
+	</select>
 </mapper>

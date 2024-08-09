@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.dao.PostDAO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.PostVO;
 
 public class PostServiceImp implements PostService {
 
@@ -34,6 +35,16 @@ public class PostServiceImp implements PostService {
 	@Override
 	public List<CommunityVO> getCommunityList() {
 		return postDao.selectCommunityList();
+	}
+
+	@Override
+	public CommunityVO getCommunity(int coNum) {
+		return postDao.selectCommunity(coNum);
+	}
+
+	@Override
+	public List<PostVO> getPostList(int coNum) {
+		return postDao.selectPostList(coNum);
 	}
 
 }

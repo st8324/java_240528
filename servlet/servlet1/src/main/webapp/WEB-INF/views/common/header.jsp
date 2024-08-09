@@ -14,6 +14,9 @@
 		
 		<!-- Links -->
 		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="<c:url value="/community"/>">커뮤니티</a>
+			</li>
 			<c:choose>
 				<c:when test="${user == null }">
 					<li class="nav-item">

@@ -12,10 +12,28 @@
 	</select>
 	<select id="selectPostList" resultType="PostVO">
 		select * from post where po_co_num = #{cri.co_num}
+		<if test="cri.type == 'all'">
+		and (po_title like concat('%', #{cri.search},'%') or po_me_id = #{cri.search})
+		</if>
+		<if test="cri.type == 'title'">
+		and po_title like concat('%', #{cri.search},'%')
+		</if>
+		<if test="cri.type == 'id'">
+		and po_me_id = #{cri.search}
+		</if>
 		order by po_num desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectPostTotalCount" resultType="int">
 		select count(*) from post where po_co_num = #{cri.co_num}
+		<if test="cri.type == 'all'">
+		and (po_title like concat('%', #{cri.search},'%') or po_me_id = #{cri.search})
+		</if>
+		<if test="cri.type == 'title'">
+		and po_title like concat('%', #{cri.search},'%')
+		</if>
+		<if test="cri.type == 'id'">
+		and po_me_id = #{cri.search}
+		</if>
 	</select>
 </mapper>

@@ -35,13 +35,16 @@ public class PostList extends HttpServlet {
 				page = Integer.parseInt(pageStr);
 			}
 			
+			String type = request.getParameter("type");
+			String search = request.getParameter("search");
+			
 			//서비스에게 커뮤니티 번호를 주면서 커뮤니티 정보를 가져오라고 시킴
 			CommunityVO community = postService.getCommunity(coNum);
 			//커뮤니티 정보가 없으면 예외를 발생시킴
 			if(community == null) {
 				throw new Exception();
 			}
-			Criteria cri = new PostCriteria(page, 2, "", coNum);
+			Criteria cri = new PostCriteria(page, 2, search, coNum, type);
 			PageMaker pm = postService.getPageMaker(cri, 2);
 			//서비스에게 커뮤니티 번호를 주면서 게시글 리스트를 가져오라고 시킴
 			List<PostVO> list = postService.getPostList(cri);

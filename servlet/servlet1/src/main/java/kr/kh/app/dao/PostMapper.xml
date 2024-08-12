@@ -40,4 +40,7 @@
 		insert into post(po_co_num, po_me_id, po_title, po_content)
 		values(#{post.po_co_num},#{post.po_me_id},#{post.po_title},#{post.po_content})
 	</insert>
+	<select id="selectPost" resultType="PostVO">
+		
+	</select>
 </mapper>

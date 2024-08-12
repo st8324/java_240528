@@ -75,4 +75,9 @@ public class PostServiceImp implements PostService {
 		return postDao.insertPost(post);
 	}
 
+	@Override
+	public PostVO getPostList(int num) {
+		return postDao.selectPost(num);
+	}
+
 }

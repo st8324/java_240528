@@ -19,4 +19,6 @@ public interface PostService {
 
 	boolean insertPost(PostVO post);
 
+	PostVO getPostList(int num);
+
 }

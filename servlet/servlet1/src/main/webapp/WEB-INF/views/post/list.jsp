@@ -102,6 +102,7 @@
 			</li>
 		</c:if>
 	</ul>
+	<a href="<c:url value="/post/insert?co_num=${pm.cri.co_num}"/>" class="btn btn-outline-danger">게시글 등록</a>
 </div>
 </body>
 </html>

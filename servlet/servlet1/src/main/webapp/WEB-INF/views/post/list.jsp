@@ -40,9 +40,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${list}" var="post">
+			<c:forEach items="${list}" var="post" varStatus="vs">
 				<tr>
-					<td>${post.po_num}</td>
+					<!-- 전체 게시글 수에 맞춰서 게시글 번호를 배정 -->
+					<td>${pm.totalCount - vs.index - pm.cri.pageStart }</td>
+					<!-- 실제 게시글 번호를 배정 -->
+					<!-- <td>${post.po_num }</td> -->
 					<td>
 						<a href="<c:url value="/post/detail?num=${post.po_num}"/>">${post.po_title }</a>
 					</td>

@@ -21,4 +21,6 @@ public interface PostService {
 
 	PostVO getPostList(int num);
 
+	void updatePostView(int num);
+
 }

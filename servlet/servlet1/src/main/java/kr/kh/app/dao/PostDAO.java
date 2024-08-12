@@ -22,4 +22,6 @@ public interface PostDAO {
 
 	PostVO selectPost(@Param("po_num")int num);
 
+	void updatePostView(@Param("po_num")int num);
+
 }

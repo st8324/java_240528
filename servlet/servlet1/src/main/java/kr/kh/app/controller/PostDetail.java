@@ -22,6 +22,8 @@ public class PostDetail extends HttpServlet {
 		String numStr = request.getParameter("num");
 		try {
 			int num = Integer.parseInt(numStr);
+			//조회수 증가
+			postService.updatePostView(num);
 			//서비스에게 가져온 게시글 번호에 맞는 게시글 정보를 가져오라고 시킴
 			PostVO post = postService.getPostList(num);
 			//게시글을 화면에 전송

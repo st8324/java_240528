@@ -42,12 +42,12 @@ public class PostInsert extends HttpServlet {
 			String content = request.getParameter("content");
 			//세션에서 회원 정보를 가져옴
 			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-			//임시로 아이디를 "abc123"으로 지정
-			String id="abc123";
-			//가져온 회원 정보가 있으면 아이디를 가져옴
-			if(user != null) {
-				id = user.getMe_id();
+			
+			if(user == null) {
+				throw new RuntimeException();
 			}
+			//가져온 회원 정보가 있으면 아이디를 가져옴
+			String id = user.getMe_id();
 			
 			//가져온 커뮤니티 번호, 제목, 내용, 아이디를 이용해서 게시글 객체를 생성
 			PostVO post = new PostVO(co_num, title, content, id);

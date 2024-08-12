@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.dao.PostDAO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.pagination.PageMaker;
@@ -83,6 +84,26 @@ public class PostServiceImp implements PostService {
 	@Override
 	public void updatePostView(int num) {
 		postDao.updatePostView(num);
+	}
+
+	@Override
+	public PostVO getPost(int po_num, MemberVO user) {
+		//회원이 null이면 null을 반환
+		if(user == null) {
+			return null;
+		}
+		//게시글 번호에 맞는 게시글을 가져옴
+		PostVO post = postDao.selectPost(po_num);
+		//게시글이 null이면 null을 반환
+		if(post == null) {
+			return null;
+		}
+		//게시글의 작성와 회원 아이디가 같으면 게시글을 반환
+		if(post.getPo_me_id().equals(user.getMe_id())) {
+			return post;
+		}
+		//아니면 null을 반환
+		return null;
 	}
 
 }

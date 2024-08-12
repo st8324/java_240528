@@ -36,6 +36,7 @@
 	<a href="<c:url value="/post/list?co_num=${post.po_co_num }"/>" class="btn btn-outline-primary">목록</a>
 	<c:if test="${user ne null && post.po_me_id eq user.me_id}">
 		<a href="<c:url value="/post/update?po_num=${post.po_num }"/>" class="btn btn-outline-warning">수정</a>
+		<a href="<c:url value="/post/delete?po_num=${post.po_num }"/>" class="btn btn-outline-danger">삭제</a>
 	</c:if>
 </div>
 </body>

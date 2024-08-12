@@ -20,12 +20,14 @@ public interface PostService {
 
 	boolean insertPost(PostVO post);
 
-	PostVO getPostList(int num);
+	PostVO getPost(int num);
 
 	void updatePostView(int num);
 
 	PostVO getPost(int po_num, MemberVO user);
 
 	boolean updatePost(PostVO post, MemberVO user);
+
+	boolean deletePost(String po_num, MemberVO user);
 
 }

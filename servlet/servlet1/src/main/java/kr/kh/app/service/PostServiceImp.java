@@ -77,7 +77,7 @@ public class PostServiceImp implements PostService {
 	}
 
 	@Override
-	public PostVO getPostList(int num) {
+	public PostVO getPost(int num) {
 		return postDao.selectPost(num);
 	}
 
@@ -140,6 +140,20 @@ public class PostServiceImp implements PostService {
 		}
 		//아니면 null을 반환
 		return false;
+	}
+
+	@Override
+	public boolean deletePost(String po_num, MemberVO user) {
+		try {
+			int poNum = Integer.parseInt(po_num);
+			if(!checkWriter(poNum, user)) {
+				return false;
+			}
+			return postDao.deletePost(poNum);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

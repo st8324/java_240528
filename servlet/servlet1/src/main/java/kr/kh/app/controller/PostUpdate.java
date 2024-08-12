@@ -37,6 +37,7 @@ public class PostUpdate extends HttpServlet {
 				throw new RuntimeException();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			request.setAttribute("msg", "작성자가 아니거나 게시글이 없습니다.");
 			request.setAttribute("url", "/post/detail?po_num="+po_numStr);
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
@@ -46,7 +47,34 @@ public class PostUpdate extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		//게시글 번호를 받아옴
+		String po_numStr = request.getParameter("po_num");
+		try {
+			int po_num = Integer.parseInt(po_numStr);
+			//회원 정보를 받아옴 
+			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+			
+			//게시글 제목을 가져옴
+			String title = request.getParameter("title");
+			//게시글 내용을 가져옴
+			String content = request.getParameter("content");
+			
+			PostVO post = new PostVO(po_num, title, content);
+			
+			//서비스에게 게시글 정보와 회원 정보를 주면서 게시글을 가져오라고 요청하고 성공하면 성공 처리
+			if(postService.updatePost(post, user)) {
+				request.setAttribute("msg", "게시글 수정에 성공했습니다.");
+			}
+			//실패하면 실패 처리
+			else {
+				throw new RuntimeException();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			request.setAttribute("msg", "게시글 수정에 실패했습니다.");
+		}
+		request.setAttribute("url", "/post/detail?num="+po_numStr);
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 
 }

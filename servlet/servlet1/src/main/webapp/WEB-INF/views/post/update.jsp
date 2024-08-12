@@ -15,18 +15,17 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="container">
 	<h1>게시글 수정</h1>
-	${post }
 	<form action="<c:url value="/post/update"/>" method="post">
 		<div class="form-group">
 			<label for="title">제목:</label>
-			<input type="text" class="form-control" id="title" name="title">
+			<input type="text" class="form-control" id="title" name="title" value="${post.po_title }">
 		</div>
 		<div class="form-group">
 			<label for="content">내용:</label>
-			<textarea class="form-control" id="content" name="content"></textarea>
+			<textarea class="form-control" id="content" name="content">${post.po_content }</textarea>
 		</div>
 		<button type="submit" class="btn btn-outline-success col-12">등록</button>
-		<input type="hidden" name="po_num" value="${po_num}">
+		<input type="hidden" name="po_num" value="${post.po_num}">
 	</form>
 </div>
 <script>

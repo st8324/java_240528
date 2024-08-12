@@ -23,4 +23,10 @@ public class PostVO {
 		this.po_content = content;
 		this.po_me_id = id;
 	}
+
+	public PostVO(int po_num, String title, String content) {
+		this.po_num = po_num;
+		this.po_title = title;
+		this.po_content = content;
+	}
 }

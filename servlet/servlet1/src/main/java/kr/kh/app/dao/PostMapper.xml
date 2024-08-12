@@ -46,4 +46,12 @@
 	<update id="updatePostView">
 		update post set po_view = po_view + 1 where po_num = #{po_num}
 	</update>
+	<update id="updatePost">
+		update post 
+		set 
+			po_title = #{post.po_title},
+			po_content = #{post.po_content}
+		where
+			po_num = #{post.po_num}
+	</update>
 </mapper>

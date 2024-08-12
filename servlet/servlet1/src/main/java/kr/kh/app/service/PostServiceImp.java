@@ -99,11 +99,47 @@ public class PostServiceImp implements PostService {
 			return null;
 		}
 		//게시글의 작성와 회원 아이디가 같으면 게시글을 반환
-		if(post.getPo_me_id().equals(user.getMe_id())) {
+		if(checkWriter(po_num, user)) {
 			return post;
 		}
 		//아니면 null을 반환
 		return null;
+	}
+
+	@Override
+	public boolean updatePost(PostVO post, MemberVO user) {
+		if(post == null || user == null) {
+			return false;
+		}
+		if(!checkWriter(post.getPo_num(), user)) {
+			return false;
+		}
+		if(post.getPo_title() == null || post.getPo_title().trim().length() == 0) {
+			return false;
+		}
+		if(post.getPo_content() == null || post.getPo_content().trim().length() == 0) {
+			return false;
+		}
+		return postDao.updatePost(post);
+	}
+	//게시글 작성자인지 아닌지 확인하는 메소드
+	private boolean checkWriter(int po_num, MemberVO user) {
+		//회원이 null이면 false을 반환
+		if(user == null) {
+			return false;
+		}
+		//게시글 번호에 맞는 게시글을 가져옴
+		PostVO post = postDao.selectPost(po_num);
+		//게시글이 null이면 false을 반환
+		if(post == null) {
+			return false;
+		}
+		//게시글의 작성와 회원 아이디가 같으면 true을 반환
+		if(post.getPo_me_id().equals(user.getMe_id())) {
+			return true;
+		}
+		//아니면 null을 반환
+		return false;
 	}
 
 }

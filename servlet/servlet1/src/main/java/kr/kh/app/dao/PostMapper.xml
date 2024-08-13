@@ -11,7 +11,13 @@
 		select * from community where co_num = #{co_num}
 	</select>
 	<select id="selectPostList" resultType="PostVO">
-		select * from post where po_co_num = #{cri.co_num}
+		select post.*, 
+		    count(if(re_state=1, re_state, null)) po_up,
+		    count(if(re_state=-1, re_state, null)) po_down 
+		from post 
+		LEFT JOIN
+		    recommend ON po_num = re_po_num
+		where po_co_num = #{cri.co_num}
 		<if test="cri.type == 'all'">
 		and (po_title like concat('%', #{cri.search},'%') or po_me_id = #{cri.search})
 		</if>
@@ -21,6 +27,7 @@
 		<if test="cri.type == 'id'">
 		and po_me_id = #{cri.search}
 		</if>
+		GROUP BY po_num 
 		order by po_num desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>

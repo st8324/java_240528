@@ -51,7 +51,20 @@
 					</td>
 					<td>${post.po_me_id}</td>
 					<td><fmt:formatDate value="${post.po_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td>0</td>
+					<td>
+					<c:choose>
+						<c:when test="${post.po_up eq 0 && post.po_down eq 0 }">0</c:when>
+						<c:otherwise>
+							${post.po_up }/
+							<c:choose>
+								<c:when test="${post.po_down == 0}">0</c:when>
+								<c:otherwise>-${post.po_down}</c:otherwise>
+							</c:choose>
+							
+						</c:otherwise>
+					</c:choose>
+					
+					</td>
 					<td>${post.po_view }</td>
 				</tr>
 			</c:forEach>

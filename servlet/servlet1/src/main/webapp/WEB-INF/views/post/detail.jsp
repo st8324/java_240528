@@ -31,10 +31,10 @@
 	</div>
 	<div class="text-center">
 		
-		<a  href="<c:url value="/post/recommend?state=1&num=${post.po_num}"/>" 
-			class="btn btn<c:if test="${re.re_state ne 1}">-outline</c:if>-danger">추천(${post.po_up })</a>
-		<a  href="<c:url value="/post/recommend?state=-1&num=${post.po_num}"/>" 
-			class="btn btn<c:if test="${re.re_state ne -1}">-outline</c:if>-danger">비추천(${post.po_down })</a>
+		<a  href="#" data-state="1"
+			class="btn-up btn btn<c:if test="${re.re_state ne 1}">-outline</c:if>-danger">추천(<span>${post.po_up }</span>)</a>
+		<a  href="#" data-state="-1"
+			class="btn-down btn btn<c:if test="${re.re_state ne -1}">-outline</c:if>-danger">비추천(<span>${post.po_down }</span>)</a>
 	</div>
 	<div class="form-group">
 		<label for="content">내용:</label>
@@ -46,5 +46,50 @@
 		<a href="<c:url value="/post/delete?po_num=${post.po_num }"/>" class="btn btn-outline-danger">삭제</a>
 	</c:if>
 </div>
+<script type="text/javascript">
+$('.btn-up, .btn-down').click(function(e){
+	e.preventDefault();
+	let state = $(this).data('state');
+	let num = '${post.po_num}';
+	$.ajax({
+		url : '<c:url value="/post/recommend"/>',
+		method : "get", //원하는 방식 선택
+		data : { //보낸 데이터를 객체로
+			state : state,
+			num : num
+		},
+		success : function(data){
+			let res = data.result;
+			if(res == 1){
+				alert('추천 했습니다.');
+			}else if(res == -1){
+				alert('비추천 했습니다.');
+			}else{
+				alert(`\${state == 1?'추천':'비추천'}을 취소했습니다.`);
+			}
+			checkRecommendBtns(res);
+			let post = JSON.parse(data.post);
+			$('.btn-up span').text(post.po_up);
+			$('.btn-down span').text(post.po_down);
+		}, 
+		error : function(xhr, status, error){
+			//xhr : XHLHttpRequest 객체, 요청과 관련된 정보를 제공
+			//status :HTTP 상태 코드, 요청이 실패한 원인
+			//error : 에러에 대한 추가 정보
+			console.log("error");
+		}
+	});
+});
+//해당 게시글의 추천/비추천에 따라 각 버튼의 색상을 채워주는 함수
+function checkRecommendBtns(state){
+	$('.btn-up, .btn-down').removeClass('btn-danger');
+	$('.btn-up, .btn-down').addClass('btn-outline-danger');
+	if(state != 0){
+		$(state==1?'.btn-up':'.btn-down').removeClass('btn-outline-danger');
+		$(state==1?'.btn-up':'.btn-down').addClass('btn-danger');
+	}
+
+}
+</script>
 </body>
 </html>

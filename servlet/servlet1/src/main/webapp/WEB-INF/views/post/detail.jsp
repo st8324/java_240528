@@ -118,7 +118,8 @@ function getCommentList(cri){
 		success : function(data){
 			let list = data.list;
 			displayCommentList(list);
-			console.log(data)
+			let pm = JSON.parse(data.pm);
+			displayPagination(pm);
 		}, 
 		error : function(xhr, status, error){
 			console.log("에러 발생");
@@ -126,6 +127,9 @@ function getCommentList(cri){
 		}
 	});
 	
+}
+function displayPagination(pm){
+	console.log(pm);
 }
 function displayCommentList(list){
 	var str = '';

@@ -2,6 +2,7 @@ package kr.kh.app.service;
 
 import java.util.List;
 
+import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
@@ -34,5 +35,9 @@ public interface PostService {
 	int insertRecommend(RecommendVO recommend);
 
 	RecommendVO getRecommend(int num, MemberVO user);
+
+	List<CommentVO> getCommentList(Criteria cri);
+
+	PageMaker getCommentPageMaker(Criteria cri);
 
 }

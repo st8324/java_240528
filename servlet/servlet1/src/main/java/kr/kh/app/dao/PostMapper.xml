@@ -83,4 +83,12 @@
 		insert into recommend(re_me_id, re_po_num, re_state)
 		values(#{re.re_me_id},#{re.re_po_num},#{re.re_state})
 	</insert>
+	<select id="selectCommentList" resultType="CommentVO">
+		select * from comment where cm_po_num = #{cri.po_num}
+		order by cm_ori_num desc, cm_num asc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectCommentTotalCount" resultType="int">
+		select count(*) from comment where cm_po_num = #{cri.po_num}
+	</select>
 </mapper>

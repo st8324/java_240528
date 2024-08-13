@@ -40,6 +40,9 @@
 		<label for="content">내용:</label>
 		<div class="form-control" style="min-height: 400px">${post.po_content }</div>
 	</div>
+	<div>
+		<ul class="comment-list"></ul>
+	</div>
 	<a href="<c:url value="/post/list?co_num=${post.po_co_num }"/>" class="btn btn-outline-primary">목록</a>
 	<c:if test="${user ne null && post.po_me_id eq user.me_id}">
 		<a href="<c:url value="/post/update?po_num=${post.po_num }"/>" class="btn btn-outline-warning">수정</a>
@@ -47,6 +50,11 @@
 	</c:if>
 </div>
 <script type="text/javascript">
+var cri = {
+	num : '${post.po_num}',
+	page : 1
+}
+
 $('.btn-up, .btn-down').click(function(e){
 	e.preventDefault();
 	
@@ -99,6 +107,40 @@ function checkRecommendBtns(state){
 		$(state==1?'.btn-up':'.btn-down').addClass('btn-danger');
 	}
 
+}
+getCommentList(cri);
+function getCommentList(cri){
+	console.log(cri)
+	$.ajax({
+		url : '<c:url value="/comment/list"/>',
+		method : "post", 
+		data : cri,
+		success : function(data){
+			let list = data.list;
+			displayCommentList(list);
+			console.log(data)
+		}, 
+		error : function(xhr, status, error){
+			console.log("에러 발생");
+			console.log(xhr.responseText);
+		}
+	});
+	
+}
+function displayCommentList(list){
+	var str = '';
+	if(list.length == 0){
+		str = `<li>등록된 댓글이 없습니다.</li>`;
+		$('.comment-list').html(str);
+		return;
+	}
+	
+	for(co of list){
+		str += `
+		<li>\${co.cm_content}</li>
+		`;
+	}
+	$('.comment-list').html(str);
 }
 </script>
 </body>

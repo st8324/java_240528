@@ -16,6 +16,8 @@ public class PostVO {
 	private Date po_date; 
 	private int po_view;
 	private int po_report;
+	private int po_up;
+	private int po_down;
 
 	public PostVO(int co_num, String title, String content, String id) {
 		this.po_co_num = co_num;

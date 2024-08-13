@@ -41,7 +41,16 @@
 		values(#{post.po_co_num},#{post.po_me_id},#{post.po_title},#{post.po_content})
 	</insert>
 	<select id="selectPost" resultType="PostVO">
-		select * from post where po_num = #{po_num}
+		SELECT 
+		    post.*, 
+		    count(if(re_state=1, re_state, null)) po_up,
+		    count(if(re_state=-1, re_state, null)) po_down
+		FROM
+		    post
+		        LEFT JOIN
+		    recommend ON po_num = re_po_num
+		WHERE po_num = #{po_num}
+		GROUP BY po_num 
 	</select>
 	<update id="updatePostView">
 		update post set po_view = po_view + 1 where po_num = #{po_num}
@@ -57,4 +66,14 @@
 	<delete id="deletePost">
 		delete from post where po_num = #{po_num}
 	</delete>
+	<select id="selectRecommend" resultType="RecommendVO">
+		select * from recommend where re_me_id = #{re.re_me_id} and re_po_num = #{re.re_po_num}
+	</select>
+	<delete id="deleteRecommend">
+		delete from recommend where re_num = #{re_num}
+	</delete>
+	<insert id="insertRecommend">
+		insert into recommend(re_me_id, re_po_num, re_state)
+		values(#{re.re_me_id},#{re.re_po_num},#{re.re_state})
+	</insert>
 </mapper>

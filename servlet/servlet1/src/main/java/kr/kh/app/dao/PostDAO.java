@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.PostVO;
+import kr.kh.app.model.vo.RecommendVO;
 import kr.kh.app.pagination.Criteria;
 
 public interface PostDAO {
@@ -27,5 +28,11 @@ public interface PostDAO {
 	boolean updatePost(@Param("post")PostVO post);
 
 	boolean deletePost(@Param("po_num")int poNum);
+
+	RecommendVO selectRecommend(@Param("re")RecommendVO recommend);
+
+	void deleteRecommend(@Param("re_num")int re_num);
+
+	void insertRecommend(@Param("re")RecommendVO recommend);
 
 }

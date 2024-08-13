@@ -29,6 +29,13 @@
 		<label for="title">조회수:</label>
 		<input type="text" class="form-control" value="${post.po_view}">
 	</div>
+	<div class="text-center">
+		
+		<a  href="<c:url value="/post/recommend?state=1&num=${post.po_num}"/>" 
+			class="btn btn<c:if test="${re.re_state ne 1}">-outline</c:if>-danger">추천(${post.po_up })</a>
+		<a  href="<c:url value="/post/recommend?state=-1&num=${post.po_num}"/>" 
+			class="btn btn<c:if test="${re.re_state ne -1}">-outline</c:if>-danger">비추천(${post.po_down })</a>
+	</div>
 	<div class="form-group">
 		<label for="content">내용:</label>
 		<div class="form-control" style="min-height: 400px">${post.po_content }</div>

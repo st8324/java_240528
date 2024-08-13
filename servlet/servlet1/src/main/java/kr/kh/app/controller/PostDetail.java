@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
+import kr.kh.app.model.vo.RecommendVO;
 import kr.kh.app.service.PostService;
 import kr.kh.app.service.PostServiceImp;
 
@@ -28,6 +30,11 @@ public class PostDetail extends HttpServlet {
 			PostVO post = postService.getPost(num);
 			//게시글을 화면에 전송
 			request.setAttribute("post", post);
+			
+			//로그인한 회원의 추천 정보를 가져옴
+			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+			RecommendVO recommend = postService.getRecommend(num, user);
+			request.setAttribute("re", recommend);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

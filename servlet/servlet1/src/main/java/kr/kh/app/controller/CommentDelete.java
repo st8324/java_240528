@@ -10,36 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.service.PostService;
 import kr.kh.app.service.PostServiceImp;
 
 
-@WebServlet("/comment/insert")
-public class CommentInsert extends HttpServlet {
+@WebServlet("/comment/delete")
+public class CommentDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private PostService postService = new PostServiceImp();   
+    private PostService postService = new PostServiceImp();
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//게시글 번호, 댓글 내용, 댓글 원래 번호
-		String po_num = request.getParameter("cm_po_num");
-		String cm_content = request.getParameter("cm_content");
-		String ori_num = request.getParameter("cm_ori_num");
+		//화면에서 보내준 댓글 번호를 가져옴
+		String num = request.getParameter("co_num");
 		JSONObject jobj = new JSONObject();
 		try {
-			int cm_po_num = Integer.parseInt(po_num);
-			int cm_ori_num = Integer.parseInt(ori_num);
-			
-			//회원 정보 가져옴
+			int co_num = Integer.parseInt(num);
+			//회원 정보를 가져옴
 			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-			String cm_me_id = user.getMe_id();
-			
-			CommentVO comment = new CommentVO(cm_po_num, cm_ori_num, cm_content, cm_me_id);
-			boolean res = postService.insertComment(comment);
+			boolean res = postService.deleteComment(co_num, user);
 			jobj.put("result", res);
 		}catch(Exception e) {
-			e.printStackTrace();
+			
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(jobj);

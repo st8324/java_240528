@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 등록</title>
+<title>게시글 상세</title>
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 <style type="text/css">
 .comment-list{
@@ -87,13 +87,8 @@ getCommentList(cri);
 $('.btn-up, .btn-down').click(function(e){
 	e.preventDefault();
 	
-	if('${user.me_id}' == ''){
-		if(confirm('로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?')){
-			location.href = '<c:url value="/login"/>';
-			return;
-		}else{
-			return;
-		}
+	if(!checkLogin()){
+		return;
 	}
 	
 	let state = $(this).data('state');
@@ -139,11 +134,20 @@ $(document).on('click', ".pagination .page-item", function(){
 
 $('.btn-comment-insert').click(function(){
 	//로그인 안한 비회원을 위한 안내 작업
-	
+	if(!checkLogin()){
+		return;
+	}
 	//댓글, 댓글 번호
 	let content = $('.input-comment-insert').val();
 	let cm_ori_num = 0;
 	let po_num = '${post.po_num}';
+	
+	//내용이 비어있거나 공백으로 되어 있는 경우
+	if(content.trim() == ''){
+		alert('댓글을 입력하세요');
+		$('.input-comment-insert').focus();
+		return;
+	}
 	
 	let obj = { 
 		cm_content : content,
@@ -155,7 +159,7 @@ $('.btn-comment-insert').click(function(){
 		method : "post",
 		data : obj,
 		success : function(data){
-			console.log(data);
+			
 			if(data.result){
 				alert('댓글을 등록했습니다.');
 				cri.page = 1;
@@ -172,7 +176,32 @@ $('.btn-comment-insert').click(function(){
 		}
 	});
 });
-
+$(document).on('click','.btn-comment-delete', function(){
+	let co_num = $(this).data('num');
+	let obj = {
+		co_num : co_num
+	}
+	$.ajax({
+		url : '<c:url value="/comment/delete"/>',
+		method : "post",
+		data : obj,
+		success : function(data){
+			if(data.result){
+				alert('댓글을 삭제했습니다.');
+				cri.page = 1;
+				getCommentList(cri);
+			}
+			else{
+				alert('댓글을 삭제하지 못했습니다.');
+			}
+			
+		}, 
+		error : function(xhr, status, error){
+			console.log("error");
+			console.log(xhr);
+		}
+	});
+})
 
 
 
@@ -188,7 +217,7 @@ function checkRecommendBtns(state){
 }
 
 function getCommentList(cri){
-	console.log(cri)
+
 	$.ajax({
 		url : '<c:url value="/comment/list"/>',
 		method : "post", 
@@ -245,11 +274,18 @@ function displayCommentList(list){
 	}
 	
 	for(co of list){
+		var delBtn = '';
+		if(co.cm_me_id == '${user.me_id}'){
+			delBtn += `<a href="javascript:void(0);" class="btn-comment-delete" data-num="\${co.cm_num}">X</a>`;
+		}
 		//댓글이면
 		if(co.cm_num == co.cm_ori_num){
 			str += `
 				<li class="comment-item">
-					<div>\${co.cm_me_id}(\${co.cm_date})</div>
+					<div>
+						<span>\${co.cm_me_id}(\${co.cm_date})</span>
+						\${delBtn}
+					</div>
 					<div>\${co.cm_content}</div>
 				</li>
 			`;
@@ -258,7 +294,10 @@ function displayCommentList(list){
 		else{
 			str += `
 				<li class="comment-item reply">
-					<div>\${co.cm_me_id}(\${co.cm_date})</div>
+					<div>
+						<span>\${co.cm_me_id}(\${co.cm_date})</span>
+						\${delBtn}
+					</div>
 					<div>\${co.cm_content}</div>
 				</li>
 			`;
@@ -266,6 +305,17 @@ function displayCommentList(list){
 		
 	}
 	$('.comment-list').html(str);
+}
+function checkLogin(){
+	if('${user.me_id}' == ''){
+		if(confirm('로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?')){
+			location.href = '<c:url value="/login"/>';
+			return false;
+		}else{
+			return false;
+		}
+	}
+	return true;
 }
 </script>
 </body>

@@ -42,4 +42,6 @@ public interface PostService {
 
 	boolean insertComment(CommentVO comment);
 
+	boolean deleteComment(int co_num, MemberVO user);
+
 }

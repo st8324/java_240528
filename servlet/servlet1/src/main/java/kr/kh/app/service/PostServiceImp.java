@@ -237,4 +237,21 @@ public class PostServiceImp implements PostService {
 		return postDao.deleteComment(co_num);
 	}
 
+	@Override
+	public boolean updateComment(CommentVO comment, MemberVO user) {
+		if(user == null || comment == null) {
+			return false;
+		}
+		//작성자가 맞는지 확인
+		CommentVO dbComment = postDao.selectComment(comment.getCm_num());
+		if(dbComment == null) {
+			return false;
+		}
+		if(!dbComment.getCm_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		//맞으면 삭제 요청
+		return postDao.updateComment(comment);
+	}
+
 }

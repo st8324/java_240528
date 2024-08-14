@@ -53,4 +53,8 @@ public class CommentVO {
 		this.cm_content = cm_content;
 		this.cm_me_id = cm_me_id;
 	}
+	public CommentVO(int cm_num, String cm_content) {
+		this.cm_num = cm_num;
+		this.cm_content = cm_content;
+	}
 }

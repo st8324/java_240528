@@ -203,7 +203,51 @@ $(document).on('click','.btn-comment-delete', function(){
 	});
 })
 
+$(document).on('click','.btn-comment-update', function(){
+	$('.comment-update-box').remove();
+	let cm_num = $(this).data('num');
+	let cm_content = $(this).parent().next().text()
+	//수정 입력창과 수정 완료 버튼을 추가
+	var str = `
+	<div class="comment-update-box">
+		<textarea class="col-12 input-comment-update">\${cm_content}</textarea>
+		<button class="btn btn-outline-success btn-comment-update-complete" data-num="\${cm_num}">수정 완료</button>
+	</div>
+	`
+	$('.comment-insert-box').after(str);
+	//댓글 등록 입력창과 등록 버튼을 감춤
+	$('.comment-insert-box').hide();
+})
 
+$(document).on('click','.btn-comment-update-complete', function(){
+	let cm_num = $(this).data('num');
+	let cm_content = $('.input-comment-update').val();
+	let obj = {
+		cm_num	: cm_num,
+		cm_content : cm_content
+	}
+	$.ajax({
+		url : '<c:url value="/comment/update"/>',
+		method : "post",
+		data : obj,
+		success : function(data){
+			if(data.result){
+				alert('댓글을 수정했습니다.');
+				getCommentList(cri);
+			}
+			else{
+				alert('댓글을 수정하지 못했습니다.');
+			}
+			$('.comment-insert-box').show();
+			$('.comment-update-box').remove();
+		}, 
+		error : function(xhr, status, error){
+			console.log("error");
+			console.log(xhr);
+		}
+	});
+	
+});
 
 //해당 게시글의 추천/비추천에 따라 각 버튼의 색상을 채워주는 함수
 function checkRecommendBtns(state){
@@ -274,19 +318,22 @@ function displayCommentList(list){
 	}
 	
 	for(co of list){
-		var delBtn = '';
+		var btns = '';
+		
 		if(co.cm_me_id == '${user.me_id}'){
-			delBtn += `<a href="javascript:void(0);" class="btn-comment-delete" data-num="\${co.cm_num}">X</a>`;
+			btns += `<a href="javascript:void(0);" class="btn-comment-delete" data-num="\${co.cm_num}">X</a>`;
+			btns += `<a href="javascript:void(0);" class="btn-comment-update" data-num="\${co.cm_num}">수정</a>`;
 		}
+		
 		//댓글이면
 		if(co.cm_num == co.cm_ori_num){
 			str += `
 				<li class="comment-item">
 					<div>
 						<span>\${co.cm_me_id}(\${co.cm_date})</span>
-						\${delBtn}
+						\${btns}
 					</div>
-					<div>\${co.cm_content}</div>
+					<div class="cm_content">\${co.cm_content}</div>
 				</li>
 			`;
 		}
@@ -296,9 +343,9 @@ function displayCommentList(list){
 				<li class="comment-item reply">
 					<div>
 						<span>\${co.cm_me_id}(\${co.cm_date})</span>
-						\${delBtn}
+						\${btns}
 					</div>
-					<div>\${co.cm_content}</div>
+					<div class="cm_content">\${co.cm_content}</div>
 				</li>
 			`;
 		}

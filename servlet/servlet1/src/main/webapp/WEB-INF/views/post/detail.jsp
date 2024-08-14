@@ -8,6 +8,17 @@
 <meta charset="UTF-8">
 <title>게시글 등록</title>
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
+<style type="text/css">
+.comment-list{
+	list-style: none; padding:0; 
+}
+.comment-list>.comment-item{
+	margin-bottom: 20px;
+}
+.comment-list>.comment-item.reply{
+	padding-left:50px;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -41,7 +52,17 @@
 		<div class="form-control" style="min-height: 400px">${post.po_content }</div>
 	</div>
 	<div>
-		<ul class="comment-list"></ul>
+		<ul class="comment-list2">
+			<li class="comment-item">
+				<div>작성자 아이디(시간)</div>
+				<div>댓글 내용</div>
+			</li>
+			<li class="comment-item reply">
+				<div>작성자 아이디(시간)</div>
+				<div>대댓글 내용</div>
+			</li>
+		</ul>
+		<div class="comment-pagination"></div>
 	</div>
 	<a href="<c:url value="/post/list?co_num=${post.po_co_num }"/>" class="btn btn-outline-primary">목록</a>
 	<c:if test="${user ne null && post.po_me_id eq user.me_id}">
@@ -129,7 +150,30 @@ function getCommentList(cri){
 	
 }
 function displayPagination(pm){
-	console.log(pm);
+	console.log(pm)
+	str = `
+	<ul class="pagination justify-content-center">`;
+	
+	str +=
+	    `<li class="page-item disabled">
+	    	<a class="page-link" href="javascript:void(0);">이전</a>
+	    </li>`;
+	
+	for(var i = pm.startPage; i<=pm.endPage; i++){
+		str +=		
+	    `<li class="page-item">
+	    	<a class="page-link" href="javascript:void(0);">1</a>
+	    </li>`;
+	}
+	
+	str +=		
+	    `<li class="page-item">
+	    	<a class="page-link" href="javascript:void(0);">다음</a>
+	    </li>`;
+	
+  	str += 
+  	`</ul>`;
+	$('.comment-pagination').html(str);
 }
 function displayCommentList(list){
 	var str = '';
@@ -140,9 +184,25 @@ function displayCommentList(list){
 	}
 	
 	for(co of list){
-		str += `
-		<li>\${co.cm_content}</li>
-		`;
+		//댓글이면
+		if(co.cm_num == co.cm_ori_num){
+			str += `
+				<li class="comment-item">
+					<div>\${co.cm_me_id}(\${co.cm_date})</div>
+					<div>\${co.cm_content}</div>
+				</li>
+			`;
+		}
+		//대댓이면
+		else{
+			str += `
+				<li class="comment-item reply">
+					<div>\${co.cm_me_id}(\${co.cm_date})</div>
+					<div>\${co.cm_content}</div>
+				</li>
+			`;
+		}
+		
 	}
 	$('.comment-list').html(str);
 }

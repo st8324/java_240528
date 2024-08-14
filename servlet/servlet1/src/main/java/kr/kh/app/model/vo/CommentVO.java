@@ -47,4 +47,10 @@ public class CommentVO {
 		//년, 월, 일 모두 같으면
 		return true;
 	}
+	public CommentVO(int cm_po_num, int cm_ori_num, String cm_content, String cm_me_id) {
+		this.cm_po_num = cm_po_num;
+		this.cm_ori_num = cm_ori_num;
+		this.cm_content = cm_content;
+		this.cm_me_id = cm_me_id;
+	}
 }

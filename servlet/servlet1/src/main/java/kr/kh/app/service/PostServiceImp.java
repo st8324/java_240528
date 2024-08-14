@@ -209,4 +209,15 @@ public class PostServiceImp implements PostService {
 		return new PageMaker(totalCount, 2, cri);
 	}
 
+	@Override
+	public boolean insertComment(CommentVO comment) {
+		if(comment == null) {
+			return false;
+		}
+		if(comment.getCm_content()== null || comment.getCm_content().trim().length() == 0) {
+			return false;
+		}
+		return postDao.insertComment(comment);
+	}
+
 }

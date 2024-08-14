@@ -41,4 +41,6 @@ public interface PostDAO {
 
 	int selectCommentTotalCount(@Param("cri")Criteria cri);
 
+	boolean insertComment(@Param("cm")CommentVO comment);
+
 }

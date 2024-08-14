@@ -40,4 +40,6 @@ public interface PostService {
 
 	PageMaker getCommentPageMaker(Criteria cri);
 
+	boolean insertComment(CommentVO comment);
+
 }

@@ -65,6 +65,10 @@
 			</li>
 		</ul>
 		<div class="comment-pagination"></div>
+		<div class="comment-insert-box">
+			<textarea class="col-12 input-comment-insert"></textarea>
+			<button class="btn btn-outline-success btn-comment-insert">등록</button>
+		</div>
 	</div>
 	<a href="<c:url value="/post/list?co_num=${post.po_co_num }"/>" class="btn btn-outline-primary">목록</a>
 	<c:if test="${user ne null && post.po_me_id eq user.me_id}">
@@ -133,6 +137,41 @@ $(document).on('click', ".pagination .page-item", function(){
 	getCommentList(cri);
 });
 
+$('.btn-comment-insert').click(function(){
+	//로그인 안한 비회원을 위한 안내 작업
+	
+	//댓글, 댓글 번호
+	let content = $('.input-comment-insert').val();
+	let cm_ori_num = 0;
+	let po_num = '${post.po_num}';
+	
+	let obj = { 
+		cm_content : content,
+		cm_ori_num : cm_ori_num,
+		cm_po_num : po_num
+	};
+	$.ajax({
+		url : '<c:url value="/comment/insert"/>',
+		method : "post",
+		data : obj,
+		success : function(data){
+			console.log(data);
+			if(data.result){
+				alert('댓글을 등록했습니다.');
+				cri.page = 1;
+				getCommentList(cri);
+			}
+			else{
+				alert('댓글을 등록하지 못했습니다.');
+			}
+			$('.input-comment-insert').val('');
+		}, 
+		error : function(xhr, status, error){
+			console.log("error");
+			console.log(xhr);
+		}
+	});
+});
 
 
 

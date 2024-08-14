@@ -51,8 +51,10 @@
 		<label for="content">내용:</label>
 		<div class="form-control" style="min-height: 400px">${post.po_content }</div>
 	</div>
+	<hr>
 	<div>
-		<ul class="comment-list2">
+		<h3>댓글 목록</h3>
+		<ul class="comment-list">
 			<li class="comment-item">
 				<div>작성자 아이디(시간)</div>
 				<div>댓글 내용</div>
@@ -76,6 +78,8 @@ var cri = {
 	page : 1
 }
 
+getCommentList(cri);
+//추천/비추천 버튼 클릭 이벤트
 $('.btn-up, .btn-down').click(function(e){
 	e.preventDefault();
 	
@@ -119,6 +123,20 @@ $('.btn-up, .btn-down').click(function(e){
 		}
 	});
 });
+//댓글 페이지네이션 클릭 이벤트
+$(document).on('click', ".pagination .page-item", function(){
+	if($(this).hasClass('disabled')){
+		return;
+	}
+	let page = $(this).data('page');
+	cri.page = page;
+	getCommentList(cri);
+});
+
+
+
+
+
 //해당 게시글의 추천/비추천에 따라 각 버튼의 색상을 채워주는 함수
 function checkRecommendBtns(state){
 	$('.btn-up, .btn-down').removeClass('btn-danger');
@@ -129,7 +147,7 @@ function checkRecommendBtns(state){
 	}
 
 }
-getCommentList(cri);
+
 function getCommentList(cri){
 	console.log(cri)
 	$.ajax({
@@ -150,24 +168,28 @@ function getCommentList(cri){
 	
 }
 function displayPagination(pm){
-	console.log(pm)
+	if(pm.totalCount == 0){
+		return;
+	}
 	str = `
 	<ul class="pagination justify-content-center">`;
-	
+	var disabled = pm.prev ? '' : 'disabled'
 	str +=
-	    `<li class="page-item disabled">
+	    `<li class="page-item \${disabled}" data-page="\${pm.startPage-1}">
 	    	<a class="page-link" href="javascript:void(0);">이전</a>
 	    </li>`;
 	
 	for(var i = pm.startPage; i<=pm.endPage; i++){
+		var active = pm.cri.page == i ? 'active' : '';
+
 		str +=		
-	    `<li class="page-item">
-	    	<a class="page-link" href="javascript:void(0);">1</a>
+	    `<li class="page-item \${active}"  data-page="\${i}">
+	    	<a class="page-link" href="javascript:void(0);">\${i}</a>
 	    </li>`;
 	}
-	
+	var disabled = pm.next ? '' : 'disabled'
 	str +=		
-	    `<li class="page-item">
+	    `<li class="page-item  \${disabled}"  data-page="\${pm.endPage+1}">
 	    	<a class="page-link" href="javascript:void(0);">다음</a>
 	    </li>`;
 	

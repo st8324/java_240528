@@ -32,7 +32,7 @@ public interface PostService {
 
 	PostVO getPost(int po_num, MemberVO user);
 
-	boolean updatePost(PostVO post, MemberVO user);
+	boolean updatePost(PostVO post, MemberVO user, List<Part> fileList, String[] numStr);
 
 	boolean deletePost(String po_num, MemberVO user);
 

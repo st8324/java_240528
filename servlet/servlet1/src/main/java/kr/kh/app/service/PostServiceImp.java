@@ -144,7 +144,7 @@ public class PostServiceImp implements PostService {
 	}
 
 	@Override
-	public boolean updatePost(PostVO post, MemberVO user) {
+	public boolean updatePost(PostVO post, MemberVO user, List<Part> fileList, String[] numStr) {
 		if(post == null || user == null) {
 			return false;
 		}
@@ -157,8 +157,38 @@ public class PostServiceImp implements PostService {
 		if(post.getPo_content() == null || post.getPo_content().trim().length() == 0) {
 			return false;
 		}
-		return postDao.updatePost(post);
+		boolean res = postDao.updatePost(post);
+		
+		if(!res) {
+			return false;
+		}
+		
+		//새 첨부파일 추가
+		for(Part file : fileList) {
+			uploadFile(post.getPo_num(), file);
+		}
+		
+		//기존 첨부파일 삭제
+		for(String num : numStr) {
+			try {
+				int fi_num = Integer.parseInt(num);
+				deleteFile(fi_num);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
 	}
+	private void deleteFile(int fi_num) {
+		
+		//첨부파일 정보를 가져옴
+		FileVO file = postDao.selectFile(fi_num);
+		//서버에서 삭제
+		deleteFile(file);
+		//DB에서 삭제
+		postDao.deleteFile(fi_num);
+	}
+
 	//게시글 작성자인지 아닌지 확인하는 메소드
 	private boolean checkWriter(int po_num, MemberVO user) {
 		//회원이 null이면 false을 반환

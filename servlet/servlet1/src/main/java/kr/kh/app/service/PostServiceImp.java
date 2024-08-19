@@ -288,4 +288,10 @@ public class PostServiceImp implements PostService {
 		return postDao.updateComment(comment);
 	}
 
+	@Override
+	public List<FileVO> getFileList(int num) {
+		
+		return postDao.selectFileList(num);
+	}
+
 }

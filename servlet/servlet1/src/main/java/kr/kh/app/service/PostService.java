@@ -7,6 +7,7 @@ import javax.servlet.http.Part;
 
 import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.model.vo.RecommendVO;
@@ -48,5 +49,7 @@ public interface PostService {
 	boolean deleteComment(int co_num, MemberVO user);
 
 	boolean updateComment(CommentVO comment, MemberVO user);
+
+	List<FileVO> getFileList(int num);
 
 }

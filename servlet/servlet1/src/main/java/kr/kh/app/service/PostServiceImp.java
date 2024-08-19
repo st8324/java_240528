@@ -1,5 +1,6 @@
 package kr.kh.app.service;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -185,11 +186,32 @@ public class PostServiceImp implements PostService {
 			if(!checkWriter(poNum, user)) {
 				return false;
 			}
+			
+			//게시글 삭제 전 첨부파일 삭제
+			List<FileVO> fileList = postDao.selectFileList(poNum);
+			
+			for(FileVO file : fileList) {
+				deleteFile(file);
+			}
+			
+			//게시글 삭제
 			return postDao.deletePost(poNum);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	private void deleteFile(FileVO file) {
+		if(file == null) {
+			return;
+		}
+		File realFile = new File(uploadPath + file.getFi_name().replace('/', File.separatorChar));
+		
+		if(realFile.exists()) {
+			realFile.delete();
+		}
+		
 	}
 
 	@Override

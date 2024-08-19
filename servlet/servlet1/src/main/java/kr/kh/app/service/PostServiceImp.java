@@ -11,10 +11,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.dao.PostDAO;
 import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.model.vo.RecommendVO;
@@ -25,6 +25,8 @@ import kr.kh.app.utils.FileUploadUtils;
 public class PostServiceImp implements PostService {
 
 	private PostDAO postDao;
+	
+	private String uploadPath = "D:\\uploads";
 	
 	public PostServiceImp() {
 		String resource = "kr/kh/app/config/mybatis-config.xml";
@@ -87,7 +89,7 @@ public class PostServiceImp implements PostService {
 		if(files == null || files.size() == 0) {
 			return true;
 		}
-		System.out.println(post);
+
 		//첨부파일을 추가
 		for(Part file : files) {
 			uploadFile(post.getPo_num(), file);
@@ -104,7 +106,10 @@ public class PostServiceImp implements PostService {
 		if(fileName == null || fileName.trim().length() == 0) {
 			return;
 		}
-		
+		//첨부파일을 업로드 하고 업로드된 경로와 파일명을 가져옴
+		String uploadFileName = FileUploadUtils.upload(uploadPath, file);
+		FileVO fileVO = new FileVO(po_num, fileName, uploadFileName);
+		postDao.insertFile(fileVO);
 	}
 
 	@Override

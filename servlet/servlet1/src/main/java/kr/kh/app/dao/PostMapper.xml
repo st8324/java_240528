@@ -122,4 +122,8 @@
 		where 
 			cm_num = #{cm.cm_num}
 	</update>
+	<insert id="insertFile">
+		insert into file(fi_po_num, fi_name, fi_ori_name)
+		values(#{file.fi_po_num},#{file.fi_name},#{file.fi_ori_name})
+	</insert>
 </mapper>

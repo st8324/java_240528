@@ -135,4 +135,8 @@
 	<delete id="deleteFile">
 		delete from file where fi_num = #{fi_num}
 	</delete>
+	
+	<insert id="insertCommunity">
+		insert into community(co_name) values(#{co_name})
+	</insert>
 </mapper>

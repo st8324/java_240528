@@ -93,7 +93,9 @@ public class PostServiceImp implements PostService {
 
 		//첨부파일을 추가
 		for(Part file : files) {
-			uploadFile(post.getPo_num(), file);
+			if("fileList".equals(file.getName())) {
+				uploadFile(post.getPo_num(), file);
+			}
 		}
 		return true;
 	}
@@ -165,7 +167,9 @@ public class PostServiceImp implements PostService {
 		
 		//새 첨부파일 추가
 		for(Part file : fileList) {
-			uploadFile(post.getPo_num(), file);
+			if("fileList".equals(file.getName())) {
+				uploadFile(post.getPo_num(), file);
+			}
 		}
 		
 		//기존 첨부파일 삭제

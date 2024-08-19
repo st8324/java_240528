@@ -58,4 +58,6 @@ public interface PostDAO {
 
 	void deleteFile(@Param("fi_num")int fi_num);
 
+	boolean insertCommunity(@Param("co_name")String co_name);
+
 }

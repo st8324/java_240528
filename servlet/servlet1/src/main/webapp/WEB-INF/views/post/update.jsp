@@ -37,7 +37,7 @@
 					</div>
 				</c:forEach>
 				<c:forEach begin="1" end="${3 - fileList.size() }">
-					<input type="file" class="form-control" name="files">
+					<input type="file" class="form-control" name="fileList">
 				</c:forEach>
 			</c:if>
 		</div>
@@ -52,7 +52,7 @@
 		height: 400
 	});
 	$('.btn-del').click(function(){
-		var inputFile = `<input type="file" class="form-control" name="files">`;
+		var inputFile = `<input type="file" class="form-control" name="fileList">`;
 		var fi_num = $(this).data('num');
 		var inputHidden = `<input type="hidden" name="fi_num" value="\${fi_num}">`;
 		

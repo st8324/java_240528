@@ -26,9 +26,9 @@
 		</div>
 		<div class="form-group">
 			<label>첨부파일(최대 3개)</label>
-			<input type="file" class="form-control" name="files">
-			<input type="file" class="form-control" name="files">
-			<input type="file" class="form-control" name="files">
+			<input type="file" class="form-control" name="fileList">
+			<input type="file" class="form-control" name="fileList">
+			<input type="file" class="form-control" name="fileList">
 		</div>
 		<button type="submit" class="btn btn-outline-success col-12">등록</button>
 		<input type="hidden" name="co_num" value="${co_num}">

@@ -15,7 +15,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="container">
 	<h1>게시글 등록</h1>
-	<form action="<c:url value="/post/insert"/>" method="post">
+	<form action="<c:url value="/post/insert"/>" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="title">제목:</label>
 			<input type="text" class="form-control" id="title" name="title">
@@ -23,6 +23,12 @@
 		<div class="form-group">
 			<label for="content">내용:</label>
 			<textarea class="form-control" id="content" name="content"></textarea>
+		</div>
+		<div class="form-group">
+			<label>첨부파일(최대 3개)</label>
+			<input type="file" class="form-control" name="files">
+			<input type="file" class="form-control" name="files">
+			<input type="file" class="form-control" name="files">
 		</div>
 		<button type="submit" class="btn btn-outline-success col-12">등록</button>
 		<input type="hidden" name="co_num" value="${co_num}">

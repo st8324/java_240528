@@ -1,6 +1,9 @@
 package kr.kh.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.Part;
 
 import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
@@ -20,7 +23,7 @@ public interface PostService {
 
 	PageMaker getPageMaker(Criteria cri, int displayPageNum);
 
-	boolean insertPost(PostVO post);
+	boolean insertPost(PostVO post, ArrayList<Part> files);
 
 	PostVO getPost(int num);
 

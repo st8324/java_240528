@@ -1,7 +1,10 @@
 package kr.kh.app.service;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.Part;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +20,7 @@ import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.model.vo.RecommendVO;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.pagination.PageMaker;
+import kr.kh.app.utils.FileUploadUtils;
 
 public class PostServiceImp implements PostService {
 
@@ -65,7 +69,7 @@ public class PostServiceImp implements PostService {
 	}
 
 	@Override
-	public boolean insertPost(PostVO post) {
+	public boolean insertPost(PostVO post, ArrayList<Part> files) {
 		if(post == null) {
 			return false;
 		}
@@ -75,7 +79,32 @@ public class PostServiceImp implements PostService {
 		if(post.getPo_content() == null || post.getPo_content().trim().length() == 0) {
 			return false;
 		}
-		return postDao.insertPost(post);
+		boolean res =  postDao.insertPost(post);
+		//게시글이 등록되지 않으면 첨부파일을 추가하지 않음
+		if(!res) {
+			return false;
+		}
+		if(files == null || files.size() == 0) {
+			return true;
+		}
+		System.out.println(post);
+		//첨부파일을 추가
+		for(Part file : files) {
+			uploadFile(post.getPo_num(), file);
+		}
+		return true;
+	}
+
+	private void uploadFile(int po_num, Part file) {
+		if(file == null) {
+			return;
+		}
+		
+		String fileName = FileUploadUtils.getFileName(file);
+		if(fileName == null || fileName.trim().length() == 0) {
+			return;
+		}
+		
 	}
 
 	@Override

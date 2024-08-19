@@ -43,7 +43,7 @@
 		and po_me_id = #{cri.search}
 		</if>
 	</select>
-	<insert id="insertPost">
+	<insert id="insertPost" useGeneratedKeys="true" keyProperty="post.po_num">
 		insert into post(po_co_num, po_me_id, po_title, po_content)
 		values(#{post.po_co_num},#{post.po_me_id},#{post.po_title},#{post.po_content})
 	</insert>

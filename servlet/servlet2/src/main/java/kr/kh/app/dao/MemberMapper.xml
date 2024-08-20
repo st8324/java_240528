@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kh.app.dao.MemberDAO">
+
+	<insert id="insertMember">
+		insert into member(me_id, me_pw, me_email, me_ms_name)
+		values(#{m.me_id},#{m.me_pw},#{m.me_email},'사용')
+	</insert>
+</mapper>

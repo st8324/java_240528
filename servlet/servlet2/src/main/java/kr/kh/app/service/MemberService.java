@@ -6,4 +6,6 @@ public interface MemberService {
 
 	boolean signup(MemberVO member);
 
+	boolean checkId(String me_id);
+
 }

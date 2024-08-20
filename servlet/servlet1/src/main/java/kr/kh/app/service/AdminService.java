@@ -8,4 +8,6 @@ public interface AdminService {
 
 	boolean deleteCommunity(int co_num, MemberVO user);
 
+	boolean updateCommunity(int co_num, String co_name, MemberVO user);
+
 }

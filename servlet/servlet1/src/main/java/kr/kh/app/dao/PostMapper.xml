@@ -142,4 +142,7 @@
 	<delete id="deleteCommunity">
 		delete from community where co_num = #{co_num}
 	</delete>
+	<update id="updateCommunity">
+		update community set co_name = #{co_name} where co_num = #{co_num}
+	</update>
 </mapper>

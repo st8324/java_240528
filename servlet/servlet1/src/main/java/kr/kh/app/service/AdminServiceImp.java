@@ -47,4 +47,12 @@ public class AdminServiceImp implements AdminService {
 		}
 		return postDao.deleteCommunity(co_num);
 	}
+
+	@Override
+	public boolean updateCommunity(int co_num, String co_name, MemberVO user) {
+		if(user == null || !user.getMe_authority().equals("ADMIN")) {
+			return false;
+		}
+		return postDao.updateCommunity(co_num, co_name);
+	}
 }

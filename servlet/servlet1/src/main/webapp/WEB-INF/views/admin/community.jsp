@@ -46,7 +46,7 @@
 		</c:forEach>
 	</ul>
 	<div>
-	<form class="input-group mb-3" action="<c:url value="/admin/community/insert"/>" method="post">
+	<form class="input-group mb-3" action="<c:url value="/admin/community/insert"/>" method="post" id="form_insert">
 		<input type="text" name="co_name" class="form-control">
 		<div class="input-group-append">
 			<button type="submit" class="btn btn-outline-success">등록</button>
@@ -60,6 +60,23 @@ $('.btn-del').click(function(e){
 		e.preventDefault();
 		return;
 	}
+});
+$('.btn-update').click(function(){
+	$('#form_update').remove();
+	var num = $(this).data('num');
+	var name = $(this).prev().text();
+	var str = `
+	<form class="input-group mb-3" action="<c:url value="/admin/community/update"/>" method="post" id="form_update">
+		<input type="text" name="co_name" class="form-control" value="\${name}">
+		<div class="input-group-append">
+			<button type="submit" class="btn btn-outline-success">수정</button>
+		</div>
+		<input type="hidden" name="co_num" value="\${num}">
+	</form>
+	`;
+	$('#form_insert').hide();
+	$('#form_insert').after(str);
+	
 });
 </script>
 </body>

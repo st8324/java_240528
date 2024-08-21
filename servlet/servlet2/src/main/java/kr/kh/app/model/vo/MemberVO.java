@@ -24,5 +24,5 @@ public class MemberVO {
 		this.me_pw = me_pw;
 		this.me_email = me_email;
 	}
-	
+
 }

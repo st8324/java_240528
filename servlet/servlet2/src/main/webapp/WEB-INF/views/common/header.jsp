@@ -13,13 +13,14 @@
 
   <!-- Links -->
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="<c:url value="/signup"/>">회원가입</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-
+  	<c:if test="${user == null}">
+	    <li class="nav-item">
+	      <a class="nav-link" href="<c:url value="/signup"/>">회원가입</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="<c:url value="/login"/>">로그인</a>
+	    </li>
+	</c:if>
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

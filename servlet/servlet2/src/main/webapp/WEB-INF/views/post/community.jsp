@@ -13,7 +13,14 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="container" style="min-height: calc(100vh - 240px)">
-${list }
+<h1 class="mt-3 mb-3">커뮤니티 목록</h1>
+<ul class="list-group">
+	<c:forEach items="${list}" var="co">
+		<li class="list-group-item">
+			<a href="<c:url value="/post/list?co_num=${co.co_num}"/>">${co.co_name}</a>
+		</li>
+	</c:forEach>
+</ul>
 </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

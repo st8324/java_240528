@@ -16,7 +16,15 @@
    	<li class="nav-item">
       <a class="nav-link" href="<c:url value="/community"/>">커뮤니티</a>
     </li>
-  	<c:if test="${user == null}">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        커뮤니티
+      </a>
+      <div class="dropdown-menu" id="community-list">
+      </div>
+    </li>
+  	
+    <c:if test="${user == null}">
 	    <li class="nav-item">
 	      <a class="nav-link" href="<c:url value="/signup"/>">회원가입</a>
 	    </li>
@@ -24,16 +32,6 @@
 	      <a class="nav-link" href="<c:url value="/login"/>">로그인</a>
 	    </li>
 	</c:if>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Dropdown link
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Link 1</a>
-        <a class="dropdown-item" href="#">Link 2</a>
-        <a class="dropdown-item" href="#">Link 3</a>
-      </div>
-    </li>
     <c:if test="${user != null }">
     	<li class="nav-item">
 	      <a class="nav-link" href="<c:url value="/logout"/>">로그아웃</a>
@@ -41,5 +39,26 @@
     </c:if>
   </ul>
 </nav>
+<script type="text/javascript">
+	$.ajax({
+		url : '<c:url value="/community"/>',
+		method : 'post',
+		success : function(data){
+			var str = '';
+			var list = data.list;
+			
+			for(co of list){
+				str += 
+				`<a class="dropdown-item" href="<c:url value="/post/list?co_num=\${co.co_num}"/>">
+				\${co.co_name}
+				</a>`;
+			}
+			$("#community-list").html(str);
+		},
+		error : function(xhr){
+			console.log(xhr);
+		}
+	});
+</script>
 </body>
 </html>

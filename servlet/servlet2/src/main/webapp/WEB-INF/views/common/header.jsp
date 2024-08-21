@@ -32,6 +32,11 @@
         <a class="dropdown-item" href="#">Link 3</a>
       </div>
     </li>
+    <c:if test="${user != null }">
+    	<li class="nav-item">
+	      <a class="nav-link" href="<c:url value="/logout"/>">로그아웃</a>
+	    </li>
+    </c:if>
   </ul>
 </nav>
 </body>

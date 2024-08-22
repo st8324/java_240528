@@ -18,8 +18,8 @@ public class PostCriteria extends Criteria {
 		}catch(Exception e) {
 			page = 1;
 		}
-		this.search = search;
-		this.type = type;
+		this.search = search == null ? "" : search;
+		this.type = type == null? "all" :type;
 		this.co_num = co_num;
 		this.page = page;
 		this.perPageNum = perPageNum;

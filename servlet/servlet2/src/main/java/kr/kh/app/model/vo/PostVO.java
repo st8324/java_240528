@@ -26,8 +26,12 @@ public class PostVO {
 		this.po_me_id = id;
 	}
 
-	public PostVO(int po_num, String title, String content) {
-		this.po_num = po_num;
+	public PostVO(String po_num, String title, String content) {
+		try {
+			this.po_num = Integer.parseInt(po_num);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		this.po_title = title;
 		this.po_content = content;
 	}

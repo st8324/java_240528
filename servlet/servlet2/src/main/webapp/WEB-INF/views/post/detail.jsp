@@ -35,6 +35,9 @@
 		<label>내용 : </label>
 		<div class="form-control" style="min-height: 400px; height: auto">${post.po_content }</div>
 	</div>
+	<c:if test="${user.me_id == post.po_me_id }">
+		<a href="<c:url value="/post/update?po_num=${post.po_num}"/>" class="btn btn-outline-dark">수정</a>
+	</c:if>
 </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

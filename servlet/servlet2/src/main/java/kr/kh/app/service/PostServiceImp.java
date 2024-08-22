@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.dao.PostDAO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.pagination.PageMaker;
@@ -81,6 +82,27 @@ public class PostServiceImp implements PostService {
 		}
 		try {
 			return postDao.insertPost(post);
+		}catch(Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updatePost(PostVO post, MemberVO user) {
+		if(post == null) {
+			return false;
+		}
+		if(post.getPo_title() == null || post.getPo_title().trim().length() == 0) {
+			return false;
+		}
+		PostVO dbPost = postDao.selectPost(post.getPo_num()+"");
+		if(	dbPost == null || 
+			user == null || 
+			!dbPost.getPo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		try {
+			return postDao.updatePost(post);
 		}catch(Exception e) {
 			return false;
 		}

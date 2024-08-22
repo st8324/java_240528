@@ -60,4 +60,14 @@ public class PostServiceImp implements PostService {
 		int totalCount = postDao.selectPostTotalCount(cri);
 		return new PageMaker(totalCount, 5, cri);
 	}
+
+	@Override
+	public PostVO getPost(String po_num) {
+		return postDao.selectPost(po_num);
+	}
+
+	@Override
+	public void updatePostView(String po_num) {
+		postDao.updatePostView(po_num);
+	}
 }

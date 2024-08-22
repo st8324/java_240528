@@ -21,4 +21,6 @@ public interface PostService {
 
 	void updatePostView(String po_num);
 
+	boolean insertPost(PostVO post);
+
 }

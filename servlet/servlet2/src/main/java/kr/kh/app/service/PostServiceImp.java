@@ -70,4 +70,19 @@ public class PostServiceImp implements PostService {
 	public void updatePostView(String po_num) {
 		postDao.updatePostView(po_num);
 	}
+
+	@Override
+	public boolean insertPost(PostVO post) {
+		if(post == null) {
+			return false;
+		}
+		if(post.getPo_title() == null || post.getPo_title().trim().length() == 0) {
+			return false;
+		}
+		try {
+			return postDao.insertPost(post);
+		}catch(Exception e) {
+			return false;
+		}
+	}
 }

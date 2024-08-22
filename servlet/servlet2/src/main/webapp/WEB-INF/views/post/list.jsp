@@ -112,6 +112,9 @@
 		   	</li>
 		</ul>
 	</c:if>
+	<div class="clearfix">
+		<a class="btn btn-outline-success float-right" href="<c:url value="/post/insert?co_num=${co.co_num}"/>">게시글 등록</a>
+	</div>
 </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

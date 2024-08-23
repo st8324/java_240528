@@ -19,6 +19,12 @@ public class Login extends HttpServlet {
     private MemberService memberService = new MemberServiceImp();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//로그인 페이지로 오기 전 URL을 가져옴
+		String url = request.getHeader("Referer");
+		//URL이 있거나 /login이 아니면 세션에 URL을 저장
+		if(url != null && !url.contains("/login")) {
+			request.getSession().setAttribute("prevUrl", url);
+		}
 		request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
 	}
 

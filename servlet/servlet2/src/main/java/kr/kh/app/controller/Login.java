@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,16 +40,25 @@ public class Login extends HttpServlet {
 		//2. 아이디, 비번을 이용해서 회원 정보를 가져옴
 		MemberVO member = new MemberVO(me_id, me_pw, "");
 		MemberVO user = memberService.login(member);
+		
 		//3. 가져온 회원 정보를 세션에 저장
 		request.getSession().setAttribute("user", user);
-		
+				
 		if(user != null) {
 			request.setAttribute("msg", "로그인을 완료했습니다.");
 			request.setAttribute("url", "/");
+			//자동로그인을 체크했으면
+			String auto = request.getParameter("auto");
+			if(auto != null && auto.equals("true")) {
+				//쿠키를 생성하고 DB에 쿠키와 만료시간을 저장
+				Cookie cookie = memberService.createCookie(user, request);
+				response.addCookie(cookie);
+			}
 		}else {
 			request.setAttribute("msg", "로그인을 완료하지 못했습니다.");
 			request.setAttribute("url", "/login");
 		}
+		
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 }

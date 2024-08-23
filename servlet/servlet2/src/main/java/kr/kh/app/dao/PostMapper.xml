@@ -63,4 +63,7 @@
 		where
 			po_num = #{post.po_num}
 	</update>
+	<delete id="deletePost">
+		delete from post where po_num = #{po_num}
+	</delete>
 </mapper>

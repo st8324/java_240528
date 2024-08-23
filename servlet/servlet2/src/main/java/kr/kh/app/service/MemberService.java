@@ -17,4 +17,6 @@ public interface MemberService {
 
 	MemberVO getMemberBySid(String sid);
 
+	void updateMemberCookie(MemberVO user);
+
 }

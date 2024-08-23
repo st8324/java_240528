@@ -114,5 +114,10 @@ public class MemberServiceImp implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.selectMemberBySid(sid);
 	}
+	@Override
+	public void updateMemberCookie(MemberVO user) {
+		memberDao.updateMemberCookie(user);
+		
+	}
 	
 }

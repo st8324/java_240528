@@ -95,5 +95,19 @@
 		    </c:if>
 		</ul>
 	</c:if>
+	<form action="<c:url value="/post/list"/>">
+		<input type="hidden" name="co_num" value="${pm.cri.co_num }">
+		<div class="input-group mb-3">
+			<select class="form-control" name="type">
+				<option value="all"   <c:if test="${pm.cri.type eq 'all' }">selected</c:if>>전체</option>
+				<option value="title" <c:if test="${pm.cri.type eq 'title' }">selected</c:if>>제목</option>
+				<option value="id"    <c:if test="${pm.cri.type eq 'id' }">selected</c:if>>작성자</option>
+			</select>
+			<input type="text" class="form-control" placeholder="검색어" name="search" value="${pm.cri.search }">
+			<div class="input-group-append">
+				<button type="submit" class="btn btn-outline-info col-12">검색</button>
+			</div>
+		</div>
+	</form>
 </body>
 </html>

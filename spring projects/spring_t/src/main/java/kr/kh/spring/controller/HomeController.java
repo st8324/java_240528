@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.kh.spring.model.dto.PersonDTO;
 import kr.kh.spring.model.vo.MemberVO;
@@ -67,5 +69,21 @@ public class HomeController {
 		}
 		session.setAttribute("user", user);
 		return "/main/message";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		//세션에 있는 user를 제거
+		session.removeAttribute("user");
+		model.addAttribute("msg", "로그아웃 했습니다.");
+		model.addAttribute("url", "/");
+		return "/main/message";
+	}
+	
+	@ResponseBody
+	@GetMapping("/check/id")
+	public boolean checkId(@RequestParam("id")String id) {
+		boolean res = memberService.checkId(id);
+		return res;
 	}
 }

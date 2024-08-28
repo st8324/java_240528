@@ -52,5 +52,10 @@ public class MemberServiceImp implements MemberService {
 		return null;
 	}
 
+	@Override
+	public boolean checkId(String id) {
+		return memberDao.selectMember(id) == null;
+	}
+
 
 }

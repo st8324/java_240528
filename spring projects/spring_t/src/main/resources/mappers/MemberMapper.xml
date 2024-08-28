@@ -7,7 +7,7 @@
 		insert into member(me_id, me_pw, me_email, me_ms_name)
 		values(#{m.me_id},#{m.me_pw},#{m.me_email},'사용')
 	</insert>
-	<select id="selectMember" resultType="kr.kh.spring.model.vo.MemberVO">
+	<select id="selectMember" resultType="MemberVO">
 		select * from member where me_id = #{me_id}
 	</select>
 </mapper>

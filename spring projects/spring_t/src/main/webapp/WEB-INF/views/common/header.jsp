@@ -13,7 +13,7 @@
 			<a class="navbar-brand" href="<c:url value="/"/>">Home</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="<c:url value="/community"/>">커뮤니티</a>
+			<a class="nav-link" href="<c:url value="/post/list"/>">커뮤니티</a>
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

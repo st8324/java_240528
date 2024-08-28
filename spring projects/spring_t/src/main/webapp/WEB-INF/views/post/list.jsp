@@ -40,7 +40,12 @@
 						<a href="#">${post.po_title }</a>
 					</td>
 					<td>
-						<a href="#">${post.po_me_id }</a>
+						<c:url var="url" value="/post/list">
+							<c:param name="co_num" value="${pm.cri.co_num }"/>
+							<c:param name="type" value="id"/>
+							<c:param name="search" value="${post.po_me_id }"/>
+						</c:url>
+						<a href="${url }">${post.po_me_id }</a>
 					</td>
 					<td>
 						<fmt:formatDate value="${post.po_date }" pattern="yyyy.MM.dd." />
@@ -62,6 +67,8 @@
 				<c:url var="url" value="/post/list">
 					<c:param name="co_num" value="${pm.cri.co_num }"/>
 					<c:param name="page" value="${pm.startPage - 1 }"/>
+					<c:param name="type" value="${pm.cri.type }"/>
+					<c:param name="search" value="${pm.cri.search}"/>
 				</c:url>
 			    <li class="page-item">
 			    	<a class="page-link" href="${url }">이전</a>
@@ -71,6 +78,8 @@
 		    	<c:url var="url" value="/post/list">
 					<c:param name="co_num" value="${pm.cri.co_num }"/>
 					<c:param name="page" value="${i}"/>
+					<c:param name="type" value="${pm.cri.type }"/>
+					<c:param name="search" value="${pm.cri.search}"/>
 				</c:url>
 				<c:choose>
 					<c:when test="${pm.cri.page eq i }">
@@ -88,6 +97,8 @@
 		    	<c:url var="url" value="/post/list">
 					<c:param name="co_num" value="${pm.cri.co_num }"/>
 					<c:param name="page" value="${pm.endPage + 1 }"/>
+					<c:param name="type" value="${pm.cri.type }"/>
+					<c:param name="search" value="${pm.cri.search}"/>
 				</c:url>
 			    <li class="page-item">
 			    	<a class="page-link" href="${url }">다음</a>

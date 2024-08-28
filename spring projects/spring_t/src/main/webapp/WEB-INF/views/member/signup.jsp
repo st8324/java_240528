@@ -23,7 +23,6 @@
 		<div class="form-group">
 			<label for="id">아이디:</label>
 			<input type="text" class="form-control" id="id" name="me_id">
-			<label id="id-error" class="error"></label>
 		</div>
 		<div class="form-group">
 			<label for="pw">비번:</label>
@@ -81,6 +80,7 @@
 			var id = $("#id").val();
 			var res = checkId(id);
 			if(res == 0){
+				displayCheckId(res);
 				alert('이미 사용 중인 아이디입니다.');
 				return false;
 			}
@@ -100,13 +100,7 @@
 			var id = $(this).val();
 			//아이디를 서버에 전달해서 사용 가능한지 확인
 			var result = checkId(id);
-			$('#id-error').removeClass("id-ok")
-			if(result == 1){
-				$('#id-error').addClass("id-ok")
-				$('#id-error').text("사용 가능한 아이디입니다.");
-			}else if(result == 0){
-				$('#id-error').text("이미 사용중인 아이디입니다.");
-			}
+			displayCheckId(result);
 		});
 		/**
 		@return 1이면 사용 가능, 0이면 사용 불가능, -1이면 전송하지 않음
@@ -135,7 +129,17 @@
 			});
 			return res;
 		}
-		
+		function displayCheckId(result){
+			$('#check-id').remove();
+			
+			if(result == 1){
+				var str = `<label id="check-id" class="id-ok error">사용 가능한 아이디입니다.</label>`;
+				$('#id').after(str);
+			}else if(result == 0){
+				var str = `<label id="check-id" class="error">이미 사용중인 아이디입니다.</label>`;
+				$('#id').after(str);
+			}
+		}
 	</script>
 </body>
 </html>

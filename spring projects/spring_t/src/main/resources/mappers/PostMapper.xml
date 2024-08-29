@@ -46,4 +46,13 @@
 		insert into file(fi_name, fi_ori_name, fi_po_num)
 		values(#{file.fi_name},#{file.fi_ori_name},#{file.fi_po_num})
 	</insert>
+	<update id="updateView">
+		update post set po_view = po_view + 1 where po_num = #{po_num}
+	</update>
+	<select id="selectPost" resultType="PostVO">
+		select * from post where po_num = #{po_num}
+	</select>
+	<select id="selectFileList" resultType="FileVO">
+		select * from file where fi_po_num = #{po_num}
+	</select>
 </mapper>

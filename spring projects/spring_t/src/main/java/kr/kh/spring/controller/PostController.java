@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring.model.vo.CommunityVO;
+import kr.kh.spring.model.vo.FileVO;
 import kr.kh.spring.model.vo.MemberVO;
 import kr.kh.spring.model.vo.PostVO;
 import kr.kh.spring.pagination.PageMaker;
@@ -62,5 +63,21 @@ public class PostController {
 		}
 		
 		return "/main/message";
+	}
+	
+	@GetMapping("/detail")
+	public String detail(Model model, Integer po_num, PostCriteria cri) {
+		
+		//조회수 증가
+		postService.updateView(po_num);
+		//게시글 가져옴
+		PostVO post = postService.getPost(po_num);
+		//첨부파일 가져옴
+		List<FileVO> fileList = postService.getFileList(po_num);
+		//화면에 전송 
+		model.addAttribute("post", post);
+		model.addAttribute("list", fileList);
+		model.addAttribute("cri", cri);
+		return "/post/detail";
 	}
 }

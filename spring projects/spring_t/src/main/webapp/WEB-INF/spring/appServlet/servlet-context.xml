@@ -14,6 +14,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/download/**" location="file:///D:/uploads/" />
 
 	<!-- 
 	컨트롤러가 리턴값으로 문자열을 주면, 해당 문자열에 어떤 작업을 해서 어떤 화면과 연결할지를 결정하는 역할

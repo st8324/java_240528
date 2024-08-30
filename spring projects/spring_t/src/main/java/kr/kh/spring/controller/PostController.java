@@ -80,4 +80,16 @@ public class PostController {
 		model.addAttribute("cri", cri);
 		return "/post/detail";
 	}
+	@GetMapping("/update")
+	public String update(Model model, Integer po_num, PostCriteria cri) {
+		//게시글 가져옴
+		PostVO post = postService.getPost(po_num);
+		//첨부파일 가져옴
+		List<FileVO> fileList = postService.getFileList(po_num);
+		//화면에 전송 
+		model.addAttribute("post", post);
+		model.addAttribute("list", fileList);
+		model.addAttribute("cri", cri);
+		return "/post/update";
+	}
 }

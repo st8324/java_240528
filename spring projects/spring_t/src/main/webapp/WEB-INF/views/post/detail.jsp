@@ -50,5 +50,13 @@
 		<c:param name="search" value="${cri.search}"/>
 	</c:url>
 	<a href="${url}" class="btn btn-outline-info">목록</a>
+	<c:url var="url" value="/post/update">
+		<c:param name="co_num" value="${cri.co_num }"/>
+		<c:param name="page" value="${cri.page }"/>
+		<c:param name="type" value="${cri.type }"/>
+		<c:param name="search" value="${cri.search}"/>
+		<c:param name="po_num" value="${post.po_num }"/>
+	</c:url>
+	<a href="${url}" class="btn btn-outline-warning">수정</a>
 </body>
 </html>

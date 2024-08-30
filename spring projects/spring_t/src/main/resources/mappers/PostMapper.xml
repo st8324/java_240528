@@ -58,7 +58,7 @@
 	<select id="selectFile" resultType="FileVO">
 		select * from file where fi_num = #{fi_num}
 	</select>
-	<delete id="deletePost">
+	<delete id="deleteFile">
 		delete from file where fi_num = #{fi_num}
 	</delete>
 	<update id="updatePost">
@@ -69,4 +69,7 @@
 		where
 			po_num = #{post.po_num}
 	</update>
+	<delete id="deletePost">
+		delete from post where po_num = #{po_num}
+	</delete>
 </mapper>

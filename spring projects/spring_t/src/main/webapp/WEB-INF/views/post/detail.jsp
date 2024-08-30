@@ -216,7 +216,7 @@
 	
 	
 	//댓글 등록을 클릭하면 댓글을 등록
-	$('.btn-insert').click(function(){
+	$(document).on('click', '.btn-insert', function(){
 		//로그인 확인
 		if(alertLogin()){
 			return;

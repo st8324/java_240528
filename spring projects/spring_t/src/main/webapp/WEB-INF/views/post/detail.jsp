@@ -20,7 +20,9 @@
 		</div>
 		<div class="form-group">
 			<label>작성일:</label>
-			<div class="form-control">${post.po_date }</div>
+			<div class="form-control">
+				<fmt:formatDate value="${post.po_date }" pattern="yyyy.MM.dd HH:mm:ss"/>
+			</div>
 		</div>
 		<div class="form-group">
 			<label>조회수:</label>

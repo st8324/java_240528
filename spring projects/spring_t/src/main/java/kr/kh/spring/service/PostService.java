@@ -130,13 +130,11 @@ public class PostService {
 		}
 		
 		//첨부파일 삭제
-		if(fi_nums == null || fi_nums.length == 0) {
-			return true;
+		if(fi_nums != null) {
+			for(int fi_num : fi_nums) {
+				deleteFile(fi_num);
+			}
 		}
-		for(int fi_num : fi_nums) {
-			deleteFile(fi_num);
-		}
-		
 		//첨부파일 추가
 		if(fileList == null || fileList.length == 0) {
 			return true;

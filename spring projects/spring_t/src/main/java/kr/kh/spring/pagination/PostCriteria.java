@@ -11,8 +11,7 @@ public class PostCriteria extends Criteria{
 
 	@Override
 	public String toString() {
-		return "[co_num=" + co_num +"] "+ super.toString();
+		return "co_num=" + co_num +"&page="+ page + "&type=" + type +"&search=" +search;
 	}
-	
 	
 }

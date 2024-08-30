@@ -57,6 +57,8 @@
 		<c:param name="search" value="${cri.search}"/>
 		<c:param name="po_num" value="${post.po_num }"/>
 	</c:url>
-	<a href="${url}" class="btn btn-outline-warning">수정</a>
+	<c:if test="${post.po_me_id eq user.me_id }">
+		<a href="${url}" class="btn btn-outline-warning">수정</a>
+	</c:if>
 </body>
 </html>

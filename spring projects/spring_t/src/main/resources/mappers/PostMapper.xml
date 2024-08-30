@@ -55,4 +55,18 @@
 	<select id="selectFileList" resultType="FileVO">
 		select * from file where fi_po_num = #{po_num}
 	</select>
+	<select id="selectFile" resultType="FileVO">
+		select * from file where fi_num = #{fi_num}
+	</select>
+	<delete id="deletePost">
+		delete from file where fi_num = #{fi_num}
+	</delete>
+	<update id="updatePost">
+		update post
+		set
+			po_title = #{post.po_title},
+			po_content = #{post.po_content}
+		where
+			po_num = #{post.po_num}
+	</update>
 </mapper>

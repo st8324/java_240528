@@ -27,4 +27,10 @@ public interface PostDAO {
 
 	List<FileVO> selectFileList(@Param("po_num")Integer po_num);
 
+	FileVO selectFile(@Param("fi_num")int fi_num);
+
+	void deletePost(@Param("fi_num")int fi_num);
+
+	boolean updatePost(@Param("post")PostVO post);
+
 }

@@ -16,6 +16,7 @@ import kr.kh.spring.model.vo.CommunityVO;
 import kr.kh.spring.model.vo.FileVO;
 import kr.kh.spring.model.vo.MemberVO;
 import kr.kh.spring.model.vo.PostVO;
+import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.pagination.PageMaker;
 import kr.kh.spring.pagination.PostCriteria;
 import kr.kh.spring.service.PostService;
@@ -91,5 +92,20 @@ public class PostController {
 		model.addAttribute("list", fileList);
 		model.addAttribute("cri", cri);
 		return "/post/update";
+	}
+	@PostMapping("/update")
+	public String updatePost(Model model, PostVO post, 
+			int []fi_nums, MultipartFile[] fileList, PostCriteria cri, HttpSession session) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(postService.updatePost(post, fi_nums, fileList, user)) {
+			model.addAttribute("url", "/post/detail?po_num="+post.getPo_num()+"&"+cri);
+			model.addAttribute("msg", "게시글을 수정했습니다.");
+		}else {
+			model.addAttribute("url", "/post/detail?po_num="+post.getPo_num()+"&"+cri);
+			model.addAttribute("msg", "게시글을 수정하지 못했습니다.");
+		}
+		return "/main/message";
 	}
 }

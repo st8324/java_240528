@@ -4,7 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.kh.spring.dao.PostDAO">
 	<select id="selectCommunityList" resultType="CommunityVO">
-		select * from community order by co_num
+		select community.*,count(po_co_num) as co_count from community 
+		left join post on co_num = po_co_num
+		group by co_num 
+		order by co_num
 	</select>
 	<select id="selectPostList" resultType="PostVO">
 		select * from post 
@@ -72,4 +75,7 @@
 	<delete id="deletePost">
 		delete from post where po_num = #{po_num}
 	</delete>
+	<insert id="insertCommunity">
+		insert into community(co_name) values(#{co_name})
+	</insert>
 </mapper>

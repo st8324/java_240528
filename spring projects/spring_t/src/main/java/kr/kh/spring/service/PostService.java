@@ -184,4 +184,16 @@ public class PostService {
 		
 		return postDao.deletePost(po_num);
 	}
+
+	public boolean insertCommunity(String name) {
+		if(name == null || name.trim().length() == 0) {
+			return false;
+		}
+		try {
+			return postDao.insertCommunity(name);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

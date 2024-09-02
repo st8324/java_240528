@@ -15,4 +15,6 @@ public interface CommentDAO {
 
 	int selectCommentTotalCount(@Param("cri")Criteria cri);
 
+	boolean deleteComment(@Param("cm_num")int cm_num);
+
 }

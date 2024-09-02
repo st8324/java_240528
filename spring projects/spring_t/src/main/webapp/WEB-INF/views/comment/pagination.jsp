@@ -50,7 +50,7 @@
 <script type="text/javascript">
 $('.btn-comment-del').click(function(){
 	var cm_num = $(this).data('num');
-	commentDel1(cm_num);
+	commentDel3(cm_num);
 });
 function commentDel1(cm_num){
 	//json으로 화면에서 서버로 전송 => 서버에서 화면으로 json으로 전송
@@ -65,7 +65,12 @@ function commentDel1(cm_num){
 		contentType : "application/json; charset=utf-8",
 		dataType : "json", 
 		success : function (data){
-			console.log(data);
+			if(data.res){
+				alert('댓글을 삭제했습니다.');	
+			}else{
+				alert('댓글을 삭제하지 못했습니다.');
+			}
+			getCommentList2(cri);
 		}, 
 		error : function(jqXHR, textStatus, errorThrown){
 
@@ -73,9 +78,48 @@ function commentDel1(cm_num){
 	});
 }
 function commentDel2(cm_num){
-	
+	let comment = {
+		cm_num : cm_num
+	}
+	$.ajax({
+		async : true, //비동기 : true(비동기), false(동기)
+		url : '<c:url value="/comment/delete2"/>', 
+		type : 'post', 
+		data : comment, 
+		dataType : "json", 
+		success : function (data){
+			if(data.res){
+				alert('댓글을 삭제했습니다.');	
+			}else{
+				alert('댓글을 삭제하지 못했습니다.');
+			}
+			getCommentList2(cri);
+		}, 
+		error : function(jqXHR, textStatus, errorThrown){
+
+		}
+	});
 }
 function commentDel3(cm_num){
-	
+	let comment = {
+		cm_num : cm_num
+	}
+	$.ajax({
+		async : true, //비동기 : true(비동기), false(동기)
+		url : '<c:url value="/comment/delete3"/>', 
+		type : 'post', 
+		data : comment, 
+		success : function (data){
+			if(data){
+				alert('댓글을 삭제했습니다.');	
+			}else{
+				alert('댓글을 삭제하지 못했습니다.');
+			}
+			getCommentList2(cri);
+		}, 
+		error : function(jqXHR, textStatus, errorThrown){
+
+		}
+	});
 }
 </script>

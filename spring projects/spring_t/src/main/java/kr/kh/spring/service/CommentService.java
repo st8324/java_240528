@@ -39,4 +39,18 @@ public class CommentService {
 		int totalCount = commentDao.selectCommentTotalCount(cri);
 		return new PageMaker(5, cri, totalCount);
 	}
+
+	public boolean deleteComment(CommentVO comment, MemberVO user) {
+		if(user == null || comment == null) {
+			return false;
+		}
+		return commentDao.deleteComment(comment.getCm_num());
+	}
+
+	public boolean deleteComment(int cm_num, MemberVO user) {
+		if(user == null) {
+			return false;
+		}
+		return commentDao.deleteComment(cm_num);
+	}
 }

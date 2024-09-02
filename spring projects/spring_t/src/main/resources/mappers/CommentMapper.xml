@@ -28,4 +28,10 @@
 	<delete id="deleteComment">
 		delete from comment where cm_num = #{cm_num}
 	</delete>
+	<select id="selectComment" resultType="CommentVO">
+		select * from comment where cm_num = #{cm_num}
+	</select>
+	<update id="updateComment">
+		update comment set cm_content = #{comment.cm_content} where cm_num = #{comment.cm_num}
+	</update>
 </mapper>

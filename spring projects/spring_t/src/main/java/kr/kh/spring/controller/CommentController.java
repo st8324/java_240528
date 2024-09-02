@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import kr.kh.spring.model.vo.CommentVO;
 import kr.kh.spring.model.vo.MemberVO;
@@ -62,5 +61,14 @@ public class CommentController {
 		model.addAttribute("list",list);
 		model.addAttribute("pm",pm);
 		return "comment/pagination";
+	}
+	@ResponseBody
+	@PostMapping("/delete1")
+	public Map<String, Object> delete(@RequestBody CommentVO comment){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		System.out.println(comment);
+		boolean result = true;
+		map.put("res", result);
+		return map;
 	}
 }

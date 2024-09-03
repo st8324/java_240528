@@ -62,13 +62,14 @@ public class HomeController {
 	public String loginPost(Model model, MemberVO member, HttpSession session) {
 		MemberVO user = memberService.login(member);
 		if(user != null) {
+			user.setAutoLogin(member.isAutoLogin());
 			model.addAttribute("msg", "로그인을 성공 했습니다.");
 			model.addAttribute("url", "/");
 		}else {
 			model.addAttribute("msg", "로그인을 실패 했습니다.");
 			model.addAttribute("url", "/login");
 		}
-		session.setAttribute("user", user);
+		model.addAttribute("user", user);
 		return "/main/message";
 	}
 	

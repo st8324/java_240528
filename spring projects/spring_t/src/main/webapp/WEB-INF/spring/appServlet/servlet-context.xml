@@ -58,6 +58,7 @@
 	<beans:bean id="adminInterceptor" class="kr.kh.spring.interceptor.AdminInterceptor"/>
 	<beans:bean id="memberInterceptor" class="kr.kh.spring.interceptor.MemberInterceptor"/>
 	<beans:bean id="guestInterceptor" class="kr.kh.spring.interceptor.GuestInterceptor"/>
+	<beans:bean id="loginInterceptor" class="kr.kh.spring.interceptor.LoginInterceptor"/>
 	<!-- 인터셉터 맵핑 -->
 	<interceptors>
 		<interceptor>
@@ -80,6 +81,10 @@
 			<mapping path="/login"/>
 			<mapping path="/signup"/>
 			<beans:ref bean="guestInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/login"/>
+			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
 </beans:beans>

@@ -17,6 +17,11 @@
 			<label for="pw">비번:</label>
 			<input type="password" class="form-control" id="pw" name="me_pw">
 		</div>
+		<div class="form-check">
+			<label class="form-check-label">
+				<input type="checkbox" class="form-check-input" value="true" name="autoLogin">자동로그인
+			</label>
+		</div>
 		<button type="submit" class="btn btn-outline-success col-12">로그인</button>
 	</form>
 </body>

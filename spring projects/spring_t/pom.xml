@@ -221,6 +221,17 @@
 		    <artifactId>javax.annotation-api</artifactId>
 		    <version>1.3.2</version>
 		</dependency>
+		<!-- gmail 사용을 위한 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.3</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

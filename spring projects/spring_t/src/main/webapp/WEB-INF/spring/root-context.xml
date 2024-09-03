@@ -11,15 +11,15 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 	
-
+	<context:property-placeholder location="/WEB-INF/spring/config.properties" />
 	
 	<bean id="dataSource"
 	      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 	    <property name="url"
 	              value="jdbc:mysql://localhost:3306/community?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
-	    <property name="username" value="root"/>
-	    <property name="password" value="root"/>
+	    <property name="username" value="${db.username}"/>
+	    <property name="password" value="${db.password}"/>
 	</bean>  
 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -29,4 +29,20 @@
 	</bean>
 	<mybatis-spring:scan base-package="kr.kh.spring.dao"/>
 		
+	<!-- 이메일 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="${email.username}" />
+	    <property name="password" value="${email.password}" />
+	    <property name="javaMailProperties">
+	        <props>
+	            <prop key="mail.transport.protocol">smtp</prop>
+	            <prop key="mail.smtp.auth">true</prop>
+	            <prop key="mail.smtp.starttls.enable">true</prop>
+	            <prop key="mail.debug">true</prop>
+	            <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+	        </props>
+	    </property>
+	</bean>
 </beans>

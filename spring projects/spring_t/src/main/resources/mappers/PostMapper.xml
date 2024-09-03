@@ -78,4 +78,10 @@
 	<insert id="insertCommunity">
 		insert into community(co_name) values(#{co_name})
 	</insert>
+	<delete id="deleteCommunity">
+		delete from community where co_num = #{co_num}
+	</delete>
+	<update id="updateCommunity">
+		update community set co_name = #{community.co_name} where co_num = #{community.co_num}
+	</update>
 </mapper>

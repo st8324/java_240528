@@ -25,7 +25,7 @@ public class AdminController {
 		model.addAttribute("list", list);
 		return "/admin/community";
 	}
-	@PostMapping("/community/insert")
+	@RequestMapping("/community/insert")
 	public String communityInsert(Model model, String name) {
 		boolean res = postService.insertCommunity(name);
 		if(res) {
@@ -47,7 +47,7 @@ public class AdminController {
 		model.addAttribute("url", "/admin/community");
 		return "/main/message";
 	}
-	@PostMapping("/community/update")
+	@RequestMapping("/community/update")
 	public String communityUpdate(Model model, CommunityVO community) {
 		boolean res = postService.updateCommunity(community);
 		if(res) {

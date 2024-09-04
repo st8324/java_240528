@@ -20,7 +20,8 @@
 	<update id="updateMember">
 		update member
 		set
-			me_pw = #{user.me_pw}
+			me_pw = #{user.me_pw},
+			me_email = #{user.me_email}
 		where
 			me_id = #{user.me_id}
 	</update>

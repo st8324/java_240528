@@ -16,5 +16,7 @@ public interface MemberService {
 
 	boolean findPw(String id);
 
+	boolean updateMember(MemberVO user, MemberVO member);
+
 
 }

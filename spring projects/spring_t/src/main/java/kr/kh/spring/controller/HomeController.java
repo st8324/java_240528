@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.Session;
+
 import kr.kh.spring.model.dto.PersonDTO;
 import kr.kh.spring.model.vo.MemberVO;
 import kr.kh.spring.service.MemberService;
@@ -113,5 +115,23 @@ public class HomeController {
 	public boolean findPwPost(@RequestParam String id) {
 		boolean res = memberService.findPw(id);
 		return res;
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "/member/mypage";
+	}
+	
+	@PostMapping("/mypage")
+	public String mypagePost(Model model, HttpSession session, MemberVO member) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		boolean res = memberService.updateMember(user, member);
+		if(res) {
+			model.addAttribute("msg","회원 정보를 수정했습니다.");
+		}else {
+			model.addAttribute("msg","회원 정보를 수정했습니다.");
+		}
+		model.addAttribute("url","/mypage");
+		return "/main/message";
 	}
 }

@@ -22,14 +22,14 @@ public class PrevUrlInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		//이전 URL을 가져옴
 		String prevUrl = (String)session.getAttribute("prevUrl");
-		System.out.println(prevUrl);
+
 		//이전 URL이 없으면 종료
 		if(prevUrl == null) {
 			return;
 		}
 		//로그인한 회원 정보를 가져옴
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		System.out.println(user);
+
 		//로그인한 회원 정보가 없으면 종료
 		if(user == null) {
 			return;

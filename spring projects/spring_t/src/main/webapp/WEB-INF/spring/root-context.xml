@@ -15,9 +15,9 @@
 	
 	<bean id="dataSource"
 	      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+	    <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 	    <property name="url"
-	              value="jdbc:mysql://localhost:3306/community?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
+	              value="jdbc:log4jdbc:mysql://localhost:3306/community?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
 	    <property name="username" value="${db.username}"/>
 	    <property name="password" value="${db.password}"/>
 	</bean>  

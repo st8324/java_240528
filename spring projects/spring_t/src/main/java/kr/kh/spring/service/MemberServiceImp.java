@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import kr.kh.spring.dao.MemberDAO;
 import kr.kh.spring.model.vo.MemberVO;
-import kr.kh.spring.utils.MailSenderUtils;
 
 @Service
 public class MemberServiceImp implements MemberService {

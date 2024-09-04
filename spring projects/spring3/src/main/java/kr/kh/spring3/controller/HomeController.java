@@ -19,7 +19,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		log.info("/ : 메인 페이지입니다.");
-		return "home";
+		model.addAttribute("title", "메인");
+		return "/main/home";
 	}
 	
 }

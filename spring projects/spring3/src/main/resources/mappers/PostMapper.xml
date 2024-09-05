@@ -9,6 +9,29 @@
 	<select id="selectPostList" resultType="kr.kh.spring3.model.vo.PostVO">
 		select * from post 
 		where po_co_num = #{co_num}
+		<choose>
+			<when test="type == ''">
+				and (po_title like concat('%', #{search}, '%') or 
+				po_me_id like concat('%', #{search}, '%'))
+			</when>
+			<otherwise>
+				and ${type} like concat('%', #{search}, '%') 
+			</otherwise>
+		</choose>
 		order by po_num desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	<select id="selectPostTotalcount" resultType="int">
+		select count(*) from post 
+		where po_co_num = #{co_num}
+		<choose>
+			<when test="type == ''">
+				and (po_title like concat('%', #{search}, '%') or 
+				po_me_id like concat('%', #{search}, '%'))
+			</when>
+			<otherwise>
+				and ${type} like concat('%', #{search}, '%') 
+			</otherwise>
+		</choose>
 	</select>
 </mapper>

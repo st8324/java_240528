@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.kh.spring3.model.vo.CommunityVO;
 import kr.kh.spring3.model.vo.PostVO;
+import kr.kh.spring3.pagination.PageMaker;
 import kr.kh.spring3.pagination.PostCriteria;
 import kr.kh.spring3.service.PostService;
 import lombok.extern.log4j.Log4j;
@@ -25,20 +26,22 @@ public class PostController {
 	
 	@GetMapping("/list/{co_num}")
 	public String list(Model model, @PathVariable("co_num")int co_num, PostCriteria cri) {
-		
 		cri.setCo_num(co_num);
-		
+		cri.setPerPageNum(3);
 		//커뮤니티 목록을 가져옴
 		List<CommunityVO> communities = postService.getCommunityList();
 		
 		//게시글 목록을 가져옴(전체)
 		List<PostVO> list = postService.getPostList(cri);
 		
+		//페이지메이커 
+		PageMaker pm = postService.getPageMaker(cri);
 		//확인
-		log.info(list);
+		log.info(pm);
 		
 		model.addAttribute("communities", communities);
 		model.addAttribute("list", list);
+		model.addAttribute("pm", pm);
 		return "/post/list";
 	}
 }

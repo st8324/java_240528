@@ -9,6 +9,8 @@ import kr.kh.spring3.dao.PostDAO;
 import kr.kh.spring3.model.vo.CommunityVO;
 import kr.kh.spring3.model.vo.PostVO;
 import kr.kh.spring3.pagination.Criteria;
+import kr.kh.spring3.pagination.PageMaker;
+import kr.kh.spring3.pagination.PostCriteria;
 
 @Service
 public class PostService {
@@ -21,6 +23,17 @@ public class PostService {
 	}
 
 	public List<PostVO> getPostList(Criteria cri) {
+		if(cri == null) {
+			return null;
+		}
 		return postDao.selectPostList(cri);
+	}
+
+	public PageMaker getPageMaker(Criteria cri) {
+		if(cri == null) {
+			return null;
+		}
+		int totalCount = postDao.selectPostTotalcount(cri);
+		return new PageMaker(3, cri, totalCount);
 	}
 }

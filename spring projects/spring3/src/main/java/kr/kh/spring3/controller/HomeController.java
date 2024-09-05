@@ -1,5 +1,7 @@
 package kr.kh.spring3.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +49,29 @@ public class HomeController {
 		}
 		
 		model.addAttribute("message", message);
+		return "/main/message";
+	}
+	
+	@GetMapping("/guest/login")
+	public String guestLogin() {
+		log.info("/guest/login:get");
+		return "/member/login";
+	}
+	
+	@PostMapping("/guest/login")
+	public String guestLoginPost(Model model, MemberVO member, HttpSession session) {
+		log.info("/guest/login:post");
+		MemberVO user = memberService.login(member);
+		MessageDTO message;
+		if(user != null) {
+			message = new MessageDTO("/", "로그인 성공!");
+			session.removeAttribute("id");
+		}else {
+			message = new MessageDTO("/guest/login", "로그인 실패!");
+			session.setAttribute("id", member.getMe_id());
+		}
+		model.addAttribute("message", message);
+		model.addAttribute("user", user);
 		return "/main/message";
 	}
 }

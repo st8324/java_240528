@@ -40,5 +40,21 @@ public class MemberService {
 			return false;
 		return true;
 	}
+	public MemberVO login(MemberVO member) {
+		if(member == null) {
+			return null;
+		}
+		//회원 정보를 가져옴(아이디를 이용)
+		MemberVO user = memberDao.selectMember(member.getMe_id());
+		//아아디 일치하지 않음
+		if(user == null) {
+			return null;
+		}
+		//비번 확인
+		if(passwordEncoder.matches(member.getMe_pw(), user.getMe_pw())) {
+			return user;
+		}
+		return null;
+	}
 
 }

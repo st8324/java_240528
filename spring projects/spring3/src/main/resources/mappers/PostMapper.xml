@@ -55,4 +55,18 @@
 		insert into file(fi_po_num, fi_name, fi_ori_name)
 		values(#{fi_po_num},#{fi_name},#{fi_ori_name})
 	</insert>
+	<update id="updatePost">
+		update post
+		set
+			po_title = #{po_title},
+			po_content = #{po_content}
+		where
+			po_num = #{po_num}
+	</update>
+	<select id="selectFile" resultType="FileVO">
+		select * from file where fi_num = #{fi_num}
+	</select>
+	<delete id="deleteFile">
+		delete from file where fi_num = #{fi_num}
+	</delete>
 </mapper>

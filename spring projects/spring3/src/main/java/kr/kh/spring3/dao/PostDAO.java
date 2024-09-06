@@ -26,4 +26,10 @@ public interface PostDAO {
 
 	void insertFile(FileVO fileVo);
 
+	boolean updatePost(PostVO post);
+
+	FileVO selectFile(int fi_num);
+
+	void deleteFile(int fi_num);
+
 }

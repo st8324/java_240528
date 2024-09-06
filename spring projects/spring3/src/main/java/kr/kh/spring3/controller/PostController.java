@@ -81,13 +81,49 @@ public class PostController {
 		post.setPo_co_num(co_num);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		boolean res = postService.insertPost(post, user, fileList);
-		log.info(post);
 
 		MessageDTO message;
 		if(res) {
 			message = new MessageDTO("/post/list/" +co_num, "게시글을 등록했습니다.");
 		}else {
 			message = new MessageDTO("/post/insert/" +co_num, "게시글을 등록하지 못했습니다.");
+		}
+		model.addAttribute("message",message);
+		return "/main/message";
+	}
+	
+	@GetMapping("/update/{po_num}")
+	public String update(Model model, @PathVariable("po_num") int po_num) {
+		log.info("/post/update:get");
+		//게시글을 가져옴
+		PostVO post = postService.getPost(po_num);
+		
+		List<FileVO> fileList = postService.getFileList(po_num);
+		
+		
+		model.addAttribute("post", post);
+		model.addAttribute("list", fileList);
+		return "/post/update";
+	}
+	@PostMapping("/update/{po_num}")
+	public String updatePost(Model model, 
+			@PathVariable("po_num") int po_num, 
+			PostVO post,
+			HttpSession session,
+			MultipartFile [] fileList,
+			int [] nums) {
+		log.info("/post/update:post");
+		post.setPo_num(po_num);
+		
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		boolean res = postService.updatePost(post, user, fileList, nums);
+
+		MessageDTO message;
+		if(res) {
+			message = new MessageDTO("/post/detail/" +po_num, "게시글을 수정했습니다.");
+		}else {
+			message = new MessageDTO("/post/detail/" +po_num, "게시글을 수정하지 못했습니다.");
 		}
 		model.addAttribute("message",message);
 		return "/main/message";

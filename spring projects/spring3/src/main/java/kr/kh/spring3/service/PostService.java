@@ -74,12 +74,8 @@ public class PostService {
 			return false;
 		}
 		
-		if(fileList == null || fileList.length == 0) {
-			return true;
-		}
-		for(MultipartFile file : fileList) {
-			uploadFile(file, post.getPo_num());
-		}
+		uploadFileList(fileList, post.getPo_num());
+		
 		return true;
 	}
 
@@ -101,5 +97,61 @@ public class PostService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private void uploadFileList(MultipartFile [] fileList, int po_num) {
+		if(fileList == null || fileList.length == 0) {
+			return;
+		}
+		for(MultipartFile file : fileList) {
+			uploadFile(file, po_num);
+		}
+	}
+	
+	public boolean updatePost(PostVO post, MemberVO user, MultipartFile[] fileList, int[] nums) {
+		if(post == null) {
+			return false;
+		}
+		//작성자 체크
+		if(!isWriter(post.getPo_num(), user)) {
+			return false;
+		}
+		
+		boolean res = postDao.updatePost(post);
+		
+		if(!res) {
+			return false;
+		}
+		//첨부파일 수정
+		//새 첨부파일들 추가
+		uploadFileList(fileList, post.getPo_num());
+		//기존 첨부파일 삭제
+		if(nums == null || nums.length == 0) {
+			return true;
+		}
+		for(int fi_num : nums) {
+			FileVO file = postDao.selectFile(fi_num);
+			deleteFile(file);
+		}
+		return true;
+	}
+
+	private boolean isWriter(int po_num, MemberVO user) {
+		if(user == null) {
+			return false;
+		}
+		PostVO post = postDao.selectPost(po_num);
+		if(post != null && post.getPo_me_id().equals(user.getMe_id())) {
+			return true;
+		}
+		return false;
+	}
+
+	private void deleteFile(FileVO file) {
+		if(file == null) {
+			return;
+		}
+		UploadFileUtils.delteFile(uploadPath, file.getFi_name());
+		postDao.deleteFile(file.getFi_num());
 	}
 }

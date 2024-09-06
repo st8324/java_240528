@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.kh.spring3.dao.PostDAO">
-	<select id="selectCommunityList" resultType="kr.kh.spring3.model.vo.CommunityVO">
+	<select id="selectCommunityList" resultType="CommunityVO">
 		select * from community order by co_num
 	</select>
-	<select id="selectPostList" resultType="kr.kh.spring3.model.vo.PostVO">
+	<select id="selectPostList" resultType="PostVO">
 		select * from post 
 		where po_co_num = #{co_num}
 		<choose>
@@ -33,5 +33,18 @@
 				and ${type} like concat('%', #{search}, '%') 
 			</otherwise>
 		</choose>
+	</select>
+	<select id="selectPost" resultType="PostVO">
+		select * from post where po_num = #{po_num}
+	</select>
+	<update id="updateView">
+		update post
+		set
+			po_view = po_view + 1
+		where
+			po_num = #{po_num}
+	</update>
+	<select id="selectFileList" resultType="FileVO">
+		select * from file where fi_po_num = #{po_num}
 	</select>
 </mapper>

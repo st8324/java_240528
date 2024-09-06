@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.kh.spring3.dao.PostDAO;
 import kr.kh.spring3.model.vo.CommunityVO;
+import kr.kh.spring3.model.vo.FileVO;
 import kr.kh.spring3.model.vo.PostVO;
 import kr.kh.spring3.pagination.Criteria;
 import kr.kh.spring3.pagination.PageMaker;
@@ -35,5 +36,17 @@ public class PostService {
 		}
 		int totalCount = postDao.selectPostTotalcount(cri);
 		return new PageMaker(3, cri, totalCount);
+	}
+
+	public PostVO getPost(int po_num) {
+		return postDao.selectPost(po_num);
+	}
+
+	public void updateView(int po_num) {
+		postDao.updateView(po_num);
+	}
+
+	public List<FileVO> getFileList(int po_num) {
+		return postDao.selectFileList(po_num);
 	}
 }

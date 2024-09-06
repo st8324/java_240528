@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.kh.spring3.model.vo.CommunityVO;
+import kr.kh.spring3.model.vo.FileVO;
 import kr.kh.spring3.model.vo.PostVO;
 import kr.kh.spring3.pagination.PageMaker;
 import kr.kh.spring3.pagination.PostCriteria;
@@ -36,12 +37,26 @@ public class PostController {
 		
 		//페이지메이커 
 		PageMaker pm = postService.getPageMaker(cri);
-		//확인
-		log.info(pm);
 		
 		model.addAttribute("communities", communities);
 		model.addAttribute("list", list);
 		model.addAttribute("pm", pm);
+		log.info("/post/list:get");
 		return "/post/list";
+	}
+	@GetMapping("/detail/{po_num}")
+	public String detail(Model model, @PathVariable("po_num") int po_num) {
+		log.info("/post/detail:get");
+		//조회수 증가
+		postService.updateView(po_num);
+		//게시글 가져옴
+		PostVO post = postService.getPost(po_num);
+		//첨부파일 가져옴
+		List<FileVO> fileList = postService.getFileList(po_num);
+		
+		//화면에 전달
+		model.addAttribute("post", post);
+		model.addAttribute("list", fileList);
+		return "/post/detail";
 	}
 }

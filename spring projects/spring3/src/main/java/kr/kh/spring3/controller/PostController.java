@@ -128,4 +128,23 @@ public class PostController {
 		model.addAttribute("message",message);
 		return "/main/message";
 	}
+	@GetMapping("/delete/{co_num}/{po_num}")
+	public String delete(Model model, 
+			@PathVariable("co_num") int co_num,
+			@PathVariable("po_num") int po_num,
+			HttpSession session) {
+		log.info("/post/delete:get");
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		boolean res = postService.deletePost(po_num, user);
+
+		MessageDTO message;
+		if(res) {
+			message = new MessageDTO("/post/list/" +co_num, "게시글을 삭제했습니다.");
+		}else {
+			message = new MessageDTO("/post/detail/" +po_num, "게시글을 삭제하지 못했습니다.");
+		}
+		model.addAttribute("message",message);
+		return "/main/message";
+	}
 }

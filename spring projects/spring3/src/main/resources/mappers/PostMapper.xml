@@ -69,4 +69,7 @@
 	<delete id="deleteFile">
 		delete from file where fi_num = #{fi_num}
 	</delete>
+	<delete id="deletePost">
+		delete from post where po_num = #{po_num}
+	</delete>
 </mapper>

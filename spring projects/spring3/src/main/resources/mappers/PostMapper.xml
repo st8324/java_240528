@@ -47,4 +47,12 @@
 	<select id="selectFileList" resultType="FileVO">
 		select * from file where fi_po_num = #{po_num}
 	</select>
+	<insert id="insertPost" useGeneratedKeys="true" keyProperty="po_num" >
+		insert into post(po_title, po_content, po_me_id, po_co_num)
+		values(#{po_title},#{po_content},#{po_me_id},#{po_co_num})
+	</insert>
+	<insert id="insertFile">
+		insert into file(fi_po_num, fi_name, fi_ori_name)
+		values(#{fi_po_num},#{fi_name},#{fi_ori_name})
+	</insert>
 </mapper>

@@ -46,4 +46,15 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	<!-- 첨부파일 객체 등록 및 용량 설정 -->
+	<beans:bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 업로드 최대 크기 10Mb -->
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="D:\\uploads"/>
+	</beans:bean>
 </beans:beans>

@@ -188,6 +188,18 @@
 		    <artifactId>spring-security-config</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+		<!-- 첨부파일 업로드  -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
+		<!-- @Resource 사용을 위한  -->
+		<dependency>
+		    <groupId>javax.annotation</groupId>
+		    <artifactId>javax.annotation-api</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

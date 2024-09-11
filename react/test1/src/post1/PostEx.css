@@ -1,0 +1,36 @@
+
+#title, #writer, #content{
+	display: block; height: 30px; border: 1px solid black;
+	border-radius: 8px; width: 100%; box-sizing: border-box;
+	margin: 10px 0;
+}
+
+#content{
+	height: 200px; padding: 10px 5px;
+}
+
+.btn{
+	width: 100%; border: 1px solid; border-radius: 5px;
+	cursor: pointer;
+}
+
+#table-box{
+	margin-top: 10px;
+}
+#table-box table{
+	width: 100%; border-collapse: collapse;
+}
+#table-box tr{
+	height: 30px;
+}
+#modal{
+	position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+	background-color: rgba(0,0,0, 0.2);
+	padding: 30px 30px;
+}
+#modal-content{
+	background-color: #fff; 
+}
+.display-none{
+	display: none !important;
+}

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.kh.spring3.model.dto.Person;
@@ -73,6 +72,10 @@ public class ReactController {
 		@RequestBody Person person) {
 		System.out.println(person);
 		return "OK";
+	}
+	@GetMapping("/post/detail/{po_num}")
+	public PostVO postDetail(@PathVariable("po_num")int po_num) {
+		return postService.getPost(po_num);
 	}
 }
 

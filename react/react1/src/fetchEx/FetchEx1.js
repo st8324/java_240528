@@ -4,6 +4,10 @@ import {useState, useEffect } from 'react';
 function FetchEx1(){
 	let [str, setStr] = useState('');
 	let [obj, setObj] = useState(null);
+	let [person, setPerson] = useState({
+		name : '',
+		age : ''
+	})
 	useEffect(()=>{
 		fetch('/spring/react/get/str')
 			//서버에서 보낸 결과를 문자열로 변환
@@ -36,13 +40,10 @@ function FetchEx1(){
 			.then(data => console.log(data))
 			.catch(e=>console.error(e));
 		
-		let obj = {
-			name : data.get("name"),
-			age : data.get("age")
-		}
+		
 		fetch("/spring/react/send/person2", {
 			method : 'post',
-			body : JSON.stringify(obj),
+			body : JSON.stringify(person),
 			headers : {
 				'Content-Type' : 'application/json'
 			}
@@ -50,6 +51,13 @@ function FetchEx1(){
 			.then(res => res.text())
 			.then(data => console.log(data))
 			.catch(e=>console.error(e));
+	}
+
+	function change(e){
+		setPerson({
+			...person,
+			[e.target.name] : e.target.value
+		})
 	}
 	return(
 		<div>
@@ -63,9 +71,9 @@ function FetchEx1(){
 				)
 			}
 			<form onSubmit={submit}>
-				<input name="name" placeholder="이름을 입력하세요"/>
+				<input name="name" placeholder="이름을 입력하세요" onChange={change}/>
 				<br/>
-				<input name="age" type="number" placeholder="나이를 입력하세요"/>
+				<input name="age" type="number" placeholder="나이를 입력하세요" onChange={change}/>
 				<button type="submit">전송</button>
 			</form>
 		</div>

@@ -1,3 +1,9 @@
 *{
   padding: 0; margin: 0; color: #000;
 }
+
+.btn{
+  background-color: yellow;
+  height: 30px;
+  border-radius: 5px;
+}

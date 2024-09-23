@@ -1,13 +1,21 @@
 
-function Button1(){
+function Button1(props){
 	return (
-		<button>버튼1</button>
+		<button 
+			onClick={props.click}
+			className={props.classNames}>
+			{props.text}
+		</button>
 	)
 }
 
-const Button2 = ()=>{
+const Button2 = ({text, styles, click})=>{
 	return(
-		<button>버튼2</button>
+		<button 
+			onClick={click}
+			style={styles}>
+			{text}
+		</button>
 	)
 }
 

@@ -6,6 +6,7 @@ import { useState } from "react";
 - 게시글 등록 버튼을 클릭하면 제목, 내용, 작성자가 알림창으로 출력되도록 작성
 - 게시글 등록 버튼을 클릭하면 입력된 제목, 내용, 작성자가 빈 문자열이 되도록 작성
 - 게시글 목록을 화면에 출력되도록 작성
+- 게시글 등록 버튼을 클릭하면 알림창 출력 대신 list에 추가하는 코드를 작성
 */
 function App2(){
 	let [list, setList] = useState([
@@ -24,8 +25,12 @@ function App2(){
 	let [writer, setWriter] = useState('');
 	let [content, setContent] = useState('');
 	const click = ()=>{
-		alert(title + ", " + writer + ", " + content);
-		
+		let post = {
+			title,
+			writer,
+			content
+		};
+		setList([...list, post]);
 		setTitle("");//title의 값을 빈문자열로 변경 => 렌더링이 됨 => 제목이 빈 문자열이 됨
 		setWriter("");
 		setContent("");
@@ -33,7 +38,29 @@ function App2(){
 	return(
 		<div>
 			<div>
-
+				<table>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							list.map((item, index)=>{
+								return (
+									<tr key={"tr"+index}>
+										<td>{index+1}</td>
+										<td>{item.title}</td>
+										<td>{item.writer}</td>
+									</tr>
+								)
+							})
+						}
+					</tbody>
+				</table>
+				
 			</div>
 			<div>
 				<Input text="제목" change={setTitle} value={title}/>

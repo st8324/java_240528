@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">부트</title>
+</head>
+<body>
+
+    <!-- 고정 헤더 -->
+    <div th:replace="~{layout/header.html :: header}"></div> <!-- 헤더 불러오기 -->
+
+    <!-- 컨텐츠 영역 (각 페이지에서 변경될 부분) -->
+    <main layout:fragment="content">
+        <h1>기본 내용</h1>
+    </main>
+
+    <!-- 고정 푸터 -->
+    <div th:replace="~{layout/footer.html :: footer}"></div> <!-- 푸터 불러오기 -->
+
+</body>
+</html>

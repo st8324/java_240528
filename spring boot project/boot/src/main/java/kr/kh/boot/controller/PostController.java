@@ -23,6 +23,7 @@ public class PostController {
 	@GetMapping("/post/list/{co_num}")
 	public String postList(Model model, @PathVariable int co_num, PostCriteria cri) {
 		cri.setCo_num(co_num);
+		cri.setPerPageNum(4);
 		//커뮤니티 번호에 맞는 게시글 목록을 가져와서 화면에 전달
 		List<PostVO> list = postService.getPostList(cri);
 		//커뮤니티 목록을 가져와서 화면에 전달

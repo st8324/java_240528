@@ -3,7 +3,10 @@
 <mapper namespace="kr.kh.boot.dao.PostDAO">
     
     <select id="selectPostList" resultType="PostVO">
-    	select * from post where po_co_num = #{co_num}
+    	select * from post 
+    	where po_co_num = #{co_num}
+    	order by po_num desc
+    	limit #{pageStart}, #{perPageNum}
     </select>
     <select id="selectCommunityList" resultType="CommunityVO">
     	select * from community

@@ -34,6 +34,20 @@
 				</tr>
 			</tbody>
 		</table>
+		<ul class="pagination justify-content-center" 
+			th:object="${pm}" 
+			th:if="${pm.endPage != 0}">
+		    <li class="page-item" th:if="*{prev}">
+		    	<a class="page-link" href="javascript:void(0);">이전</a>
+		    </li>
+		    <li class="page-item" th:each="i : *{#numbers.sequence(startPage, endPage)}">
+		    	<a class="page-link" href="javascript:void(0);" th:text="${i}"></a>
+		    </li>
+		    <li class="page-item" th:if="*{next}">
+		    	<a class="page-link" href="javascript:void(0);">이후</a>
+		    </li>
+		</ul>
+
 	</main>
 </body>
 </html>

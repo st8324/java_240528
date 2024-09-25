@@ -8,4 +8,7 @@
     <select id="selectCommunityList" resultType="CommunityVO">
     	select * from community
     </select>
+    <select id="selectCountPostList" resultType="int">
+    	select count(*) from post where po_co_num = #{co_num}
+    </select>
 </mapper>

@@ -10,7 +10,9 @@
 <body>
 	<main layout:fragment="content">
 		<h1>Hi!</h1>
-		<p th:text="'내 이름은 ' + ${name} + '입니다.'"></p>
+		<p>
+			내 이름은 <span th:text="${name}">홍길동</span>입니다. 뒤에 내용이 길다고 가정
+		</p>
 	</main>
 </body>
 </html>

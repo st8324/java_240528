@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import kr.kh.boot.model.vo.CommunityVO;
@@ -34,5 +35,18 @@ public class PostController {
 		model.addAttribute("communities", communities);
 		model.addAttribute("pm", pm);
 		return "post/list";
+	}
+	@GetMapping("/post/detail/{po_num}")
+	public String postDetail(Model model, @PathVariable int po_num) {
+		PostVO post = postService.getPost(po_num);
+		
+		model.addAttribute("post", post);
+		return "post/detail";
+	}
+	@GetMapping("/post/insert/{co_num}")
+	public String postInsert(@PathVariable int co_num, 
+			@ModelAttribute("post") PostVO post) {
+		System.out.println(post);
+		return "post/insert";
 	}
 }

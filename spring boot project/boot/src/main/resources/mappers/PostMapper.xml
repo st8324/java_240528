@@ -14,4 +14,7 @@
     <select id="selectCountPostList" resultType="int">
     	select count(*) from post where po_co_num = #{co_num}
     </select>
+    <select id="selectPost" resultType="PostVO">
+    	select * from post where po_num = #{po_num}
+    </select>
 </mapper>

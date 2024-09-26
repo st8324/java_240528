@@ -25,4 +25,7 @@
     	update post set po_title = #{po_title}, po_content = #{po_content} 
     	where po_num = #{po_num}
     </update>
+    <delete id="deletePost">
+    	delete from post where po_num = #{po_num}
+    </delete>
 </mapper>

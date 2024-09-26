@@ -57,4 +57,8 @@ public class PostService {
 			return false;
 		}
 	}
+
+	public boolean deletePost(int po_num) {
+		return postDao.deletePost(po_num);
+	}
 }

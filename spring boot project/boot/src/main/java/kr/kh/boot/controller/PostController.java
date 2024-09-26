@@ -71,4 +71,12 @@ public class PostController {
 		}
 		return "redirect:/post/update/"+po_num;
 	}
+	@GetMapping("/post/delete/{co_num}/{po_num}")
+	public String postDelete(Model model, @PathVariable int po_num,@PathVariable int co_num) {
+		boolean res = postService.deletePost(po_num);
+		if(res) {
+			return "redirect:/post/list/"+co_num;
+		}
+		return "redirect:/post/detail/"+po_num;
+	}
 }

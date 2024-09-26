@@ -17,4 +17,8 @@
     <select id="selectPost" resultType="PostVO">
     	select * from post where po_num = #{po_num}
     </select>
+    <insert id="insertPost">
+    	insert into post(po_title, po_me_id, po_co_num, po_content)
+    	values(#{po_title}, #{po_me_id}, #{po_co_num}, #{po_content})
+    </insert>
 </mapper>

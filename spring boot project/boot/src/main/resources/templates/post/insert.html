@@ -9,21 +9,19 @@
 </head>
 <body>
 	<main layout:fragment="content">
-		<h1 th:text="${co_num}"></h1>
-		<h1 th:text="${po_num}">2</h1>
-		<h1 th:text="${post}">3</h1>
-		<form method="post">
+		<form method="post" th:action="@{/post/insert}">
+			<input type="hidden" name="po_co_num" th:value="${co_num}"/>
 			<div class="form-group">
 				<label>제목:</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" name="po_title" >
 			</div>
 			<div class="form-group">
 				<label>작성자:</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" name="po_me_id" >
 			</div>
 			<div class="form-group">
 				<label>내용:</label>
-				<textarea class="form-control" style="min-height: 400px; height: auto;">
+				<textarea class="form-control" style="min-height: 400px; height: auto;" name="po_content" >
 				</textarea>
 			</div>
 			<button class="btn btn-outline-info col-12">게시글 등록</button>

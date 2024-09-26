@@ -15,4 +15,6 @@ public interface PostDAO {
 	int selectCountPostList(PostCriteria cri);
 
 	PostVO selectPost(int po_num);
+
+	boolean insertPost(PostVO post);
 }

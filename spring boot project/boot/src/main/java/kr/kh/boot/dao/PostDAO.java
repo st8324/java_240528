@@ -17,4 +17,6 @@ public interface PostDAO {
 	PostVO selectPost(int po_num);
 
 	boolean insertPost(PostVO post);
+
+	boolean updatePost(PostVO post);
 }

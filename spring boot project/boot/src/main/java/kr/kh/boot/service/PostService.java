@@ -45,4 +45,16 @@ public class PostService {
 			return false;
 		}
 	}
+
+	public boolean updatePost(PostVO post) {
+		if(post == null) {
+			return false;
+		}
+		try {
+			return postDao.updatePost(post);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

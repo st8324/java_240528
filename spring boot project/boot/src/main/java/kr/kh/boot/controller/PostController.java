@@ -56,4 +56,19 @@ public class PostController {
 		}
 		return "redirect:/post/insert/"+post.getPo_co_num();
 	}
+	@GetMapping("/post/update/{po_num}")
+	public String postUpdate(Model model, @PathVariable int po_num) {
+		PostVO post = postService.getPost(po_num);
+		model.addAttribute("post", post);
+		return "post/update";
+	}
+	@PostMapping("/post/update/{po_num}")
+	public String postUpdatePost(Model model, @PathVariable int po_num, PostVO post) {
+		post.setPo_num(po_num);
+		boolean res = postService.updatePost(post);
+		if(res) {
+			return "redirect:/post/detail/"+po_num;
+		}
+		return "redirect:/post/update/"+po_num;
+	}
 }

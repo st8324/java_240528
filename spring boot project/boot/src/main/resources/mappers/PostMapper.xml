@@ -21,4 +21,8 @@
     	insert into post(po_title, po_me_id, po_co_num, po_content)
     	values(#{po_title}, #{po_me_id}, #{po_co_num}, #{po_content})
     </insert>
+    <update id="updatePost">
+    	update post set po_title = #{po_title}, po_content = #{po_content} 
+    	where po_num = #{po_num}
+    </update>
 </mapper>

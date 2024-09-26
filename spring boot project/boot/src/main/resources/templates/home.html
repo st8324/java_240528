@@ -2,6 +2,7 @@
 <html 
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layout/layout.html}">
 <head>
 <meta charset="UTF-8">
@@ -9,10 +10,18 @@
 </head>
 <body>
 	<main layout:fragment="content">
-		<h1>Hi!</h1>
-		<p>
-			내 이름은 <span th:text="${name}">홍길동</span>입니다. 뒤에 내용이 길다고 가정
-		</p>
+		<div>
+	        <p>안녕하세요, <span th:text="${#authentication.principal.member}"></span>님!</p>
+	        <p>권한: <span th:text="${p != null ? p.getName() : ''}"></span></p>
+	        <th:block sec:authorize="isAnonymous()">
+		    	<!-- 인증 받지 않음 -->
+		    <a href="/account/login" class="btn btn-outline-grey">로그인</a>
+		    <a href="/account/register" class="btn btn-primary">회원가입</a>
+		  </th:block>
+	    </div>
+	    <form action="/logout" method="post">
+	    	<button>로그아웃</button>
+	    </form>
 	</main>
 </body>
 </html>

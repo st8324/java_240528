@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html 
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
 	layout:decorate="~{layout/layout.html}">
 <head>
 <meta charset="UTF-8">
@@ -10,8 +11,9 @@
 <body>
 	<main layout:fragment="content">
 		<h1>Hi!</h1>
-		<p>
-			내 이름은 <span th:text="${name}">홍길동</span>입니다. 뒤에 내용이 길다고 가정
+		<p sec:authorize="isAuthenticated()">
+			<span th:text="${#authentication.principal.member.me_id}"></span>님 반갑습니다.<br>
+			당신의 이메일은 <span th:text="${#authentication.principal.member.me_email}"></span> 입니다.
 		</p>
 	</main>
 </body>

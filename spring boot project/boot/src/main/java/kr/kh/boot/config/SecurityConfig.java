@@ -1,5 +1,6 @@
 package kr.kh.boot.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,11 +10,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import kr.kh.boot.model.util.UserRole;
+import kr.kh.boot.service.MemberDetailService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
 
+	@Autowired
+	private MemberDetailService memberDetailService;
+	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		//csrf : 
@@ -31,12 +36,17 @@ public class SecurityConfig{
                 .anyRequest().permitAll()  // 그 외 요청은 인증 필요
             )
             .formLogin((form) -> form
-                //.loginPage("/login")  // 커스텀 로그인 페이지 설정하는 경우, 
+                .loginPage("/login")  // 커스텀 로그인 페이지 설정하는 경우, 
             							//아이디창의 name을 username, 비번창의 name을 password로
                 .permitAll()           // 로그인 페이지는 접근 허용
                 .loginProcessingUrl("/login")//
                 .defaultSuccessUrl("/")
             )
+            .rememberMe((rm)-> rm
+            		.userDetailsService(memberDetailService)
+            		.key("시크릿 코드")
+            		.rememberMeCookieName("Auto")
+            		.tokenValiditySeconds(2109600))
             .logout((logout) -> logout
             		.logoutUrl("/logout") //이 URL로 post방식으로 전송하면 로그아웃이 자동으로 실행
             		.logoutSuccessUrl("/")

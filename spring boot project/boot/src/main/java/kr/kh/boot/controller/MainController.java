@@ -18,4 +18,8 @@ public class MainController {
 		model.addAttribute("name", "홍길동");
 		return "home";
 	}
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+	layout:decorate="~{layout/layout.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<main layout:fragment="content">
+		<form th:action="@{/login}" method="post">
+		    <input type="text" name="username" placeholder="Username"/>
+		    <input type="password" name="password" placeholder="Password"/>
+		    <label>
+		        <input type="checkbox" name="remember-me"/> Remember Me
+		    </label>
+		    <button type="submit">Login</button>
+		</form>
+
+	</main>
+	
+</body>
+</html>

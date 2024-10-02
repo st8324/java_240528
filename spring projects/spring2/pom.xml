@@ -192,7 +192,13 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
 		    <version>${org.springframework-version}</version>
-		</dependency>      
+		</dependency> 
+		<dependency> 
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+  
 	</dependencies>
     <build>
         <plugins>
